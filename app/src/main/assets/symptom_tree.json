@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "emergencies": [
+    {
+      "id": "fracture",
+      "name": "Fracture / Broken Bone",
+      "triggerKeywords": ["fall", "bone", "snap", "can't move", "leg", "arm", "swollen", "bent", "fracture", "joint", "dislocation"],
+      "questions": [
+        "Is the person conscious, breathing, and able to respond to you?",
+        "Is the bone protruding or visible through the skin (open fracture)?",
+        "Is there severe, spurting, or uncontrolled bleeding around the injury?",
+        "Can the patient feel light touch and wiggle fingers or toes below the break point?"
+      ],
+      "firstAidSteps": [
+        "Do NOT attempt to straighten, push back, or realign any deformed bone or joint.",
+        "If open fracture with bleeding: Apply sterile pressure around the bone edges, not directly on exposed bone.",
+        "Immobilize the limb using rigid items (trekking poles, padded tree branches, rolled foam sleeping pad).",
+        "Secure the splint above AND below the suspected fracture using triangular bandages or torn fabric.",
+        "Leave fingertips or toes visible to regularly check blood circulation and pulse.",
+        "Apply an ice pack or snow wrapped in a cloth for 15-20 minutes to minimize severe swelling.",
+        "Keep the patient warm and dry using emergency space blanket to prevent traumatic shock.",
+        "Administer pain relief (Ibuprofen or Acetaminophen) if the patient is fully conscious and uninjured internally.",
+        "Do NOT allow the patient to bear weight or walk on a broken lower limb."
+      ],
+      "warningSigns": [
+        "Extremity turns pale, blue, or ice cold to touch (loss of vascular circulation)",
+        "Rapid onset of complete numbness or pins-and-needles sensation distal to injury",
+        "Signs of systemic shock: pale clammy skin, rapid weak pulse, confusion, dizziness",
+        "Bone penetrating skin with active heavy bleeding"
+      ],
+      "evacuationNote": "Activate Satellite SOS (Garmin inReach / Apple Emergency SOS / PLB). Note GPS coordinates. Signal rescuers with 3 sharp whistle blasts or mirror flashes every 60 seconds."
+    },
+    {
+      "id": "breathing",
+      "name": "Breathing Problem / Altitude Sickness",
+      "triggerKeywords": ["breathing", "breath", "asthma", "wheezing", "altitude", "choking", "gasping", "chest tight", "hape", "hace", "hyperventilating"],
+      "questions": [
+        "Is the trekker at high altitude (> 2,500m / 8,000ft) and experiencing gurgling cough or confusion?",
+        "Is the person wheezing, choking on food/debris, or having a severe asthma attack?",
+        "Are their lips, tongue, or nail beds turning blue or grey (cyanosis)?",
+        "Can they speak in full sentences or only 1-2 words between gasps?"
+      ],
+      "firstAidSteps": [
+        "If high altitude sickness (HAPE/HACE): IMMEDIATELY begin descent to lower altitude (even 500m makes a life-saving difference).",
+        "Sit the patient upright in a comfortable 'tripod' position (leaning forward with hands on knees) — never lie them flat.",
+        "Loosen all tight clothing, backpack chest straps, and neck collars.",
+        "If known asthmatic: Assist with their prescribed bronchodilator rescue inhaler (2-4 puffs via spacer every 15 mins).",
+        "If available and trained: Administer bottled medical oxygen or place patient in Gamow hyperbaric bag.",
+        "Keep patient calm; instruct slow, steady pursed-lip breathing (inhale 2 seconds through nose, exhale 4 seconds through lips).",
+        "Protect from freezing wind and insulate the ground beneath them.",
+        "Do NOT force heavy physical exertion during severe shortness of breath."
+      ],
+      "warningSigns": [
+        "Pink frothy sputum or wet gurgling sounds in the chest (High Altitude Pulmonary Edema)",
+        "Severe ataxia: walking like drunk, confusion, inability to touch nose (High Altitude Cerebral Edema)",
+        "Stridor (high-pitched inspiratory sound) or complete airway obstruction",
+        "Loss of consciousness or lethargy"
+      ],
+      "evacuationNote": "Immediate priority evacuation. If altitude related, descending is the primary treatment. Use emergency beacon for helicopter rescue if unable to walk."
+    },
+    {
+      "id": "bleeding",
+      "name": "Bleeding / Severe Wound",
+      "triggerKeywords": ["blood", "bleeding", "wound", "cut", "laceration", "gash", "stab", "arterial", "hemorrhage"],
+      "questions": [
+        "Is the blood spurting under high pressure or flowing continuously and heavily?",
+        "Is there an object (knife, rock, wood branch) still embedded inside the wound?",
+        "Is the wound located on an arm/leg or on the torso/neck/head?",
+        "Is the patient feeling dizzy, cold, faint, or unusually thirsty?"
+      ],
+      "firstAidSteps": [
+        "Apply immediate direct, firm pressure over the wound using sterile gauze, clean bandana, or gloved palm.",
+        "Maintain firm continuous pressure for AT LEAST 10 full minutes without lifting the pad to check.",
+        "If bleeding is arterial (bright red spurting) on an arm or leg and direct pressure fails: Apply a commercial or improvised TOURNIQUET 5-7cm (2-3 in) above wound, never over a joint.",
+        "Tighten tourniquet windlass until the bleeding stops completely; write the EXACT application time on patient's forehead (e.g., 'TK 14:35').",
+        "If an object is impaled: Do NOT remove it. Stabilize the object in place using bulky rolled dressings on both sides.",
+        "If direct pressure controls bleeding: Wrap firmly with an elastic pressure bandage.",
+        "Lay the patient down and elevate legs slightly if signs of shock develop (unless head/spine trauma).",
+        "Wrap patient in thermal space blanket to keep body core warm."
+      ],
+      "warningSigns": [
+        "Tourniquet remains loose or blood continues heavy spurting",
+        "Rapid drop in consciousness, gray skin, shivering, rapid thready pulse",
+        "Wound is pulsating or located on junctional areas (groin, armpit, neck)",
+        "Massive blood loss exceeding 500ml"
+      ],
+      "evacuationNote": "CRITICAL EMERGENCY. Evacuate urgently. Never loosen or remove a tourniquet once applied in the wilderness; only medical professionals should remove it."
+    },
+    {
+      "id": "hypothermia",
+      "name": "Hypothermia / Frostbite",
+      "triggerKeywords": ["cold", "hypothermia", "shivering", "freezing", "frostbite", "numb", "ice", "snow", "soaked", "winter"],
+      "questions": [
+        "Is the trekker violently shivering, or have they STOPPED shivering while remaining lethargic and confused?",
+        "Are their clothes wet from rain, river crossing, or heavy sweat?",
+        "Are any fingers, toes, nose, or ears white, waxy, hard, or devoid of feeling (frostbite)?",
+        "Are they slurring words, fumbling gear (the 'umbles': mumbles, stumbles, fumbles)?"
+      ],
+      "firstAidSteps": [
+        "Move the person immediately out of wind and precipitation into a tent, bivy sack, or rock shelter.",
+        "Carefully strip off all wet clothing and replace with warm, dry synthetic/wool layers.",
+        "Create a 'Hypothermia Wrap': Lay insulated sleeping pads on ground, place patient inside sleeping bag, wrap exterior with waterproof tarp or space blanket.",
+        "Place gentle heat sources (warm water bottles wrapped in socks) on the chest, groin, and armpits — NEVER apply direct scalding heat.",
+        "If fully conscious and swallowing: Offer warm, sugary fluids (hot tea, soup, electrolyte broth). NEVER give alcohol or caffeine.",
+        "Handle the patient extremely gently — rough movements can trigger fatal cardiac ventricular fibrillation in severe hypothermia.",
+        "For frostbite: Do NOT rub with snow or massage frozen tissue. Do NOT thaw if there is ANY danger of refreezing before reaching hospital."
+      ],
+      "warningSigns": [
+        "Shivering stops while body remains cold (indicates moderate-to-severe hypothermia < 32°C / 90°F)",
+        "Paradoxical undressing (patient takes off clothes despite freezing cold)",
+        "Severe bradycardia (pulse < 40 bpm) or unresponsiveness",
+        "Black, blistered, or wooden frozen tissue"
+      ],
+      "evacuationNote": "Urgent passive and active rewarming during shelter. Request urgent wilderness rescue for severe hypothermia or deep frostbite."
+    },
+    {
+      "id": "bite",
+      "name": "Snake / Insect / Venomous Bite",
+      "triggerKeywords": ["snake", "bite", "spider", "insect", "sting", "venom", "viper", "cobra", "bee", "anaphylaxis", "scorpion"],
+      "questions": [
+        "Can you see 2 distinct puncture fang marks, rapid swelling, or bruising around the bite site?",
+        "Is the person experiencing difficulty breathing, throat swelling, hives, or dizziness (anaphylactic allergic shock)?",
+        "When did the bite occur (how many minutes ago)?",
+        "Can you describe the creature's shape, pattern, or head from a safe distance?"
+      ],
+      "firstAidSteps": [
+        "Move patient to a safe location away from the animal. Do NOT attempt to capture or kill the snake.",
+        "Keep the bitten person completely calm and STILL — physical movement speeds venom dissemination.",
+        "Position the bitten limb below the level of the heart.",
+        "Immediately remove all rings, watches, tight bracelets, and tight boots before swelling sets in.",
+        "Wash the bite gently with clean water and soap if available.",
+        "Apply a broad, firm pressure immobilization bandage (for neurotoxic/elapid bites) starting at fingers/toes moving upwards, snug like an ankle sprain.",
+        "Splint the limb to prevent joint flexing.",
+        "If severe allergic anaphylaxis: Administer Epinephrine auto-injector (EpiPen) into outer mid-thigh immediately.",
+        "NEVER cut the wound, NEVER suck venom, NEVER apply ice, and NEVER apply an arterial tourniquet for snakebites."
+      ],
+      "warningSigns": [
+        "Difficulty swallowing, drooling, or eyelid drooping (ptosis)",
+        "Stridor, wheezing, tongue swelling, or systemic hives (anaphylaxis)",
+        "Bleeding from gums, old puncture sites, or blood in urine",
+        "Paralysis, muscle fasciculations, or seizures"
+      ],
+      "evacuationNote": "Carry the patient on a stretcher/litter if possible to prevent walking. Mark leading edge of swelling on skin with pen and timestamp every 15 minutes."
+    },
+    {
+      "id": "cardiac",
+      "name": "Cardiac Emergency / Chest Pain",
+      "triggerKeywords": ["heart", "cardiac", "chest pain", "pressure", "heart attack", "cpr", "angina", "palpitation", "collapse"],
+      "questions": [
+        "Is the person experiencing crushing chest pressure radiating to left arm, jaw, back, or neck?",
+        "Is the person conscious, responsive, and breathing normally?",
+        "Does the person have a known history of heart disease, angina, or prescribed Nitroglycerin?",
+        "Are they sweating profusely, nauseous, or struggling for breath?"
+      ],
+      "firstAidSteps": [
+        "Have the patient stop all physical movement immediately and sit in a comfortable semi-reclined 'W-position' with knees bent.",
+        "If conscious and non-allergic: Have the patient chew one full adult Aspirin (300-325mg) or four low-dose baby Aspirins (81mg each).",
+        "If patient has prescribed Nitroglycerin and systolic BP is adequate: Assist with one sublingual spray/tablet under the tongue.",
+        "Loosen collar, belt, and pack harness.",
+        "Reassure the patient continuously to lower adrenaline and myocardial oxygen demand.",
+        "IF PATIENT BECOMES UNRESPONSIVE AND NOT BREATHING: Immediately start CPR (Cardiopulmonary Resuscitation).",
+        "CPR Protocol: 100-120 chest compressions per minute in center of chest, 5-6 cm deep. 30 compressions followed by 2 rescue breaths (or continuous Hands-Only CPR)."
+      ],
+      "warningSigns": [
+        "Sudden collapse and loss of consciousness",
+        "Absence of carotid pulse or agonal gasping breaths",
+        "Gray cyanotic skin with cold diaphoresis (sweating)",
+        "Chest pain worsening despite rest and aspirin"
+      ],
+      "evacuationNote": "CRITICAL LIFE THREAT. Trigger instant SOS. If cardiac arrest occurs, continue CPR without interruption while calling for helicopter medevac."
+    },
+    {
+      "id": "head",
+      "name": "Head Injury / Concussion",
+      "triggerKeywords": ["head", "concussion", "hit", "rock fall", "dizzy", "unconscious", "blackout", "vomit", "skull", "brain"],
+      "questions": [
+        "Did the person lose consciousness, even for a few seconds?",
+        "Is there clear or blood-tinged fluid draining from their ears or nose?",
+        "Is the person repeating questions, confused about time/location, or experiencing severe projectile vomiting?",
+        "Was there high-energy trauma (fall from height, rock impact) indicating possible spinal neck injury?"
+      ],
+      "firstAidSteps": [
+        "If fall or neck pain suspected: Manually stabilize the cervical spine (hold head in neutral alignment, do NOT twist neck).",
+        "Check level of consciousness using AVPU scale (Alert, Voice responsive, Pain responsive, Unresponsive).",
+        "If scalp is bleeding: Apply gentle direct pressure with clean gauze (avoid pushing down hard if skull fracture is felt).",
+        "Keep the person lying still, resting quietly in a shaded, calm area.",
+        "Do NOT give sedatives, sleeping pills, or aspirin (use Acetaminophen for mild headache only).",
+        "Monitor pupil size, symmetry, and responsiveness to light.",
+        "Wake the patient every 2 hours through the night to check orientation and speech coherence.",
+        "Do not allow the patient to return to trekking, climbing, or carrying a backpack."
+      ],
+      "warningSigns": [
+        "Unequal pupil sizes or eyes not tracking together",
+        "Repeated persistent vomiting (> 2 episodes)",
+        "Worsening confusion, slurred speech, or progressive drowsiness",
+        "Bruising behind the ears (Battle's sign) or black eyes ('raccoon eyes')"
+      ],
+      "evacuationNote": "Any loss of consciousness, repeated vomiting, or spinal pain requires immediate evacuation on a backboard/litter."
+    },
+    {
+      "id": "heat",
+      "name": "Heat Stroke / Severe Exhaustion",
+      "triggerKeywords": ["heat", "sun", "stroke", "exhaustion", "dehydration", "cramps", "faint", "hot", "dry skin"],
+      "questions": [
+        "Is the patient's skin hot and dry with an ABSENCE of sweat, and are they confused or delirious (Heat Stroke)?",
+        "Is the trekker experiencing intense muscle cramps, nausea, headache, and weakness (Heat Exhaustion)?",
+        "Can the patient keep fluids down without vomiting?",
+        "How long have they been exposed to direct sun and high heat?"
+      ],
+      "firstAidSteps": [
+        "Move the person immediately into dense shade or pitch a tarp for shelter.",
+        "For suspected HEAT STROKE (Emergency): Aggressively cool immediately — soak clothing in cold stream water and fan vigorously.",
+        "Apply wet bandanas or ice packs to high-flow vascular zones: neck, armpits, and groin.",
+        "Elevate legs 20-30 cm if heat exhaustion faintness occurs.",
+        "If conscious and not vomiting: Administer small, frequent sips of cool water with oral rehydration salts (ORS) or electrolyte mix.",
+        "Do NOT give salt tablets directly without water.",
+        "Remove unnecessary outer layers, pack gear, and heavy boots.",
+        "Rest until core temperature normalizes and symptoms resolve completely."
+      ],
+      "warningSigns": [
+        "Altered mental state: delirium, hallucinations, aggressive behavior, seizures",
+        "Hot flushed skin that has stopped sweating",
+        "Rapid bounding pulse followed by weak thready pulse",
+        "Inability to stand or severe collapse"
+      ],
+      "evacuationNote": "Heat stroke is an acute medical emergency with high mortality. Rapid aggressive cooling on-site is mandatory while arranging medevac."
+    }
+  ]
+}

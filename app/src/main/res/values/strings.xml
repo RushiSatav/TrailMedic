@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TrailMedic</string>
+    <string name="tagline">First Aid. Anywhere. No Signal Needed.</string>
+    <string name="offline_ready">Offline Ready</string>
+    <string name="emergency_sos">EMERGENCY</string>
+    <string name="emergency_channel_name">Model Downloads</string>
+    <string name="emergency_channel_desc">Shows progress for on-device AI model downloads.</string>
+</resources>

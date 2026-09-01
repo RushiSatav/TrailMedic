@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="emergency_red">#E63946</color>
+    <color name="warning_orange">#F4A261</color>
+    <color name="safe_green">#2DC653</color>
+    <color name="deep_navy">#1A1A2E</color>
+    <color name="surface_dark">#16213E</color>
+    <color name="card_dark">#0F3460</color>
+    <color name="text_primary">#F1FAEE</color>
+    <color name="text_secondary">#A8DADC</color>
+</resources>

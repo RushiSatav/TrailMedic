@@ -1,0 +1,339 @@
+package com.trailmedic.ui.history
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.LocalHospital
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.trailmedic.domain.model.Session
+import com.trailmedic.ui.components.ChatBubble
+import com.trailmedic.ui.theme.CardDark
+import com.trailmedic.ui.theme.CardDarkElevated
+import com.trailmedic.ui.theme.DeepNavy
+import com.trailmedic.ui.theme.EmergencyRed
+import com.trailmedic.ui.theme.SafeGreen
+import com.trailmedic.ui.theme.SurfaceDark
+import com.trailmedic.ui.theme.TextMuted
+import com.trailmedic.ui.theme.TextPrimary
+import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.utils.formatAsDateTime
+import com.trailmedic.utils.formatAsDurationSummary
+import com.trailmedic.utils.saveSessionReportToDownloads
+
+@Composable
+fun SessionDetailScreen(
+    sessionId: String,
+    onNavigateBack: () -> Unit,
+    viewModel: HistoryViewModel = hiltViewModel()
+) {
+    val context = LocalContext.current
+    var session by remember { mutableStateOf<Session?>(null) }
+    var outcomeNoteText by remember { mutableStateOf("") }
+    var isNoteSaved by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
+
+    LaunchedEffect(sessionId) {
+        val s = viewModel.getSessionById(sessionId)
+        session = s
+        outcomeNoteText = s?.outcomeNote ?: ""
+    }
+
+    val currentSession = session
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(DeepNavy)
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            // TOP BAR
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .statusBarsPadding(),
+                color = SurfaceDark,
+                shadowElevation = 4.dp
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        IconButton(onClick = onNavigateBack) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Back",
+                                tint = TextPrimary
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = "Session Details",
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                        )
+                    }
+
+                    if (currentSession != null) {
+                        IconButton(
+                            onClick = {
+                                context.saveSessionReportToDownloads(currentSession)
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Download,
+                                contentDescription = "Export report",
+                                tint = SafeGreen
+                            )
+                        }
+                    }
+                }
+            }
+
+            if (currentSession == null) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "Loading session record...", color = TextSecondary)
+                }
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp)
+                        .verticalScroll(scrollState)
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Header Info Card
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(18.dp),
+                        colors = CardDefaults.cardColors(containerColor = CardDarkElevated)
+                    ) {
+                        Column(modifier = Modifier.padding(16.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(40.dp)
+                                        .clip(CircleShape)
+                                        .background(EmergencyRed),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.LocalHospital,
+                                        contentDescription = null,
+                                        tint = Color.White,
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                }
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Column {
+                                    Text(
+                                        text = currentSession.emergencyType,
+                                        style = MaterialTheme.typography.titleLarge.copy(
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color.White
+                                        )
+                                    )
+                                    Text(
+                                        text = currentSession.timestamp.formatAsDateTime(),
+                                        style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                    )
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(12.dp))
+
+                            Text(
+                                text = "Duration: ${currentSession.durationSeconds.formatAsDurationSummary()}",
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = TextPrimary
+                                )
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Highlighted First Aid Summary Card
+                    if (currentSession.firstAidSummary.isNotBlank()) {
+                        Text(
+                            text = "First Aid Assessment & Instructions",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = TextPrimary
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = CardDefaults.cardColors(containerColor = CardDark)
+                        ) {
+                            SelectionContainer {
+                                Text(
+                                    text = currentSession.firstAidSummary,
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = TextPrimary,
+                                        lineHeight = 22.sp
+                                    ),
+                                    modifier = Modifier.padding(16.dp)
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+
+                    // Editable Outcome Note
+                    Text(
+                        text = "Outcome Note / Rescuer Notes",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = TextPrimary
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    OutlinedTextField(
+                        value = outcomeNoteText,
+                        onValueChange = {
+                            outcomeNoteText = it
+                            isNoteSaved = false
+                        },
+                        placeholder = {
+                            Text(text = "e.g., Splint applied successfully, helicopter reached at 16:30, vitals stable...", color = TextMuted)
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(14.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = SafeGreen,
+                            unfocusedBorderColor = CardDarkElevated,
+                            focusedTextColor = TextPrimary,
+                            unfocusedTextColor = TextPrimary,
+                            focusedContainerColor = CardDark,
+                            unfocusedContainerColor = CardDark
+                        ),
+                        minLines = 3,
+                        maxLines = 6
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Button(
+                        onClick = {
+                            viewModel.updateOutcomeNote(currentSession.id, outcomeNoteText)
+                            isNoteSaved = true
+                        },
+                        modifier = Modifier.align(Alignment.End),
+                        shape = RoundedCornerShape(10.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = if (isNoteSaved) SafeGreen else CardDarkElevated)
+                    ) {
+                        if (isNoteSaved) {
+                            Icon(imageVector = Icons.Default.Check, contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(text = "Saved", color = Color.White)
+                        } else {
+                            Text(text = "Save Note", color = Color.White)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    // Conversation Transcript
+                    Text(
+                        text = "Full Conversation Transcript",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = TextPrimary
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        currentSession.messages.forEach { msg ->
+                            if (msg.content.isNotBlank()) {
+                                ChatBubble(message = msg)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Button(
+                        onClick = {
+                            context.saveSessionReportToDownloads(currentSession.copy(outcomeNote = outcomeNoteText))
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        shape = RoundedCornerShape(14.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = SafeGreen)
+                    ) {
+                        Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = Color.White)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = "Export Full Report (.txt)", fontWeight = FontWeight.Bold)
+                    }
+
+                    Spacer(modifier = Modifier.height(36.dp))
+                }
+            }
+        }
+    }
+}
