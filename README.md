@@ -22,11 +22,12 @@
 3. [Dual-Engine Intelligence Pipeline](#-dual-engine-intelligence-pipeline)
 4. [System Architecture & Data Flow](#-system-architecture--data-flow)
 5. [Wilderness Medical Protocols Covered](#-wilderness-medical-protocols-covered)
-6. [Core Features & Innovation](#-core-features--innovation)
-7. [Technology Stack & Dependency Matrix](#-technology-stack--dependency-matrix)
-8. [Setup, Build & Execution Guide](#-setup-build--execution-guide)
-9. [Future Roadmap & Visionary Scope](#-future-roadmap--visionary-scope)
-10. [Medical Disclaimer & License](#-medical-disclaimer)
+6. [Technology Stack & Dependency Matrix](#-technology-stack--dependency-matrix)
+7. [Step-by-Step Beginner Setup & Run Guide](#-step-by-step-beginner-setup--run-guide)
+8. [How to Download & Import the Gemma 2B Model](#-how-to-download--import-the-gemma-2b-model)
+9. [Emulator Best Practices & Troubleshooting FAQ](#-emulator-best-practices--troubleshooting-faq)
+10. [Future Roadmap & Visionary Scope](#-future-roadmap--visionary-scope)
+11. [Medical Disclaimer](#-medical-disclaimer)
 
 ---
 
@@ -110,8 +111,6 @@ TrailMedic utilizes a resilient **Dual-Engine Architecture** that guarantees med
 
 ## 🏛️ System Architecture & Data Flow
 
-TrailMedic is architected with **Clean Architecture** and **MVI/MVVM design patterns** powered by Kotlin Coroutines and StateFlow:
-
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │                          PRESENTATION LAYER                            │
@@ -143,16 +142,14 @@ TrailMedic is architected with **Clean Architecture** and **MVI/MVVM design patt
 
 ## 🚑 Wilderness Medical Protocols Covered
 
-TrailMedic covers 8 comprehensive wilderness medical categories based on Wilderness First Responder (WFR) and Wilderness First Aid (WFA) standards:
-
-1. **🐍 Snakebites & Envenomation**: Pressure immobilization, limb positioning below heart, contraindications against tourniquets/cutting/suction.
-2. **🩸 Severe Hemorrhage & Wounds**: Direct pressure, wound packing, windlass/commercial tourniquet protocols, shock prevention.
-3. **🦴 Fractures & Dislocation**: Musculoskeletal splinting, open fracture dressing, distal pulse & neurological checks.
-4. **🏔️ Altitude Sickness (HAPE / HACE)**: Acute Mountain Sickness (AMS), ataxia checks, immediate descent protocols, hyperbaric guidance.
-5. **❄️ Hypothermia & Frostbite**: Active vs. passive rewarming, vapor barrier wrapping, cold diuresis management, frostbite thawing precautions.
-6. **🫀 Acute Cardiac Events**: Wilderness CPR, aspirin triage, rest position, emergency evacuation signaling.
-7. **🧠 Traumatic Head Injury**: Concussion assessment, Glasgow Coma Scale indicators, cervical spine immobilization, intracranial pressure signs.
-8. **🔥 Burns, Heat Stroke & Shock**: Rule of nines assessment, hydration strategies, evaporative cooling, sterile non-adherent coverage.
+1. **🐍 Snakebites & Envenomation**: Pressure immobilization bandage technique, keeping bitten limb below heart level, contraindications against tourniquets/cutting/suction.
+2. **🩸 Severe Hemorrhage & Wounds**: Direct pressure, wound packing, windlass/commercial tourniquet protocols, shock prevention and blood loss monitoring.
+3. **🦴 Fractures & Dislocation**: Musculoskeletal splinting, open fracture sterile dressing, distal pulse, motor, and sensory (PMS) neurological checks.
+4. **🏔️ Altitude Sickness (HAPE / HACE)**: Acute Mountain Sickness (AMS), ataxia walking checks, immediate descent protocols, hyperbaric bag guidance.
+5. **❄️ Hypothermia & Frostbite**: Active vs. passive rewarming, vapor barrier "hypothermia burrito" wrap, frostbite thawing precautions.
+6. **🫀 Acute Cardiac Events**: Wilderness CPR guidelines, aspirin triage, comfortable positioning, emergency satellite signaling.
+7. **🧠 Traumatic Head Injury**: Concussion assessment, Glasgow Coma Scale indicators, cervical spine stabilization, intracranial pressure red flags.
+8. **🔥 Burns, Heat Stroke & Shock**: Rule of nines assessment, evaporative cooling techniques, sterile non-adherent coverage.
 
 ---
 
@@ -172,40 +169,124 @@ TrailMedic covers 8 comprehensive wilderness medical categories based on Wildern
 
 ---
 
-## 🛠️ Setup, Build & Execution Guide
+## 🛠️ Step-by-Step Beginner Setup & Run Guide
 
-### Prerequisites
-- **Android Studio** (Hedgehog, Ladybug, Iguana, or newer)
-- **JDK 17 or JDK 21**
-- **Android Device / Emulator**: Running Android 8.0+ (API 26+) with ARM64 support.
+Follow these simple steps to get TrailMedic running on your computer or Android phone in minutes:
 
-### 1. Clone the Repository
+### 📋 Prerequisites
+1. **Android Studio**: Download and install [Android Studio](https://developer.android.com/studio) (Hedgehog, Ladybug, Iguana, or newer).
+2. **JDK 17 or JDK 21**: Included automatically with modern Android Studio installations.
+3. **Target Device**:
+   - **Option A (Physical Android Phone - Recommended for best AI speed)**: Any phone running Android 8.0+ (API 26+) with 4GB+ RAM.
+   - **Option B (Android Virtual Device / Emulator)**: See [Emulator Best Practices](#-emulator-best-practices--troubleshooting-faq) below.
+
+---
+
+### 1️⃣ Clone the Repository
+Open your terminal (PowerShell, Command Prompt, or Terminal) and run:
 ```bash
 git clone https://github.com/RushiSatav/TrailMedic.git
 cd TrailMedic
 ```
 
-### 2. Build the Debug APK
+---
+
+### 2️⃣ Open the Project in Android Studio
+1. Launch **Android Studio**.
+2. Click **Open** and select the cloned `TrailMedic` folder.
+3. Wait 1–2 minutes for Gradle to download dependencies and index the project.
+
+---
+
+### 3️⃣ Run the App on Your Phone or Emulator
+1. Select your connected device or emulator from the device dropdown in Android Studio.
+2. Click the green **Run (▶)** button (or press `Shift + F10`).
+3. Alternatively, build and install from the command line:
+   ```powershell
+   # Build the debug APK
+   .\gradlew.bat assembleDebug
+
+   # Install onto device
+   adb install -r app/build/outputs/apk/debug/app-debug.apk
+   ```
+
+---
+
+## 📥 How to Download & Import the Gemma 2B Model
+
+TrailMedic runs **100% out of the box** using its built-in clinical emergency tree. To unlock **neural generative conversational AI**, import the quantized Gemma 2B weights using either method below:
+
+### 1. Download Model Weights (`gemma-2b-it-cpu-int4.bin`)
+- Download the CPU quantized Gemma 2B model (~1.28 GB) from Kaggle:
+  👉 **[Download Gemma 2B IT CPU INT4 on Kaggle](https://www.kaggle.com/models/google/gemma/tfLite)** (Select `gemma-2b-it-cpu-int4.bin`).
+- *(Note: Ensure you download the `cpu-int4.bin` variant for universal compatibility across all Android CPUs and emulators).*
+
+---
+
+### 2. Import the Model into TrailMedic
+
+#### 🟢 Method A: In-App Import (Easiest — No Terminal Required)
+1. Transfer or download the `gemma-2b-it-cpu-int4.bin` file to your phone's **Downloads** folder (on an emulator, you can simply **drag and drop** the `.bin` file onto the emulator screen).
+2. Open **TrailMedic** on your device.
+3. Tap the ⚙️ **Settings** tab in the bottom bar.
+4. Scroll down to the **"Offline AI Model"** section.
+5. Tap **"Import Model from Device Storage"**.
+6. Select your downloaded `gemma-2b-it-cpu-int4.bin` file from the file picker.
+7. TrailMedic will validate the model, move it to secure sandboxed storage, and display **"Model Status: READY (1,284 MB)"** with a green badge!
+
+---
+
+#### ⚡ Method B: ADB Push (Fast Command Line Method)
+If your phone or emulator is connected via USB / ADB:
+
 ```powershell
-.\gradlew.bat assembleDebug
+# Windows PowerShell
+& "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" push "C:\path\to\gemma-2b-it-cpu-int4.bin" /data/user/0/com.trailmedic/files/models/gemma-2b-it.bin
 ```
 
-### 3. Install on Connected Device
-```powershell
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-
-### 4. Sideload Gemma 2B Model (Optional for LLM Mode)
 ```bash
-# Push the quantized CPU model to the app internal storage
-adb push gemma-2b-it-cpu-int4.bin /data/user/0/com.trailmedic/files/models/gemma-2b-it.bin
+# macOS / Linux
+adb push path/to/gemma-2b-it-cpu-int4.bin /data/user/0/com.trailmedic/files/models/gemma-2b-it.bin
 ```
+
+Once pushed, reopen TrailMedic or tap **"Reload Model"** in Settings.
+
+---
+
+### 3. Verify Neural Model
+1. In TrailMedic, open **Settings** ➔ tap **"Test Model"**.
+2. You will see the local neural model initialize and generate its diagnostic reply directly on-device!
+
+---
+
+## ⚙️ Emulator Best Practices & Troubleshooting FAQ
+
+### 📱 Best Emulator Configuration for Local AI
+When creating an Android Virtual Device (AVD) in Android Studio:
+- **System Image**: Choose **Android 14 ("UpsideDownCake" / API 34) `x86_64` Google APIs** (Standard 4KB kernel).
+  - ⚠️ *Do NOT use preview "16k page size" images, as native C++ libraries require standard 4KB page alignment.*
+- **CPU Cores**:
+  - If your PC has **4 CPU cores**: Set Multi-Core CPU to **`2` cores** in AVD Advanced Settings (this prevents Windows host contention).
+  - If your PC has **6+ CPU cores**: Set Multi-Core CPU to **`4` cores**.
+- **RAM**: Set to **`4096 MB`** or **`6144 MB`**.
+- **Graphics**: Set to **`Hardware - GLES 2.0`** (offloads UI graphics to your PC's GPU, reserving 100% of CPU for AI tensor operations).
+
+---
+
+### ❓ Frequently Asked Questions
+
+#### Q1: What happens if I don't download or import the Gemma model file?
+> **Answer**: TrailMedic is built with a **Dual-Engine Architecture**. If no model is downloaded, the app seamlessly runs on its **embedded deterministic clinical reasoner** covering all 8 trauma categories with zero crashes and millisecond response times.
+
+#### Q2: Why does the first prompt take a few seconds on an emulator CPU?
+> **Answer**: On an emulator, ARM-64 neural instructions run via dynamic software translation (`libndk_translation`). On a real physical Android phone (e.g. Snapdragon or MediaTek), execution is direct and hardware accelerated.
+
+#### Q3: Does TrailMedic leak any medical data or telemetry to the cloud?
+> **Answer**: **Zero.** TrailMedic does not contain any cloud endpoints, tracking SDKs, or network permissions in its inference pipeline. All conversation logs are stored strictly inside your phone's encrypted Room SQLite database.
 
 ---
 
 ## 🚀 Future Roadmap & Visionary Scope
-
-The future development plan for TrailMedic focuses on expanding offline multimodal capabilities for extreme field operations:
 
 ```
                   ┌──────────────────────────────────────────────────┐
@@ -222,8 +303,8 @@ The future development plan for TrailMedic focuses on expanding offline multimod
 ```
 
 ### 1. 🎙️ On-Device Speech-to-Text (STT) via Whisper.tflite
-- Integrate a lightweight, on-device **OpenAI Whisper Tiny/Base INT8 model** or **Vosk Offline STT**.
-- Incorporate aggressive DSP noise-cancellation to filter out high alpine wind noise, rushing rivers, and heavy rain so responders can dictate completely hands-free while performing CPR or wound management.
+- Integrate a lightweight **OpenAI Whisper Tiny/Base INT8 model** or **Vosk Offline STT**.
+- Incorporate aggressive DSP noise cancellation to filter out high alpine wind noise, rushing rivers, and heavy rain so responders can dictate completely hands-free while performing CPR or wound management.
 
 ### 2. 📸 Computer Vision Wound & Fracture Classification
 - Deploy an on-device **MobileNet / MediaPipe Vision classifier**.
