@@ -354,7 +354,7 @@ Are there any signs of a dangerous allergy: swelling of lips/tongue, tight throa
 4. Trigger Satellite Emergency SOS immediately — this requires urgent hospital care.
 
 TRIAGE ASSESSMENT:
-Is the person awake and breathing, and have you started emergency satellite rescue / 911 contact?
+Is the person awake and breathing, and have you contacted emergency services (108 / 112) or triggered Satellite SOS?
                     """.trimIndent()
                 } else {
                     """
