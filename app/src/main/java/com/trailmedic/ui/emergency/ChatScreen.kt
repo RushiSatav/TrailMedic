@@ -1,6 +1,7 @@
 package com.trailmedic.ui.emergency
 
 import android.Manifest
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -17,9 +18,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,6 +37,7 @@ import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.MicOff
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.BottomSheetDefaults
@@ -79,16 +81,19 @@ import com.trailmedic.domain.model.Session
 import com.trailmedic.ui.components.ChatBubble
 import com.trailmedic.ui.components.EmergencyBanner
 import com.trailmedic.ui.components.TypingIndicator
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
-import com.trailmedic.ui.theme.WarningOrange
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediEmergencyRed
+import com.trailmedic.ui.theme.MediEmergencyRedSoft
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediSoftYellow
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 import com.trailmedic.utils.formatAsTimerString
 import com.trailmedic.utils.saveSessionReportToDownloads
 import com.trailmedic.utils.shareSessionReport
@@ -117,6 +122,7 @@ fun ChatScreen(
     val elapsedSeconds by viewModel.elapsedSeconds.collectAsState()
     val isTTSEnabled by viewModel.isTTSEnabled.collectAsState()
     val isVoiceListening by viewModel.isVoiceListening.collectAsState()
+    val voiceErrorMessage by viewModel.voiceErrorMessage.collectAsState()
     val showPhaseBanner by viewModel.showPhaseTransitionBanner.collectAsState()
     val isSessionCompleted by viewModel.isSessionCompleted.collectAsState()
     val currentSessionId by viewModel.currentSessionId.collectAsState()
@@ -126,6 +132,13 @@ fun ChatScreen(
 
     val listState = rememberLazyListState()
     val audioPermissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
+
+    LaunchedEffect(voiceErrorMessage) {
+        voiceErrorMessage?.let { msg ->
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+            viewModel.clearVoiceError()
+        }
+    }
 
     LaunchedEffect(Unit) {
         viewModel.startSession(category)
@@ -146,7 +159,7 @@ fun ChatScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DeepNavy)
+            .background(MediBackground)
             .imePadding()
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -155,12 +168,13 @@ fun ChatScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .statusBarsPadding(),
-                color = SurfaceDark,
+                color = MediSurface,
                 shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .border(1.dp, MediBorder)
                         .padding(horizontal = 12.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -176,7 +190,7 @@ fun ChatScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = TextPrimary
+                                tint = MediTextPrimary
                             )
                         }
                         Spacer(modifier = Modifier.width(4.dp))
@@ -185,7 +199,7 @@ fun ChatScreen(
                                 text = category.label,
                                 style = MaterialTheme.typography.titleMedium.copy(
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.White
+                                    color = MediTextPrimary
                                 ),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
@@ -193,7 +207,7 @@ fun ChatScreen(
                             Text(
                                 text = if (phase == ConversationPhase.INTERVIEWING) "Clarifying Questions" else "First Aid Protocol",
                                 style = MaterialTheme.typography.bodySmall.copy(
-                                    color = if (phase == ConversationPhase.INTERVIEWING) SafeGreen else WarningOrange,
+                                    color = if (phase == ConversationPhase.INTERVIEWING) MediPrimaryGreen else MediEmergencyYellow,
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Bold
                                 )
@@ -202,58 +216,68 @@ fun ChatScreen(
                     }
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        // Fast Diagnose button during interview
+                        // Fast Diagnose button highlighted in Yellow
                         if (phase == ConversationPhase.INTERVIEWING && !isTyping) {
-                            TextButton(
-                                onClick = { viewModel.forceDiagnoseNow() },
-                                modifier = Modifier.height(40.dp)
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .background(MediSoftYellow)
+                                    .border(1.dp, MediEmergencyYellow.copy(alpha = 0.4f), RoundedCornerShape(8.dp))
                             ) {
-                                Icon(
-                                    imageVector = Icons.Default.Bolt,
-                                    contentDescription = null,
-                                    tint = WarningOrange,
-                                    modifier = Modifier.size(18.dp)
-                                )
-                                Spacer(modifier = Modifier.width(2.dp))
-                                Text(
-                                    text = "Diagnose",
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        color = WarningOrange,
-                                        fontWeight = FontWeight.Bold
+                                TextButton(
+                                    onClick = { viewModel.forceDiagnoseNow() },
+                                    modifier = Modifier.height(36.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Bolt,
+                                        contentDescription = null,
+                                        tint = MediTextPrimary,
+                                        modifier = Modifier.size(16.dp)
                                     )
-                                )
+                                    Spacer(modifier = Modifier.width(2.dp))
+                                    Text(
+                                        text = "Diagnose",
+                                        style = MaterialTheme.typography.labelLarge.copy(
+                                            color = MediTextPrimary,
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 12.sp
+                                        )
+                                    )
+                                }
                             }
                         }
 
-                        // Elapsed Timer
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        // Elapsed Timer Pill
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(8.dp))
-                                .background(EmergencyRed.copy(alpha = 0.15f))
-                                .border(1.dp, EmergencyRed.copy(alpha = 0.5f), RoundedCornerShape(8.dp))
+                                .background(MediSecondarySurface)
+                                .border(1.dp, MediBorder, RoundedCornerShape(8.dp))
                                 .padding(horizontal = 8.dp, vertical = 6.dp)
                         ) {
                             Text(
                                 text = "⏱ ${elapsedSeconds.formatAsTimerString()}",
                                 style = MaterialTheme.typography.labelLarge.copy(
-                                    fontWeight = FontWeight.Black,
-                                    color = EmergencyRed,
-                                    fontSize = 13.sp
+                                    fontWeight = FontWeight.Bold,
+                                    color = MediTextPrimary,
+                                    fontSize = 12.sp
                                 )
                             )
                         }
 
-                        Spacer(modifier = Modifier.width(6.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
 
-                        // TTS Toggle
+                        // TTS Audio Toggle in Green
                         IconButton(
                             onClick = { viewModel.toggleTTS() },
-                            modifier = Modifier.size(44.dp)
+                            modifier = Modifier.size(40.dp)
                         ) {
                             Icon(
                                 imageVector = if (isTTSEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff,
                                 contentDescription = "Toggle Audio Voice",
-                                tint = if (isTTSEnabled) SafeGreen else TextMuted
+                                tint = if (isTTSEnabled) MediPrimaryGreen else MediTextMuted
                             )
                         }
                     }
@@ -267,22 +291,22 @@ fun ChatScreen(
                 exit = slideOutVertically() + fadeOut()
             ) {
                 EmergencyBanner(
-                    text = "Analyzing responses... Generating first aid protocol now.",
-                    backgroundColor = WarningOrange,
-                    contentColor = DeepNavy
+                    text = "Analyzing responses... Generating structured first aid protocol now.",
+                    backgroundColor = MediSoftYellow,
+                    contentColor = MediTextPrimary
                 )
             }
 
-            // CHAT MESSAGES LIST
+            // CHAT MESSAGES LIST WITH GENEROUS WHITESPACE
             LazyColumn(
                 state = listState,
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                item { Spacer(modifier = Modifier.height(8.dp)) }
+                item { Spacer(modifier = Modifier.height(12.dp)) }
 
                 items(messages) { message ->
                     if (message.content.isNotBlank()) {
@@ -296,7 +320,7 @@ fun ChatScreen(
                     }
                 }
 
-                item { Spacer(modifier = Modifier.height(12.dp)) }
+                item { Spacer(modifier = Modifier.height(16.dp)) }
             }
 
             // VOICE RECORDING ACTIVE OVERLAY
@@ -306,8 +330,8 @@ fun ChatScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 4.dp),
                     shape = RoundedCornerShape(12.dp),
-                    color = EmergencyRed.copy(alpha = 0.2f),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, EmergencyRed)
+                    color = MediEmergencyRedSoft,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, MediEmergencyRed.copy(alpha = 0.5f))
                 ) {
                     Row(
                         modifier = Modifier.padding(14.dp),
@@ -316,15 +340,15 @@ fun ChatScreen(
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(12.dp)
+                                .size(10.dp)
                                 .clip(CircleShape)
-                                .background(EmergencyRed)
+                                .background(MediEmergencyRed)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Listening offline... Speak your emergency description",
                             style = MaterialTheme.typography.bodyMedium.copy(
-                                color = Color.White,
+                                color = MediEmergencyRed,
                                 fontWeight = FontWeight.Bold
                             )
                         )
@@ -332,19 +356,20 @@ fun ChatScreen(
                 }
             }
 
-            // BOTTOM INPUT ROW (Min 56dp touch targets)
+            // BOTTOM INPUT ROW: [ Microphone ] [ Describe what happened... ] [ Send ]
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                color = SurfaceDark,
+                color = MediSurface,
                 shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .border(1.dp, MediBorder)
                         .padding(horizontal = 12.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Voice Mic Button
+                    // Microphone: Rounded icon button
                     IconButton(
                         onClick = {
                             if (audioPermissionState.status.isGranted) {
@@ -360,49 +385,50 @@ fun ChatScreen(
                             }
                         },
                         modifier = Modifier
-                            .size(56.dp) // Minimum 56dp touch target
+                            .size(50.dp)
                             .clip(CircleShape)
-                            .background(if (isVoiceListening) EmergencyRed else CardDarkElevated)
+                            .background(if (isVoiceListening) MediEmergencyRedSoft else MediSecondarySurface)
+                            .border(1.dp, if (isVoiceListening) MediEmergencyRed else MediBorder, CircleShape)
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Mic,
-                            contentDescription = "Voice Input",
-                            tint = if (isVoiceListening) Color.White else TextSecondary,
-                            modifier = Modifier.size(26.dp)
+                            imageVector = if (isVoiceListening) Icons.Default.MicOff else Icons.Default.Mic,
+                            contentDescription = if (isVoiceListening) "Stop Listening" else "Start Voice Input",
+                            tint = if (isVoiceListening) MediEmergencyRed else MediTextSecondary,
+                            modifier = Modifier.size(24.dp)
                         )
                     }
 
                     Spacer(modifier = Modifier.width(8.dp))
 
-                    // Text Input Field (Min 56dp height)
+                    // Input: Large rounded pill
                     OutlinedTextField(
                         value = inputText,
                         onValueChange = { inputText = it },
                         placeholder = {
                             Text(
                                 text = "Describe what happened...",
-                                style = MaterialTheme.typography.bodyMedium.copy(color = TextMuted)
+                                style = MaterialTheme.typography.bodyMedium.copy(color = MediTextMuted)
                             )
                         },
                         modifier = Modifier
                             .weight(1f)
-                            .height(56.dp), // 56dp minimum height
-                        shape = RoundedCornerShape(28.dp),
+                            .height(52.dp),
+                        shape = RoundedCornerShape(26.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = EmergencyRed,
-                            unfocusedBorderColor = CardDarkElevated,
-                            focusedTextColor = TextPrimary,
-                            unfocusedTextColor = TextPrimary,
-                            cursorColor = EmergencyRed,
-                            focusedContainerColor = CardDark,
-                            unfocusedContainerColor = CardDark
+                            focusedBorderColor = MediPrimaryGreen,
+                            unfocusedBorderColor = MediBorder,
+                            focusedTextColor = MediTextPrimary,
+                            unfocusedTextColor = MediTextPrimary,
+                            cursorColor = MediPrimaryGreen,
+                            focusedContainerColor = MediSecondarySurface,
+                            unfocusedContainerColor = MediSecondarySurface
                         ),
                         singleLine = true
                     )
 
                     Spacer(modifier = Modifier.width(8.dp))
 
-                    // Send Button
+                    // Send: Green circular button
                     IconButton(
                         onClick = {
                             if (inputText.isNotBlank() && !isTyping) {
@@ -413,17 +439,22 @@ fun ChatScreen(
                         },
                         enabled = inputText.isNotBlank() && !isTyping,
                         modifier = Modifier
-                            .size(56.dp) // Minimum 56dp touch target
+                            .size(50.dp)
                             .clip(CircleShape)
                             .background(
-                                if (inputText.isNotBlank() && !isTyping) EmergencyRed else CardDarkElevated.copy(alpha = 0.5f)
+                                if (inputText.isNotBlank() && !isTyping) MediPrimaryGreen else MediSecondarySurface
+                            )
+                            .border(
+                                1.dp,
+                                if (inputText.isNotBlank() && !isTyping) MediPrimaryGreen else MediBorder,
+                                CircleShape
                             )
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.Send,
                             contentDescription = "Send",
-                            tint = if (inputText.isNotBlank() && !isTyping) Color.White else TextMuted,
-                            modifier = Modifier.size(24.dp)
+                            tint = if (inputText.isNotBlank() && !isTyping) Color.White else MediTextMuted,
+                            modifier = Modifier.size(22.dp)
                         )
                     }
                 }
@@ -436,8 +467,8 @@ fun ChatScreen(
             ModalBottomSheet(
                 onDismissRequest = { showBottomSheet = false },
                 sheetState = sheetState,
-                containerColor = SurfaceDark,
-                dragHandle = { BottomSheetDefaults.DragHandle(color = TextSecondary) }
+                containerColor = MediSurface,
+                dragHandle = { BottomSheetDefaults.DragHandle(color = MediBorder) }
             ) {
                 Column(
                     modifier = Modifier
@@ -449,14 +480,14 @@ fun ChatScreen(
                         modifier = Modifier
                             .size(56.dp)
                             .clip(CircleShape)
-                            .background(SafeGreen.copy(alpha = 0.15f)),
+                            .background(MediLightGreen),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Default.AssignmentTurnedIn,
                             contentDescription = null,
-                            tint = SafeGreen,
-                            modifier = Modifier.size(34.dp)
+                            tint = MediPrimaryGreen,
+                            modifier = Modifier.size(32.dp)
                         )
                     }
 
@@ -466,7 +497,7 @@ fun ChatScreen(
                         text = "First Aid Protocol Ready",
                         style = MaterialTheme.typography.headlineLarge.copy(
                             fontWeight = FontWeight.Bold,
-                            color = Color.White
+                            color = MediTextPrimary
                         )
                     )
 
@@ -475,14 +506,14 @@ fun ChatScreen(
                     Text(
                         text = "Step-by-step guidance generated offline. Follow numbered instructions and monitor warning signs.",
                         style = MaterialTheme.typography.bodyMedium.copy(
-                            color = TextSecondary,
+                            color = MediTextSecondary,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
                         )
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // View Full Protocol Button (56dp height)
+                    // View Full Protocol Button
                     Button(
                         onClick = {
                             showBottomSheet = false
@@ -495,11 +526,11 @@ fun ChatScreen(
                             .fillMaxWidth()
                             .height(56.dp),
                         shape = RoundedCornerShape(24.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = EmergencyRed)
+                        colors = ButtonDefaults.buttonColors(containerColor = MediPrimaryGreen)
                     ) {
                         Icon(imageVector = Icons.Default.AssignmentTurnedIn, contentDescription = null, tint = Color.White)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "View Structured Protocol", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                        Text(text = "View Structured Protocol", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color.White)
                     }
 
                     Spacer(modifier = Modifier.height(10.dp))
@@ -523,12 +554,13 @@ fun ChatScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp),
-                            shape = RoundedCornerShape(24.dp)
+                                .height(52.dp),
+                            shape = RoundedCornerShape(24.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                         ) {
-                            Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = SafeGreen)
+                            Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = MediPrimaryGreen)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "Save .txt", color = TextPrimary, fontSize = 14.sp)
+                            Text(text = "Save .txt", color = MediTextPrimary, fontSize = 14.sp)
                         }
 
                         OutlinedButton(
@@ -545,12 +577,13 @@ fun ChatScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp),
-                            shape = RoundedCornerShape(24.dp)
+                                .height(52.dp),
+                            shape = RoundedCornerShape(24.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                         ) {
-                            Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = TextSecondary)
+                            Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = MediTextSecondary)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "Share", color = TextPrimary, fontSize = 14.sp)
+                            Text(text = "Share", color = MediTextPrimary, fontSize = 14.sp)
                         }
                     }
 
@@ -567,12 +600,13 @@ fun ChatScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp),
-                            shape = RoundedCornerShape(24.dp)
+                                .height(52.dp),
+                            shape = RoundedCornerShape(24.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                         ) {
-                            Icon(imageVector = Icons.Default.Refresh, contentDescription = null, tint = TextSecondary, modifier = Modifier.size(18.dp))
+                            Icon(imageVector = Icons.Default.Refresh, contentDescription = null, tint = MediTextSecondary, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "New Session", color = TextSecondary, fontSize = 13.sp)
+                            Text(text = "New Session", color = MediTextSecondary, fontSize = 13.sp)
                         }
 
                         Button(
@@ -582,13 +616,13 @@ fun ChatScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp),
+                                .height(52.dp),
                             shape = RoundedCornerShape(24.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = CardDarkElevated)
+                            colors = ButtonDefaults.buttonColors(containerColor = MediSecondarySurface)
                         ) {
-                            Icon(imageVector = Icons.Default.Home, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
+                            Icon(imageVector = Icons.Default.Home, contentDescription = null, tint = MediTextPrimary, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "Home", color = Color.White, fontSize = 13.sp)
+                            Text(text = "Home", color = MediTextPrimary, fontSize = 13.sp)
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))

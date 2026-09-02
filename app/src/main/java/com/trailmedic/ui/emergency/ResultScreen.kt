@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -61,17 +61,21 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.trailmedic.domain.model.Session
 import com.trailmedic.ui.history.HistoryViewModel
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.DeepNavy
 import com.trailmedic.ui.theme.EmergencyInstructionTextStyle
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
-import com.trailmedic.ui.theme.WarningOrange
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediDarkGreen
+import com.trailmedic.ui.theme.MediEmergencyRed
+import com.trailmedic.ui.theme.MediEmergencyRedSoft
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediSoftYellow
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 import com.trailmedic.utils.formatAsDateTime
 import com.trailmedic.utils.formatAsDurationSummary
 import com.trailmedic.utils.saveSessionReportToDownloads
@@ -101,7 +105,7 @@ fun ResultScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DeepNavy)
+            .background(MediBackground)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // TOP BAR
@@ -109,12 +113,13 @@ fun ResultScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .statusBarsPadding(),
-                color = SurfaceDark,
+                color = MediSurface,
                 shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .border(1.dp, MediBorder)
                         .padding(horizontal = 12.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -127,7 +132,7 @@ fun ResultScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = TextPrimary
+                                tint = MediTextPrimary
                             )
                         }
                         Spacer(modifier = Modifier.width(4.dp))
@@ -135,7 +140,7 @@ fun ResultScreen(
                             text = "First Aid Protocol",
                             style = MaterialTheme.typography.titleLarge.copy(
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White
+                                color = MediTextPrimary
                             )
                         )
                     }
@@ -147,7 +152,7 @@ fun ResultScreen(
                         Icon(
                             imageVector = Icons.Default.Home,
                             contentDescription = "Home",
-                            tint = TextSecondary
+                            tint = MediTextSecondary
                         )
                     }
                 }
@@ -158,7 +163,7 @@ fun ResultScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Loading protocol...", color = TextSecondary)
+                    Text(text = "Loading protocol...", color = MediTextSecondary)
                 }
             } else {
                 Column(
@@ -169,11 +174,12 @@ fun ResultScreen(
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Emergency Type Header Card
+                    // SECTION 1: Emergency Summary Card
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDarkElevated),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
@@ -182,27 +188,28 @@ fun ResultScreen(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
                                     Box(
                                         modifier = Modifier
                                             .size(40.dp)
-                                            .clip(CircleShape)
-                                            .background(EmergencyRed),
+                                            .clip(RoundedCornerShape(10.dp))
+                                            .background(MediLightGreen),
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.LocalHospital,
                                             contentDescription = null,
-                                            tint = Color.White,
+                                            tint = MediPrimaryGreen,
                                             modifier = Modifier.size(24.dp)
                                         )
                                     }
-                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Spacer(modifier = Modifier.width(12.dp))
                                     Text(
                                         text = currentSession.emergencyType,
                                         style = MaterialTheme.typography.titleLarge.copy(
                                             fontWeight = FontWeight.Black,
-                                            color = Color.White
+                                            color = MediTextPrimary,
+                                            fontSize = 17.sp
                                         )
                                     )
                                 }
@@ -210,21 +217,21 @@ fun ResultScreen(
                                 Box(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(50))
-                                        .background(SafeGreen.copy(alpha = 0.2f))
-                                        .border(1.dp, SafeGreen, RoundedCornerShape(50))
+                                        .background(MediLightGreen)
+                                        .border(1.dp, MediPrimaryGreen.copy(alpha = 0.3f), RoundedCornerShape(50))
                                         .padding(horizontal = 10.dp, vertical = 4.dp)
-                                ) {
+                                    ) {
                                     Text(
                                         text = "TRIAGE READY",
                                         style = MaterialTheme.typography.labelSmall.copy(
-                                            color = SafeGreen,
+                                            color = MediDarkGreen,
                                             fontWeight = FontWeight.Bold
                                         )
                                     )
                                 }
                             }
 
-                            Spacer(modifier = Modifier.height(10.dp))
+                            Spacer(modifier = Modifier.height(12.dp))
 
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
@@ -232,11 +239,11 @@ fun ResultScreen(
                             ) {
                                 Text(
                                     text = currentSession.timestamp.formatAsDateTime(),
-                                    style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                    style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                                 )
                                 Text(
                                     text = "Duration: ${currentSession.durationSeconds.formatAsDurationSummary()}",
-                                    style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                    style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary, fontWeight = FontWeight.SemiBold)
                                 )
                             }
                         }
@@ -244,21 +251,23 @@ fun ResultScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // First Aid Steps Section (Minimum 18sp instructions)
+                    // SECTION 2: Recommended Actions (Action Protocol Checklist)
                     val steps = parseSteps(currentSession.firstAidSummary)
                     Text(
-                        text = "First Aid Action Steps (Min 18sp)",
+                        text = "Recommended Actions",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary
+                            color = MediTextPrimary,
+                            fontSize = 16.sp
                         )
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDark),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(14.dp)) {
@@ -275,18 +284,18 @@ fun ResultScreen(
                                             checked = isChecked,
                                             onCheckedChange = { checkedSteps[index] = it },
                                             colors = CheckboxDefaults.colors(
-                                                checkedColor = SafeGreen,
-                                                uncheckedColor = TextSecondary,
-                                                checkmarkColor = DeepNavy
+                                                checkedColor = MediPrimaryGreen,
+                                                uncheckedColor = MediBorder,
+                                                checkmarkColor = Color.White
                                             )
                                         )
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text(
                                             text = step,
                                             style = EmergencyInstructionTextStyle.copy(
-                                                fontSize = 18.sp, // Minimum 18sp emergency instruction
-                                                lineHeight = 26.sp,
-                                                color = if (isChecked) TextMuted else TextPrimary,
+                                                fontSize = 17.sp, // Minimum 17-18sp emergency instruction
+                                                lineHeight = 24.sp,
+                                                color = if (isChecked) MediTextMuted else MediTextPrimary,
                                                 textDecoration = if (isChecked) TextDecoration.LineThrough else TextDecoration.None
                                             ),
                                             modifier = Modifier.padding(top = 10.dp)
@@ -297,10 +306,11 @@ fun ResultScreen(
                                 Text(
                                     text = currentSession.firstAidSummary,
                                     style = EmergencyInstructionTextStyle.copy(
-                                        fontSize = 18.sp,
-                                        lineHeight = 26.sp,
-                                        color = TextPrimary
-                                    )
+                                        fontSize = 17.sp,
+                                        lineHeight = 24.sp,
+                                        color = MediTextPrimary
+                                    ),
+                                    modifier = Modifier.padding(8.dp)
                                 )
                             }
                         }
@@ -308,12 +318,12 @@ fun ResultScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Warning Signs Card
+                    // SECTION 3: Important Warnings (Red-Flag Warning Signs)
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = WarningOrange.copy(alpha = 0.12f)),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, WarningOrange.copy(alpha = 0.6f)),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediEmergencyRedSoft),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediEmergencyRed.copy(alpha = 0.3f)),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
@@ -321,15 +331,15 @@ fun ResultScreen(
                                 Icon(
                                     imageVector = Icons.Default.Warning,
                                     contentDescription = null,
-                                    tint = WarningOrange,
+                                    tint = MediEmergencyRed,
                                     modifier = Modifier.size(22.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
-                                    text = "Red-Flag Warning Signs",
+                                    text = "Important Warnings & Red Flags",
                                     style = MaterialTheme.typography.titleMedium.copy(
                                         fontWeight = FontWeight.Bold,
-                                        color = WarningOrange
+                                        color = MediEmergencyRed
                                     )
                                 )
                             }
@@ -342,9 +352,9 @@ fun ResultScreen(
                                         "• Uncontrolled arterial bleeding or suspected cervical spine trauma\n" +
                                         "• Persistent projectile vomiting or worsening systemic shock",
                                 style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = TextPrimary,
-                                    fontSize = 15.sp,
-                                    lineHeight = 22.sp
+                                    color = MediTextPrimary,
+                                    fontSize = 14.sp,
+                                    lineHeight = 21.sp
                                 )
                             )
                         }
@@ -352,11 +362,12 @@ fun ResultScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Satellite Evacuation & SOS Card
+                    // SECTION 4: Evacuation & Satellite SOS
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDark),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
@@ -364,7 +375,7 @@ fun ResultScreen(
                                 Icon(
                                     imageVector = Icons.Default.Sos,
                                     contentDescription = null,
-                                    tint = EmergencyRed,
+                                    tint = MediPrimaryGreen,
                                     modifier = Modifier.size(24.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
@@ -372,7 +383,7 @@ fun ResultScreen(
                                     text = "Evacuation & Satellite Signaling",
                                     style = MaterialTheme.typography.titleMedium.copy(
                                         fontWeight = FontWeight.Bold,
-                                        color = TextPrimary
+                                        color = MediTextPrimary
                                     )
                                 )
                             }
@@ -385,7 +396,7 @@ fun ResultScreen(
                                         "3. Visual signal: Mirror flash in sets of 3 towards rescue aircraft.\n" +
                                         "4. Keep patient insulated from the cold ground with sleeping pads.",
                                 style = MaterialTheme.typography.bodyMedium.copy(
-                                    color = TextSecondary,
+                                    color = MediTextSecondary,
                                     fontSize = 14.sp,
                                     lineHeight = 20.sp
                                 )
@@ -395,7 +406,7 @@ fun ResultScreen(
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Emergency Contact Action (Min 56dp height)
+                    // SECTION 5: Emergency Contact Action
                     if (emergencyContactPhone.isNotBlank()) {
                         Button(
                             onClick = {
@@ -404,23 +415,24 @@ fun ResultScreen(
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(56.dp), // Minimum 56dp touch target
+                                .height(56.dp),
                             shape = RoundedCornerShape(24.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = EmergencyRed)
+                            colors = ButtonDefaults.buttonColors(containerColor = MediEmergencyYellow)
                         ) {
-                            Icon(imageVector = Icons.Default.Call, contentDescription = null, tint = Color.White)
+                            Icon(imageVector = Icons.Default.Call, contentDescription = null, tint = MediTextPrimary)
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = "Call: $emergencyContactName ($emergencyContactPhone)",
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp
+                                fontSize = 15.sp,
+                                color = MediTextPrimary
                             )
                         }
 
                         Spacer(modifier = Modifier.height(10.dp))
                     }
 
-                    // Export & Share Buttons Row (Min 56dp height)
+                    // Export & Share Buttons Row
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -431,12 +443,13 @@ fun ResultScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp), // Minimum 56dp touch target
-                            shape = RoundedCornerShape(24.dp)
+                                .height(56.dp),
+                            shape = RoundedCornerShape(24.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                         ) {
-                            Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = SafeGreen)
+                            Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = MediPrimaryGreen)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "Save .txt", color = TextPrimary, fontSize = 14.sp)
+                            Text(text = "Save .txt", color = MediTextPrimary, fontSize = 14.sp)
                         }
 
                         OutlinedButton(
@@ -445,12 +458,13 @@ fun ResultScreen(
                             },
                             modifier = Modifier
                                 .weight(1f)
-                                .height(56.dp), // Minimum 56dp touch target
-                            shape = RoundedCornerShape(24.dp)
+                                .height(56.dp),
+                            shape = RoundedCornerShape(24.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                         ) {
-                            Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = TextSecondary)
+                            Icon(imageVector = Icons.Default.Share, contentDescription = null, tint = MediTextSecondary)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text(text = "Share", color = TextPrimary, fontSize = 14.sp)
+                            Text(text = "Share", color = MediTextPrimary, fontSize = 14.sp)
                         }
                     }
 
@@ -468,16 +482,45 @@ private fun parseSteps(summary: String): List<String> {
 
     for (line in lines) {
         val trimmed = line.trim()
-        if (trimmed.startsWith("STEPS:", ignoreCase = true)) {
+        if (trimmed.startsWith("STEPS:", ignoreCase = true) ||
+            trimmed.startsWith("ACTION PROTOCOL:", ignoreCase = true) ||
+            trimmed.startsWith("IMMEDIATE FIRST AID ACTIONS:", ignoreCase = true) ||
+            trimmed.startsWith("ACTIONS:", ignoreCase = true) ||
+            trimmed.contains("FIRST AID PROTOCOL", ignoreCase = true)
+        ) {
             inStepsSection = true
             continue
         }
-        if (inStepsSection && (trimmed.startsWith("WARNING", ignoreCase = true) || trimmed.startsWith("NEXT", ignoreCase = true))) {
+        if (inStepsSection && (
+            trimmed.startsWith("CRITICAL WARNING", ignoreCase = true) ||
+            trimmed.startsWith("WARNING", ignoreCase = true) ||
+            trimmed.startsWith("EVACUATION", ignoreCase = true) ||
+            trimmed.startsWith("TRIAGE", ignoreCase = true) ||
+            trimmed.startsWith("NEXT", ignoreCase = true)
+        )) {
             break
         }
-        if (inStepsSection && trimmed.matches(Regex("^\\d+\\..*"))) {
+        if (inStepsSection && (
+            trimmed.matches(Regex("^\\d+\\..*")) ||
+            trimmed.startsWith("•") ||
+            trimmed.startsWith("-") ||
+            trimmed.startsWith("*")
+        )) {
             steps.add(trimmed)
         }
     }
+
+    if (steps.isEmpty()) {
+        for (line in lines) {
+            val trimmed = line.trim()
+            if (trimmed.matches(Regex("^\\d+\\..*")) ||
+                trimmed.startsWith("•") ||
+                trimmed.startsWith("-")
+            ) {
+                steps.add(trimmed)
+            }
+        }
+    }
+
     return steps
 }

@@ -7,6 +7,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -30,9 +31,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
 
 @Composable
 fun TypingIndicator(
@@ -77,14 +78,14 @@ fun TypingIndicator(
     ) {
         Box(
             modifier = Modifier
-                .size(30.dp)
-                .clip(CircleShape)
-                .background(EmergencyRed),
+                .size(32.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(MediPrimaryGreen),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
-                contentDescription = "TrailMedic AI",
+                contentDescription = "MediTrail AI",
                 tint = Color.White,
                 modifier = Modifier.size(20.dp)
             )
@@ -93,9 +94,9 @@ fun TypingIndicator(
         Spacer(modifier = Modifier.width(8.dp))
 
         Surface(
-            shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 2.dp, bottomEnd = 16.dp),
-            color = CardDark,
-            shadowElevation = 2.dp
+            shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 3.dp, bottomEnd = 16.dp),
+            color = MediSecondarySurface,
+            modifier = Modifier.border(1.dp, MediBorder, RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 3.dp, bottomEnd = 16.dp))
         ) {
             Row(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -118,6 +119,6 @@ private fun Dot(alpha: Float) {
             .scale(0.8f + (alpha * 0.4f))
             .alpha(alpha)
             .clip(CircleShape)
-            .background(TextSecondary)
+            .background(MediPrimaryGreen)
     )
 }

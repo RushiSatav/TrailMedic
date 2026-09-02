@@ -15,7 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.trailmedic.ui.navigation.Screen
 import com.trailmedic.ui.navigation.TrailMedicNavGraph
-import com.trailmedic.ui.theme.DeepNavy
+import com.trailmedic.ui.theme.MediBackground
 import com.trailmedic.ui.theme.TrailMedicTheme
 import com.trailmedic.utils.SettingsManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .navigationBarsPadding(),
-                    color = DeepNavy
+                    color = MediBackground
                 ) {
                     val navController = rememberNavController()
                     TrailMedicNavGraph(

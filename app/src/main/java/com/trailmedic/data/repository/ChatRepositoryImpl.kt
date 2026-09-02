@@ -3,6 +3,7 @@ package com.trailmedic.data.repository
 import com.trailmedic.data.llm.LLMInferenceEngine
 import com.trailmedic.domain.model.ConversationPhase
 import com.trailmedic.domain.model.Message
+import com.trailmedic.domain.model.SymptomEmergencyData
 import com.trailmedic.domain.repository.ChatRepository
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,9 +16,10 @@ class ChatRepositoryImpl @Inject constructor(
     override suspend fun generateResponse(
         conversationHistory: List<Message>,
         phase: ConversationPhase,
+        clinicalData: SymptomEmergencyData?,
         onToken: (String) -> Unit
     ): String {
-        return llmEngine.generateResponse(conversationHistory, phase, onToken)
+        return llmEngine.generateResponse(conversationHistory, phase, clinicalData, onToken)
     }
 
     override fun isModelReady(): Boolean {

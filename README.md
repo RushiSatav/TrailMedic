@@ -1,4 +1,4 @@
-# 🏔️ TrailMedic — On-Device AI Wilderness Emergency First Aid Assistant
+# 🏔️ MediTrail — Offline Wilderness Emergency First Aid Assistant
 
 <div align="center">
 
@@ -6,332 +6,258 @@
 [![Android Min SDK](https://img.shields.io/badge/Min%20SDK-26%20(Android%208.0)-3DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
 [![Target SDK](https://img.shields.io/badge/Target%20SDK-34%20(Android%2014)-3DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-4285F4.svg?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
-[![MediaPipe LLM](https://img.shields.io/badge/Local%20AI-Gemma--2B--IT%20INT4-FF6F00.svg?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/edge/mediapipe)
-[![Network](https://img.shields.io/badge/Offline%20First-100%25%20Zero%20Signal%20Required-success.svg?style=for-the-badge)](https://developer.android.com)
+[![MediaPipe LLM](https://img.shields.io/badge/Local%20AI-GGUF%20%2F%20Gemma--2B%20INT4-FF6F00.svg?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/edge/mediapipe)
+[![Offline First](https://img.shields.io/badge/Offline%20First-100%25%20Zero%20Signal%20Required-2E8B57.svg?style=for-the-badge)](https://developer.android.com)
+[![Voice Enabled](https://img.shields.io/badge/Speech-STT%20%26%20Concise%20TTS-F6B93B.svg?style=for-the-badge)](https://developer.android.com)
 
-**TrailMedic** is an intelligent, **100% offline, on-device AI emergency first aid assistant** engineered for mountaineers, backpackers, search-and-rescue teams, and remote wilderness guides operating in extreme environments with **zero cellular signal, internet access, or cloud connectivity**.
+**MediTrail** is an intelligent, **100% offline, on-device AI emergency first aid and triage assistant** built for mountaineers, backpackers, search-and-rescue teams, and wilderness travelers operating in remote backcountry areas with **zero cellular signal, internet access, or cloud connectivity**.
 
 </div>
 
 ---
 
 ## 📑 Table of Contents
-
-1. [Executive Summary & Problem Statement](#-executive-summary--problem-statement)
-2. [Why TrailMedic Wins (Hackathon Highlights)](#-why-trailmedic-wins-hackathon-highlights)
-3. [Dual-Engine Intelligence Pipeline](#-dual-engine-intelligence-pipeline)
-4. [System Architecture & Data Flow](#-system-architecture--data-flow)
-5. [Wilderness Medical Protocols Covered](#-wilderness-medical-protocols-covered)
-6. [Technology Stack & Dependency Matrix](#-technology-stack--dependency-matrix)
-7. [Step-by-Step Beginner Setup & Run Guide](#-step-by-step-beginner-setup--run-guide)
-8. [How to Download & Import the Gemma 2B Model](#-how-to-download--import-the-gemma-2b-model)
-9. [Emulator Best Practices & Troubleshooting FAQ](#-emulator-best-practices--troubleshooting-faq)
-10. [Future Roadmap & Visionary Scope](#-future-roadmap--visionary-scope)
-11. [Medical Disclaimer](#-medical-disclaimer)
+1. [Overview & Key Features](#-overview--key-features)
+2. [System Architecture](#-system-architecture)
+3. [Dual-Dataset Knowledge Engine](#-dual-dataset-knowledge-engine)
+4. [🎙️ Hands-Free Speech Pipeline (STT & TTS)](#️-hands-free-speech-pipeline-stt--tts)
+5. [🧠 On-Device Neural Model Support (.GGUF / .BIN / .TASK)](#-on-device-neural-model-support-gguf--bin--task)
+6. [Emergency Protocols Covered](#-emergency-protocols-covered)
+7. [Technology Stack](#-technology-stack)
+8. [Getting Started & Installation](#-getting-started--installation)
+9. [Project Structure](#-project-structure)
+10. [Medical Disclaimer](#-medical-disclaimer)
 
 ---
 
-## 🧭 Executive Summary & Problem Statement
+## 🌟 Overview & Key Features
 
-### ❌ The Wilderness Emergency Dilemma
-- **Zero Cellular Signal (0 Bars)**: Backcountry trails, deep valleys, and high-altitude peaks have zero cellular coverage. Cloud-dependent assistants (ChatGPT, Gemini API, Claude) fail immediately.
-- **Panic & Cognitive Overload**: In acute emergencies (arterial bleeding, open fractures, venomous snakebites, hypothermia), untrained responders panic and forget critical triage steps.
-- **Bulky Medical Handbooks**: Paper field manuals are hard to read in the dark, heavy to carry, and impossible to search quickly under high stress.
-- **Battery Scarcity**: Remote expeditions last days on portable power banks. Unoptimized mobile applications drain crucial survival battery.
+When accidents happen in deep wilderness trails, cloud-dependent assistants (ChatGPT, Gemini, Claude) fail completely due to lack of network connection. **MediTrail** turns any standard Android phone into an **offline emergency medical assistant**:
 
-### ✅ The TrailMedic Solution
-TrailMedic transforms a standard Android device into a **self-contained emergency medical command station**:
-- **100% On-Device Neural Model**: Runs **Gemma-2B-IT (INT4 Quantized)** locally via **Google MediaPipe Tasks GenAI** with zero cloud telemetry.
-- **Dual-Engine Failsafe**: Instant fallback to a curated 8-category clinical knowledge tree if the device is on ultra-low memory.
-- **Structured Multi-Turn Clinical Triage**: Performs iterative patient assessment before providing numbered first aid steps, red-flag warnings, and satellite evacuation notes.
-- **Hands-Free Operation**: Offline Text-to-Speech (TTS) guidance and voice dictation allow rescuers to receive step-by-step instructions without removing their hands from a wound.
-- **Battery-Aware Intelligence**: Dynamically adapts token limits and model execution based on battery thresholds (<15% and <5%).
+- **100% Offline-First Architecture**: Runs fully in airplane mode with zero external network dependencies.
+- **Plain, Easy-to-Understand Language**: Instructions avoid complex medical jargon and deliver clear, life-saving steps in simple, direct language.
+- **Dual Clinical Knowledge Base**: Combines an 8-category Wilderness Emergency Tree with a 44-condition First Aid Intent Dataset.
+- **Typo-Tolerant Clinical Extractor (RAG)**: Automatically resolves misspelled search queries (e.g. `sanke bite`, `chokng`, `bleding`) and grounds responses on verified protocols.
+- **Hands-Free Voice Interaction**:
+  - **Speech-to-Text (STT)**: Offline voice dictation so responders can describe injuries while tending to a patient.
+  - **Concise Text-to-Speech (TTS)**: Spoken voice guidance that vocalizes only the top 2 actionable steps and the triage question for fast, non-distracting audio assistance.
+- **Battery-Aware Resource Management**: Automatically throttles token length and optimizes inference under low battery conditions (<15% and <5%).
+- **Interactive Checklists & Structured Reports**: Check off completed first-aid actions, monitor red-flag warning signs, and export structured `.txt` reports formatted for Satellite SOS (Garmin inReach, Apple Emergency SOS, 406MHz PLB).
 
 ---
 
-## 🏆 Why TrailMedic Wins (Hackathon Highlights)
-
-| Feature / Dimension | Traditional First Aid Apps | Cloud AI Solutions | **TrailMedic (Our System)** |
-| :--- | :--- | :--- | :--- |
-| **Connectivity** | Static text / PDF viewers | Requires 4G/5G / WiFi | **100% On-Device & Zero Cloud Dependencies** |
-| **Intelligence Engine** | Rigid keyword search | High intelligence (Cloud only) | **Quantized Gemma-2B-IT Neural Model** |
-| **Fail-Safe Reliability** | No dynamic reasoning | Completely fails offline | **Dual-Engine (Neural LLM + Clinical Tree)** |
-| **Hands-Free Assistance** | Touch screen only | Cloud speech services | **On-Device Android TTS + Offline Dictation** |
-| **Power Conservation** | Fixed power profile | Massive cloud drain | **Dynamic Battery-Aware Token Throttling** |
-| **Rescue Handover** | None | Requires cloud sync | **Room Database + Instant .TXT Evac Report** |
-
----
-
-## 🧠 Dual-Engine Intelligence Pipeline
-
-TrailMedic utilizes a resilient **Dual-Engine Architecture** that guarantees medical advice is always delivered instantly:
+## 🏗️ System Architecture
 
 ```
-                            ┌─────────────────────────────────────────┐
-                            │        User Emergency Encounter         │
-                            │  "He fell off a ledge, bone exposed"    │
-                            └────────────────────┬────────────────────┘
-                                                 │
-                                                 ▼
-                            ┌─────────────────────────────────────────┐
-                            │      Dynamic Category Classifier        │
-                            │  (Regex / Semantic Trauma Tokenizer)    │
-                            └────────────────────┬────────────────────┘
-                                                 │
-                                                 ▼
-                                     ┌───────────────────────┐
-                                     │ Is Gemma-2B Model     │
-                                     │ Available & BatteryOK?│
-                                     └───────────┬───────────┘
-                                                 │
-                                 ┌───────────────┴───────────────┐
-                                 │ YES                           │ NO (or Low RAM)
-                                 ▼                               ▼
-                   ┌───────────────────────────┐   ┌───────────────────────────┐
-                   │  MediaPipe Tasks GenAI    │   │  Deterministic Clinical   │
-                   │  Gemma-2B-IT (INT4) Engine│   │  Wilderness Reasoner      │
-                   │  • Strict Chat Template   │   │  • 8 Trauma Branches      │
-                   │  • 512 Sequence Buffer    │   │  • Clinical Checklist     │
-                   │  • Streaming Token Output │   │  • Millisecond Latency    │
-                   └─────────────┬─────────────┘   └─────────────┬─────────────┘
-                                 │                               │
-                                 └───────────────┬───────────────┘
-                                                 │
-                                                 ▼
-                            ┌─────────────────────────────────────────┐
-                            │       Unified Clinical Output Flow      │
-                            │  1. Clarifying Diagnostic Question      │
-                            │  2. Actionable Numbered Procedures      │
-                            │  3. Critical Red-Flag Warning Signs     │
-                            │  4. Satellite SOS Evac Handover Record  │
-                            └─────────────────────────────────────────┘
-```
-
----
-
-## 🏛️ System Architecture & Data Flow
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                          PRESENTATION LAYER                            │
-│   • Jetpack Compose Material 3 · Edge-to-Edge Dark Mode UI             │
-│   • ViewModels (HomeViewModel, ChatViewModel, SettingsViewModel)       │
-│   • Unidirectional Data Flow (StateFlow / SharedFlow)                  │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                            DOMAIN LAYER                                │
-│   • UseCases: RunEmergencyInterviewUseCase, SaveSessionUseCase,        │
-│               ExportEvacuationReportUseCase, GetSessionHistoryUseCase  │
-│   • Clinical AI Reasoner: WildernessClinicalAIReasoner                 │
-│   • Domain Models: Message, Session, EmergencyCategory, TraumaData     │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                             DATA LAYER                                 │
-│   • LLM Engine: MediaPipe GenAI (LlmInference, ConversationManager)    │
-│   • Database: Room DB (SessionEntity, MessageEntity, TypeConverters)   │
-│   • Preferences: Jetpack DataStore (SettingsManager)                   │
-│   • Device Integrations: BatteryAwareManager, Offline TTSManager       │
-└────────────────────────────────────────────────────────────────────────┘
+                    ┌────────────────────────────────────────────────────────┐
+                    │               EMERGENCY USER ENCOUNTER                 │
+                    │         "My friend fell and is bleeding heavily"       │
+                    └───────────────────────────┬────────────────────────────┘
+                                                │
+                                ┌───────────────┴───────────────┐
+                                │                               │
+                       [🎙️ Voice Input (STT)]           [⌨️ Text Input]
+                                │                               │
+                                └───────────────┬───────────────┘
+                                                │
+                                                ▼
+                    ┌────────────────────────────────────────────────────────┐
+                    │             CLINICAL KNOWLEDGE EXTRACTOR               │
+                    │   • Jaccard Token Overlap & Fuzzy Intent Scoring       │
+                    │   • Typo Tolerance ('sanke' -> 'snake', 'bleding')     │
+                    │   • Dual-Dataset Indexing (44+ First-Aid Conditions)   │
+                    └───────────────────────────┬────────────────────────────┘
+                                                │
+                                                ▼
+                    ┌────────────────────────────────────────────────────────┐
+                    │             STRUCTURED RAG GROUNDING                   │
+                    │   • Verified Plain-Language First Aid Steps            │
+                    │   • Red-Flag Warning Signs (Shock, Numbness, Cold)     │
+                    │   • Multi-Turn Triage Questions                        │
+                    │   • Satellite SOS & Evacuation Guidelines              │
+                    └───────────────────────────┬────────────────────────────┘
+                                                │
+                                                ▼
+                                    ┌───────────────────────┐
+                                    │ Is Local AI Model     │
+                                    │ (.gguf/.bin) Enabled? │
+                                    └───────────┬───────────┘
+                                                │
+                                ┌───────────────┴───────────────┐
+                                │ YES                           │ NO (or Low RAM)
+                                ▼                               ▼
+                  ┌───────────────────────────┐   ┌───────────────────────────┐
+                  │   Local Neural LLM        │   │   Deterministic Clinical  │
+                  │   (.gguf / Gemma-2B INT4) │   │   Wilderness Reasoner     │
+                  │   • MediaPipe GenAI Ops   │   │   • Verified Decision Tree│
+                  │   • Strict Turn Templates │   │   • Millisecond Latency   │
+                  │   • Battery-Aware Tokens  │   │   • 100% Reliable Steps   │
+                  └─────────────┬─────────────┘   └─────────────┬─────────────┘
+                                │                               │
+                                └───────────────┬───────────────┘
+                                                │
+                                                ▼
+                    ┌────────────────────────────────────────────────────────┐
+                    │               CONVERSATIONAL RESPONSE                  │
+                    │  1. Immediate Action Checklist (Numbered steps)        │
+                    │  2. Red-Flag Warning Signs (Bullet points)             │
+                    │  3. Adaptive Triage Question                           │
+                    │  4. Evacuation & Satellite SOS Recommendation          │
+                    └───────────────────────────┬────────────────────────────┘
+                                                │
+                                ┌───────────────┴───────────────┐
+                                │                               │
+                                ▼                               ▼
+                    ┌───────────────────────┐       ┌───────────────────────┐
+                    │ 🔊 Spoken Voice (TTS) │       │ 💾 Offline DB Logging │
+                    │ Concise spoken steps  │       │ Encrypted Room SQLite │
+                    │ (Top 2 points + Q)    │       │ Session report export │
+                    └───────────────────────┘       └───────────────────────┘
 ```
 
 ---
 
-## 🚑 Wilderness Medical Protocols Covered
+## 📚 Dual-Dataset Knowledge Engine
 
-1. **🐍 Snakebites & Envenomation**: Pressure immobilization bandage technique, keeping bitten limb below heart level, contraindications against tourniquets/cutting/suction.
-2. **🩸 Severe Hemorrhage & Wounds**: Direct pressure, wound packing, windlass/commercial tourniquet protocols, shock prevention and blood loss monitoring.
-3. **🦴 Fractures & Dislocation**: Musculoskeletal splinting, open fracture sterile dressing, distal pulse, motor, and sensory (PMS) neurological checks.
-4. **🏔️ Altitude Sickness (HAPE / HACE)**: Acute Mountain Sickness (AMS), ataxia walking checks, immediate descent protocols, hyperbaric bag guidance.
-5. **❄️ Hypothermia & Frostbite**: Active vs. passive rewarming, vapor barrier "hypothermia burrito" wrap, frostbite thawing precautions.
-6. **🫀 Acute Cardiac Events**: Wilderness CPR guidelines, aspirin triage, comfortable positioning, emergency satellite signaling.
-7. **🧠 Traumatic Head Injury**: Concussion assessment, Glasgow Coma Scale indicators, cervical spine stabilization, intracranial pressure red flags.
-8. **🔥 Burns, Heat Stroke & Shock**: Rule of nines assessment, evaporative cooling techniques, sterile non-adherent coverage.
+MediTrail indexes two complementary clinical datasets out of the box:
+
+1. **Wilderness Emergency Symptom Tree (`symptom_tree.json`)**:
+   Deep decision trees for severe outdoor trauma:
+   - *Heavy Bleeding & Arterial Trauma*
+   - *Fractures, Sprains & Dislocations*
+   - *Venomous Snake & Insect Bites*
+   - *High-Altitude Sickness (HAPE / HACE) & Breathing Emergencies*
+   - *Severe Hypothermia & Frostbite*
+   - *Cardiac Emergencies & CPR*
+   - *Head Trauma & Concussion*
+   - *Heat Stroke & Exhaustion*
+
+2. **First-Aid Intent Dataset (`first_aid_intents.json`)**:
+   44 categorized conditions covering standard medical protocols:
+   - *Cuts, Abrasions, Bee/Wasp Stings, Splinters, Ankle Sprains, Muscle Strains, Fever, Nasal Congestion, Cough, Sore Throat, Gastrointestinal Upset, Skin Allergies, Abdominal Pain, Bruises, Broken Toes, Choking (Heimlich), Open Wounds, Diarrhea & Dehydration, Frostbite, Heat Exhaustion, Heat Stroke, Insect Bites, Nosebleeds, Pulled Muscles, Sunburn, Eye Injuries, Chemical Burns, Poisoning, Broken Teeth, Seizures, Fainting, Tension Headaches, Animal Bites, Drowning Rescue, CPR Protocol, Fractures, and more.*
 
 ---
 
-## 💻 Technology Stack & Dependency Matrix
+## 🎙️ Hands-Free Speech Pipeline (STT & TTS)
 
-| Category | Technology | Purpose |
+In emergencies, rescuers' hands are occupied applying pressure on wounds, splinting limbs, or performing CPR:
+
+- **Offline Speech-To-Text (STT)**: Uses Android's speech framework (`createOnDeviceSpeechRecognizer` on Android 13+) with `PREFER_OFFLINE` support for hands-free dictation. Partial results are preserved automatically.
+- **Concise Text-To-Speech (TTS)**: Built-in `formatForConciseSpeech` filter vocalizes only the top 2 immediate action points and the question (under 40 words), preventing long audio output.
+- **Dynamic Speech Rate**: Adjustable from **0.5x to 1.5x** in Settings.
+
+---
+
+## 🧠 On-Device Neural Model Support (.GGUF / .BIN / .TASK)
+
+Users can optionally run local quantized models for generative conversational responses:
+
+- **Supported Formats**: `.gguf`, `.bin`, `.task`, `.onnx` (e.g. Gemma 2B INT4, Phi-2, TinyLlama).
+- **In-App Importer**: Select model weights directly from device storage.
+- **Extraction Test Sandbox**: Test query extraction and responses with pre-built test chips (`Cuts`, `Snake Bite`, `CPR`, `Sprains`) directly in Settings.
+
+---
+
+## 🚑 Emergency Protocols Covered
+
+| Emergency | Common Scenarios | Plain-Language Protocol Focus |
 | :--- | :--- | :--- |
-| **Language** | Kotlin 1.9.22 | 100% Modern Kotlin codebase |
-| **UI Framework** | Jetpack Compose (M3) | Declarative reactive UI with dark theme support |
-| **AI Inference** | Google MediaPipe Tasks GenAI (`0.10.20`) | Native on-device execution of quantized LLMs |
-| **Model** | Gemma-2B-IT (INT4 Quantized) | 2 Billion parameter neural assistant running on-device |
-| **Architecture** | Clean Architecture + MVVM | Scalable domain isolation and testability |
-| **Dependency Injection** | Dagger Hilt 2.50 | Application-wide singleton lifecycle management |
-| **Persistence** | AndroidX Room DB + DataStore | Offline session logs and user settings |
-| **Asynchronous** | Kotlin Coroutines & StateFlow | Reactive non-blocking token streaming |
-| **Speech** | Android TTS Engine | Offline hands-free audio playback |
+| **🩸 Severe Bleeding** | Deep cuts, puncture wounds, spurting blood | Firm continuous pressure, wound packing, tight tourniquet 2-3" above cut, shock legs elevation |
+| **🦴 Broken Bones & Sprains** | Ridge falls, snapped limbs, joint twists | Do not straighten crooked bone, rigid splint with trekking poles, check warm fingers/toes |
+| **🐍 Bites & Stings** | Snake bites, bee/wasp stings, spider bites | Keep calm and still, remove rings/shoes, firm elastic wrap, draw swelling border with time |
+| **🏔️ Altitude & Breathing** | High mountain pass, HAPE, asthma, choking | Descend immediately (>1,500 ft), Heimlich 5 back slaps & 5 belly thrusts, rescue inhaler puffs |
+| **❄️ Cold & Hypothermia** | River soaking, freezing weather, frostbite | Take off wet clothes, burrito sleeping bag wrap, warm sweet drinks, never rub frozen skin |
+| **🫀 Heart & Chest Pain** | Chest tightness, radiating arm pain | Sit with knees bent, chew 1 regular Aspirin (325mg), continuous CPR chest pushes if breathing stops |
+| **🧠 Head Trauma** | Rock fall impact, concussion, blackouts | Keep head and neck completely still, roll body to side if vomiting, watch pupil reaction |
 
 ---
 
-## 🛠️ Step-by-Step Beginner Setup & Run Guide
+## 💻 Technology Stack
 
-Follow these simple steps to get TrailMedic running on your computer or Android phone in minutes:
-
-### 📋 Prerequisites
-1. **Android Studio**: Download and install [Android Studio](https://developer.android.com/studio) (Hedgehog, Ladybug, Iguana, or newer).
-2. **JDK 17 or JDK 21**: Included automatically with modern Android Studio installations.
-3. **Target Device**:
-   - **Option A (Physical Android Phone - Recommended for best AI speed)**: Any phone running Android 8.0+ (API 26+) with 4GB+ RAM.
-   - **Option B (Android Virtual Device / Emulator)**: See [Emulator Best Practices](#-emulator-best-practices--troubleshooting-faq) below.
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Language** | Kotlin 1.9.22 | 100% null-safe Kotlin |
+| **UI Framework** | Jetpack Compose (M3) | HealthTech visual design, light surfaces, dynamic typography |
+| **AI Runtime** | Google MediaPipe GenAI | Local execution of quantized LLMs (`.gguf`, `.bin`, `.task`) |
+| **Speech Engine** | Android STT & TTS | Offline voice input and concise speech synthesis |
+| **Architecture** | Clean Architecture + MVVM | Strict separation of Data, Domain, and Presentation |
+| **Dependency Injection** | Dagger Hilt 2.50 | Application-wide DI |
+| **Local Database** | Room DB 2.6.1 | Offline encrypted emergency session logging |
+| **Preferences** | Jetpack DataStore | User settings (TTS speech rate, emergency contacts, display) |
+| **Asynchronous Engine** | Coroutines & StateFlow | Reactive non-blocking token streaming and timers |
 
 ---
 
-### 1️⃣ Clone the Repository
-Open your terminal (PowerShell, Command Prompt, or Terminal) and run:
+## 🛠️ Getting Started & Installation
+
+### Prerequisites
+- **Android Studio** (Hedgehog / Ladybug or newer)
+- **JDK 17**
+- **Android Device or Emulator** running Android 8.0+ (API 26+)
+
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/RushiSatav/TrailMedic.git
 cd TrailMedic
 ```
 
----
-
-### 2️⃣ Open the Project in Android Studio
-1. Launch **Android Studio**.
-2. Click **Open** and select the cloned `TrailMedic` folder.
-3. Wait 1–2 minutes for Gradle to download dependencies and index the project.
-
----
-
-### 3️⃣ Run the App on Your Phone or Emulator
-1. Select your connected device or emulator from the device dropdown in Android Studio.
-2. Click the green **Run (▶)** button (or press `Shift + F10`).
-3. Alternatively, build and install from the command line:
-   ```powershell
-   # Build the debug APK
-   .\gradlew.bat assembleDebug
-
-   # Install onto device
-   adb install -r app/build/outputs/apk/debug/app-debug.apk
-   ```
-
----
-
-## 📥 How to Download & Import the Gemma 2B Model
-
-TrailMedic runs **100% out of the box** using its built-in clinical emergency tree. To unlock **neural generative conversational AI**, import the quantized Gemma 2B weights using either method below:
-
-### 1. Download Model Weights (`gemma-2b-it-cpu-int4.bin`)
-- Download the CPU quantized Gemma 2B model (~1.28 GB) from Kaggle:
-  👉 **[Download Gemma 2B IT CPU INT4 on Kaggle](https://www.kaggle.com/models/google/gemma/tfLite)** (Select `gemma-2b-it-cpu-int4.bin`).
-- *(Note: Ensure you download the `cpu-int4.bin` variant for universal compatibility across all Android CPUs and emulators).*
-
----
-
-### 2. Import the Model into TrailMedic
-
-#### 🟢 Method A: In-App Import (Easiest — No Terminal Required)
-1. Transfer or download the `gemma-2b-it-cpu-int4.bin` file to your phone's **Downloads** folder (on an emulator, you can simply **drag and drop** the `.bin` file onto the emulator screen).
-2. Open **TrailMedic** on your device.
-3. Tap the ⚙️ **Settings** tab in the bottom bar.
-4. Scroll down to the **"Offline AI Model"** section.
-5. Tap **"Import Model from Device Storage"**.
-6. Select your downloaded `gemma-2b-it-cpu-int4.bin` file from the file picker.
-7. TrailMedic will validate the model, move it to secure sandboxed storage, and display **"Model Status: READY (1,284 MB)"** with a green badge!
-
----
-
-#### ⚡ Method B: ADB Push (Fast Command Line Method)
-If your phone or emulator is connected via USB / ADB:
-
+### 2. Run Unit Tests
 ```powershell
-# Windows PowerShell
-& "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" push "C:\path\to\gemma-2b-it-cpu-int4.bin" /data/user/0/com.trailmedic/files/models/gemma-2b-it.bin
+.\gradlew.bat testDebugUnitTest
 ```
 
-```bash
-# macOS / Linux
-adb push path/to/gemma-2b-it-cpu-int4.bin /data/user/0/com.trailmedic/files/models/gemma-2b-it.bin
+### 3. Build the Debug APK
+```powershell
+.\gradlew.bat assembleDebug
+```
+The compiled APK will be located at:
+```
+app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Once pushed, reopen TrailMedic or tap **"Reload Model"** in Settings.
+### 4. Running Without Local Model (Instant Setup)
+You do not need to download the 1.5 GB neural weights to use MediTrail:
+1. Open the app on your phone.
+2. On the download screen, tap **"Skip for now (Use Offline Symptom Engine)"**.
+3. The app opens immediately with full offline first-aid coverage.
 
 ---
 
-### 3. Verify Neural Model
-1. In TrailMedic, open **Settings** ➔ tap **"Test Model"**.
-2. You will see the local neural model initialize and generate its diagnostic reply directly on-device!
-
----
-
-## ⚙️ Emulator Best Practices & Troubleshooting FAQ
-
-### 📱 Best Emulator Configuration for Local AI
-When creating an Android Virtual Device (AVD) in Android Studio:
-- **System Image**: Choose **Android 14 ("UpsideDownCake" / API 34) `x86_64` Google APIs** (Standard 4KB kernel).
-  - ⚠️ *Do NOT use preview "16k page size" images, as native C++ libraries require standard 4KB page alignment.*
-- **CPU Cores**:
-  - If your PC has **4 CPU cores**: Set Multi-Core CPU to **`2` cores** in AVD Advanced Settings (this prevents Windows host contention).
-  - If your PC has **6+ CPU cores**: Set Multi-Core CPU to **`4` cores**.
-- **RAM**: Set to **`4096 MB`** or **`6144 MB`**.
-- **Graphics**: Set to **`Hardware - GLES 2.0`** (offloads UI graphics to your PC's GPU, reserving 100% of CPU for AI tensor operations).
-
----
-
-### ❓ Frequently Asked Questions
-
-#### Q1: What happens if I don't download or import the Gemma model file?
-> **Answer**: TrailMedic is built with a **Dual-Engine Architecture**. If no model is downloaded, the app seamlessly runs on its **embedded deterministic clinical reasoner** covering all 8 trauma categories with zero crashes and millisecond response times.
-
-#### Q2: Why does the first prompt take a few seconds on an emulator CPU?
-> **Answer**: On an emulator, ARM-64 neural instructions run via dynamic software translation (`libndk_translation`). On a real physical Android phone (e.g. Snapdragon or MediaTek), execution is direct and hardware accelerated.
-
-#### Q3: Does TrailMedic leak any medical data or telemetry to the cloud?
-> **Answer**: **Zero.** TrailMedic does not contain any cloud endpoints, tracking SDKs, or network permissions in its inference pipeline. All conversation logs are stored strictly inside your phone's encrypted Room SQLite database.
-
----
-
-## 🚀 Future Roadmap & Visionary Scope
+## 📁 Project Structure
 
 ```
-                  ┌──────────────────────────────────────────────────┐
-                  │             TrailMedic Future Scope              │
-                  └────────────────────────┬─────────────────────────┘
-                                           │
-         ┌──────────────────┬──────────────┴─────┬──────────────────┐
-         ▼                  ▼                    ▼                  ▼
-┌─────────────────┐┌─────────────────┐ ┌──────────────────┐┌──────────────────┐
-│ 🎙️ On-Device    ││ 📸 Computer     │ │ 📡 BLE Mesh &    ││ 🛸 Drone &      │
-│ Whisper STT     ││ Vision Wound    │ │ LoRa Off-Grid    ││ Satellite SOS    │
-│ Noise Filtering ││ Classification  │ │ Peer-to-Peer     ││ Dispatch Protocol│
-└─────────────────┘└─────────────────┘ └──────────────────┘└──────────────────┘
+com.trailmedic/
+├── data/
+│   ├── local/            # Room Database (SessionEntity, SessionDao)
+│   ├── llm/              # MediaPipe LLM Engine & ConversationManager
+│   └── repository/       # Repository implementations (Chat, SymptomTree)
+├── domain/
+│   ├── ai/               # WildernessClinicalAIReasoner & ClinicalKnowledgeExtractor
+│   ├── model/            # Domain models (Emergency, Message, Session)
+│   └── usecase/          # Use cases (SaveSession, RunEmergencyInterview)
+├── ui/
+│   ├── components/       # SOSButton, OfflineBadge, ChatBubble, TypingIndicator
+│   ├── emergency/        # ChatScreen, ResultScreen, ChatViewModel
+│   ├── history/          # HistoryScreen, SessionDetailScreen, HistoryViewModel
+│   ├── home/             # HomeScreen, HomeViewModel
+│   ├── onboarding/       # OnboardingScreen, ModelDownloadScreen
+│   ├── settings/         # SettingsScreen, SettingsViewModel
+│   ├── splash/           # SplashScreen, SplashViewModel
+│   └── theme/            # Color tokens, Typography, MediTrailTheme
+└── utils/                # BatteryAwareManager, TTSManager, VoiceInputManager
 ```
-
-### 1. 🎙️ On-Device Speech-to-Text (STT) via Whisper.tflite
-- Integrate a lightweight **OpenAI Whisper Tiny/Base INT8 model** or **Vosk Offline STT**.
-- Incorporate aggressive DSP noise cancellation to filter out high alpine wind noise, rushing rivers, and heavy rain so responders can dictate completely hands-free while performing CPR or wound management.
-
-### 2. 📸 Computer Vision Wound & Fracture Classification
-- Deploy an on-device **MobileNet / MediaPipe Vision classifier**.
-- Responders can photograph an injury in the dark or field; the CV engine automatically assesses **burn depth (1st, 2nd, 3rd degree)**, **wound infection signs**, **pupil dilation / concussion**, and **fracture angulation**.
-
-### 3. 📡 Off-Grid BLE Mesh & LoRa Peer-to-Peer Relay
-- Implement an ad-hoc **Bluetooth Low Energy (BLE) Mesh** and **LoRa (Long Range) 915/868 MHz** relay layer.
-- Allows TrailMedic instances across different hiking groups within a 5–15 km radius to automatically relay emergency SOS telemetry and GPS coordinates from phone to phone until reaching a ranger outpost without cellular networks.
-
-### 4. 🛰️ Direct Satellite SOS & Drone Beacon Handover
-- Integrate formatted exports for **Garmin inReach**, **ZOLEO**, and **Android 15 / Apple Satellite Emergency SOS APIs**.
-- Direct transmission of compact medical triage reports to search-and-rescue UAVs and medevac helicopters.
-
-### 5. 🌍 Multi-Language Offline Speech Packs
-- Provide quantized bilingual models and localized voice packs for **Spanish, French, German, Hindi, Japanese, and Mandarin** to assist international mountaineering expeditions.
 
 ---
 
 ## ⚖️ Medical Disclaimer
 
-> **IMPORTANT**: *TrailMedic provides wilderness first aid guidance for emergency scenarios when professional medical facilities and communication networks are unavailable. It is designed to assist trained or untrained responders in stabilizing casualties during remote expeditions. It is NOT a replacement for certified medical professionals or formal wilderness emergency training (WFR/WFA). Always evacuate injured persons to professional medical care as rapidly as possible.*
+> **IMPORTANT**: *MediTrail provides emergency first aid guidance for situations where professional medical facilities and communication networks are unavailable. It is designed to assist in stabilizing casualties during remote expeditions. It is NOT a substitute for certified medical professionals, hospital triage, or formal wilderness emergency training (WFR/WFA). Always evacuate injured persons to professional medical care as rapidly as possible.*
 
 ---
 
 <div align="center">
 
-**TrailMedic — Saving Lives Where Connectivity Ends.**  
-Developed by **Rushi Satav** | Built with Kotlin, Jetpack Compose, and Google Gemma AI.
+**MediTrail — Emergency First Aid. Anywhere. No Signal Needed.**  
+Developed by **Rushi Satav**
 
 </div>

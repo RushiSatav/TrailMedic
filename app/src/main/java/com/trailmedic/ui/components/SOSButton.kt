@@ -30,13 +30,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.EmergencyRedDark
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediTextPrimary
 
 @Composable
 fun SOSButton(
@@ -45,33 +44,33 @@ fun SOSButton(
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "sos_pulse")
 
-    // Scale animation 1.0 -> 1.08 -> 1.0
+    // Subtle scale animation 1.0 -> 1.04 -> 1.0
     val scale by infiniteTransition.animateFloat(
         initialValue = 1.0f,
-        targetValue = 1.08f,
+        targetValue = 1.04f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1000, easing = FastOutSlowInEasing),
+            animation = tween(durationMillis = 1200, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "sos_button_scale"
     )
 
-    // Expanding outer halo ring
+    // Expanding subtle yellow outer wave ring
     val waveScale by infiniteTransition.animateFloat(
         initialValue = 1.0f,
-        targetValue = 1.45f,
+        targetValue = 1.35f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1800, easing = FastOutSlowInEasing),
+            animation = tween(durationMillis = 2000, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "sos_wave_scale"
     )
 
     val waveAlpha by infiniteTransition.animateFloat(
-        initialValue = 0.6f,
+        initialValue = 0.45f,
         targetValue = 0.0f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1800, easing = FastOutSlowInEasing),
+            animation = tween(durationMillis = 2000, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "sos_wave_alpha"
@@ -84,27 +83,32 @@ fun SOSButton(
         // Outer pulsing shockwave canvas
         Canvas(modifier = Modifier.matchParentSize()) {
             val center = Offset(size.width / 2f, size.height / 2f)
-            val baseRadius = (size.minDimension / 2f) * 0.70f
+            val baseRadius = (size.minDimension / 2f) * 0.72f
             drawCircle(
-                color = EmergencyRed.copy(alpha = waveAlpha),
+                color = MediEmergencyYellow.copy(alpha = waveAlpha),
                 radius = baseRadius * waveScale,
                 center = center
             )
         }
 
-        // Inner glowing main circle
+        // Main Yellow Emergency Button
         Surface(
             modifier = Modifier
-                .size(165.dp)
+                .size(175.dp)
                 .scale(scale)
-                .shadow(elevation = 16.dp, shape = CircleShape, spotColor = EmergencyRed, ambientColor = EmergencyRedDark)
+                .shadow(
+                    elevation = 8.dp,
+                    shape = CircleShape,
+                    spotColor = MediEmergencyYellow.copy(alpha = 0.6f),
+                    ambientColor = MediEmergencyYellow.copy(alpha = 0.3f)
+                )
                 .clip(CircleShape)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
                     onClick = onClick
                 ),
-            color = EmergencyRed,
+            color = MediEmergencyYellow,
             shape = CircleShape
         ) {
             Box(
@@ -114,39 +118,36 @@ fun SOSButton(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Medical Cross Icon
-                    Box(
-                        modifier = Modifier.size(38.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(36.dp)
-                        )
-                    }
+                    // Medical Plus Icon
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null,
+                        tint = MediTextPrimary,
+                        modifier = Modifier.size(34.dp)
+                    )
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(2.dp))
 
                     Text(
                         text = "EMERGENCY",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Black,
-                            fontSize = 17.sp,
-                            letterSpacing = 1.5.sp,
-                            color = Color.White
+                            fontSize = 18.sp,
+                            letterSpacing = 1.2.sp,
+                            color = MediTextPrimary
                         ),
                         textAlign = TextAlign.Center
                     )
+
+                    Spacer(modifier = Modifier.height(2.dp))
 
                     Text(
                         text = "TAP FOR HELP",
                         style = MaterialTheme.typography.bodySmall.copy(
                             fontWeight = FontWeight.Bold,
-                            fontSize = 10.sp,
-                            color = Color.White.copy(alpha = 0.85f),
-                            letterSpacing = 1.sp
+                            fontSize = 11.sp,
+                            color = MediTextPrimary.copy(alpha = 0.8f),
+                            letterSpacing = 0.8.sp
                         )
                     )
                 }

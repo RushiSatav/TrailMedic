@@ -1,6 +1,7 @@
 package com.trailmedic.ui.history
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,12 +10,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -51,15 +51,15 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.trailmedic.domain.model.Session
 import com.trailmedic.ui.components.ChatBubble
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 import com.trailmedic.utils.formatAsDateTime
 import com.trailmedic.utils.formatAsDurationSummary
 import com.trailmedic.utils.saveSessionReportToDownloads
@@ -87,7 +87,7 @@ fun SessionDetailScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DeepNavy)
+            .background(MediBackground)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // TOP BAR
@@ -95,12 +95,13 @@ fun SessionDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .statusBarsPadding(),
-                color = SurfaceDark,
-                shadowElevation = 4.dp
+                color = MediSurface,
+                shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .border(1.dp, MediBorder)
                         .padding(horizontal = 12.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -110,7 +111,7 @@ fun SessionDetailScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = TextPrimary
+                                tint = MediTextPrimary
                             )
                         }
                         Spacer(modifier = Modifier.width(4.dp))
@@ -118,7 +119,7 @@ fun SessionDetailScreen(
                             text = "Session Details",
                             style = MaterialTheme.typography.titleLarge.copy(
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White
+                                color = MediTextPrimary
                             )
                         )
                     }
@@ -132,7 +133,7 @@ fun SessionDetailScreen(
                             Icon(
                                 imageVector = Icons.Default.Download,
                                 contentDescription = "Export report",
-                                tint = SafeGreen
+                                tint = MediPrimaryGreen
                             )
                         }
                     }
@@ -144,7 +145,7 @@ fun SessionDetailScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Loading session record...", color = TextSecondary)
+                    Text(text = "Loading session record...", color = MediTextSecondary)
                 }
             } else {
                 Column(
@@ -158,22 +159,24 @@ fun SessionDetailScreen(
                     // Header Info Card
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(18.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDarkElevated)
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Box(
                                     modifier = Modifier
                                         .size(40.dp)
-                                        .clip(CircleShape)
-                                        .background(EmergencyRed),
+                                        .clip(RoundedCornerShape(10.dp))
+                                        .background(MediLightGreen),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.LocalHospital,
                                         contentDescription = null,
-                                        tint = Color.White,
+                                        tint = MediPrimaryGreen,
                                         modifier = Modifier.size(24.dp)
                                     )
                                 }
@@ -183,12 +186,12 @@ fun SessionDetailScreen(
                                         text = currentSession.emergencyType,
                                         style = MaterialTheme.typography.titleLarge.copy(
                                             fontWeight = FontWeight.Bold,
-                                            color = Color.White
+                                            color = MediTextPrimary
                                         )
                                     )
                                     Text(
                                         text = currentSession.timestamp.formatAsDateTime(),
-                                        style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                        style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                                     )
                                 }
                             }
@@ -199,7 +202,7 @@ fun SessionDetailScreen(
                                 text = "Duration: ${currentSession.durationSeconds.formatAsDurationSummary()}",
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontWeight = FontWeight.SemiBold,
-                                    color = TextPrimary
+                                    color = MediTextPrimary
                                 )
                             )
                         }
@@ -213,7 +216,7 @@ fun SessionDetailScreen(
                             text = "First Aid Assessment & Instructions",
                             style = MaterialTheme.typography.titleMedium.copy(
                                 fontWeight = FontWeight.Bold,
-                                color = TextPrimary
+                                color = MediTextPrimary
                             )
                         )
                         Spacer(modifier = Modifier.height(8.dp))
@@ -221,13 +224,15 @@ fun SessionDetailScreen(
                         Card(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = CardDark)
+                            colors = CardDefaults.cardColors(containerColor = MediSurface),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                         ) {
                             SelectionContainer {
                                 Text(
                                     text = currentSession.firstAidSummary,
                                     style = MaterialTheme.typography.bodyMedium.copy(
-                                        color = TextPrimary,
+                                        color = MediTextPrimary,
                                         lineHeight = 22.sp
                                     ),
                                     modifier = Modifier.padding(16.dp)
@@ -243,7 +248,7 @@ fun SessionDetailScreen(
                         text = "Outcome Note / Rescuer Notes",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary
+                            color = MediTextPrimary
                         )
                     )
                     Spacer(modifier = Modifier.height(8.dp))
@@ -255,17 +260,17 @@ fun SessionDetailScreen(
                             isNoteSaved = false
                         },
                         placeholder = {
-                            Text(text = "e.g., Splint applied successfully, helicopter reached at 16:30, vitals stable...", color = TextMuted)
+                            Text(text = "e.g., Splint applied successfully, helicopter reached at 16:30, vitals stable...", color = MediTextMuted)
                         },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(14.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = SafeGreen,
-                            unfocusedBorderColor = CardDarkElevated,
-                            focusedTextColor = TextPrimary,
-                            unfocusedTextColor = TextPrimary,
-                            focusedContainerColor = CardDark,
-                            unfocusedContainerColor = CardDark
+                            focusedBorderColor = MediPrimaryGreen,
+                            unfocusedBorderColor = MediBorder,
+                            focusedTextColor = MediTextPrimary,
+                            unfocusedTextColor = MediTextPrimary,
+                            focusedContainerColor = MediSurface,
+                            unfocusedContainerColor = MediSurface
                         ),
                         minLines = 3,
                         maxLines = 6
@@ -280,14 +285,14 @@ fun SessionDetailScreen(
                         },
                         modifier = Modifier.align(Alignment.End),
                         shape = RoundedCornerShape(10.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = if (isNoteSaved) SafeGreen else CardDarkElevated)
+                        colors = ButtonDefaults.buttonColors(containerColor = if (isNoteSaved) MediPrimaryGreen else MediSecondarySurface)
                     ) {
                         if (isNoteSaved) {
                             Icon(imageVector = Icons.Default.Check, contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(text = "Saved", color = Color.White)
                         } else {
-                            Text(text = "Save Note", color = Color.White)
+                            Text(text = "Save Note", color = MediTextPrimary)
                         }
                     }
 
@@ -298,7 +303,7 @@ fun SessionDetailScreen(
                         text = "Full Conversation Transcript",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary
+                            color = MediTextPrimary
                         )
                     )
                     Spacer(modifier = Modifier.height(8.dp))
@@ -322,13 +327,13 @@ fun SessionDetailScreen(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(50.dp),
+                            .height(52.dp),
                         shape = RoundedCornerShape(14.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = SafeGreen)
+                        colors = ButtonDefaults.buttonColors(containerColor = MediPrimaryGreen)
                     ) {
                         Icon(imageVector = Icons.Default.Download, contentDescription = null, tint = Color.White)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Export Full Report (.txt)", fontWeight = FontWeight.Bold)
+                        Text(text = "Export Full Report (.txt)", fontWeight = FontWeight.Bold, color = Color.White)
                     }
 
                     Spacer(modifier = Modifier.height(36.dp))

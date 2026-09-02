@@ -6,118 +6,119 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Clean Nunito / Sans-Serif wilderness font family
-val TrailMedicFontFamily = FontFamily.SansSerif
+// Clean Sans-Serif wilderness & medical tech font family
+val MediTrailFontFamily = FontFamily.SansSerif
+val TrailMedicFontFamily = MediTrailFontFamily
 
 val Typography = Typography(
     // Display: 28sp Bold
     displayLarge = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp,
         lineHeight = 34.sp,
         letterSpacing = 0.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     displayMedium = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 26.sp,
-        lineHeight = 32.sp,
+        fontSize = 24.sp,
+        lineHeight = 30.sp,
         letterSpacing = 0.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     // Headline: 22sp SemiBold
     headlineLarge = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 22.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     headlineMedium = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         lineHeight = 26.sp,
         letterSpacing = 0.15.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     titleLarge = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     titleMedium = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         lineHeight = 22.sp,
         letterSpacing = 0.15.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     // Body: 16sp Regular
     bodyLarge = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     bodyMedium = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
-        color = TextSecondary
+        color = MediTextSecondary
     ),
     bodySmall = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp,
-        color = TextSecondary
+        color = MediTextSecondary
     ),
     // Label: 14sp Medium
     labelLarge = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp,
-        color = TextPrimary
+        color = MediTextPrimary
     ),
     labelMedium = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp,
-        color = TextSecondary
+        color = MediTextSecondary
     ),
     labelSmall = TextStyle(
-        fontFamily = TrailMedicFontFamily,
+        fontFamily = MediTrailFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 11.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.5.sp,
-        color = TextSecondary
+        color = MediTextSecondary
     )
 )
 
 // Emergency instructions: minimum 18sp bold
 val EmergencyInstructionTextStyle = TextStyle(
-    fontFamily = TrailMedicFontFamily,
+    fontFamily = MediTrailFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = 18.sp,
     lineHeight = 26.sp,
     letterSpacing = 0.2.sp,
-    color = TextPrimary
+    color = MediTextPrimary
 )

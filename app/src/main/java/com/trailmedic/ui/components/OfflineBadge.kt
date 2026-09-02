@@ -23,18 +23,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.SafeGreenGlow
+import com.trailmedic.ui.theme.MediDarkGreen
+import com.trailmedic.ui.theme.MediEmergencyRed
+import com.trailmedic.ui.theme.MediEmergencyRedSoft
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
 
 @Composable
 fun OfflineBadge(
     modifier: Modifier = Modifier,
-    label: String = "Offline Ready",
+    label: String = "Offline AI Ready",
     isReady: Boolean = true
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "badge_pulse")
@@ -48,15 +49,17 @@ fun OfflineBadge(
         label = "dot_pulse"
     )
 
-    val dotColor = if (isReady) SafeGreen else Color(0xFFE63946)
-    val glowColor = if (isReady) SafeGreenGlow else Color(0x40E63946)
+    val containerBg = if (isReady) MediLightGreen else MediEmergencyRedSoft
+    val dotColor = if (isReady) MediPrimaryGreen else MediEmergencyRed
+    val textColor = if (isReady) MediDarkGreen else MediEmergencyRed
+    val borderColor = if (isReady) MediPrimaryGreen.copy(alpha = 0.25f) else MediEmergencyRed.copy(alpha = 0.25f)
 
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(50))
-            .background(CardDarkElevated.copy(alpha = 0.9f))
-            .border(1.dp, dotColor.copy(alpha = 0.4f), RoundedCornerShape(50))
-            .padding(horizontal = 10.dp, vertical = 4.dp),
+            .background(containerBg)
+            .border(1.dp, borderColor, RoundedCornerShape(50))
+            .padding(horizontal = 10.dp, vertical = 5.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
@@ -69,7 +72,7 @@ fun OfflineBadge(
                     .size(10.dp)
                     .scale(dotScale)
                     .clip(CircleShape)
-                    .background(glowColor)
+                    .background(dotColor.copy(alpha = 0.25f))
             )
             Box(
                 modifier = Modifier
@@ -84,8 +87,8 @@ fun OfflineBadge(
             style = MaterialTheme.typography.labelMedium.copy(
                 fontWeight = FontWeight.Bold,
                 fontSize = 11.sp,
-                color = Color.White,
-                letterSpacing = 0.3.sp
+                color = textColor,
+                letterSpacing = 0.2.sp
             )
         )
     }

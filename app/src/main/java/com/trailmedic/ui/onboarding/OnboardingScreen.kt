@@ -10,12 +10,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -35,21 +34,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
-import com.trailmedic.ui.theme.WarningOrange
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 
 @Composable
 fun OnboardingScreen(
@@ -60,11 +61,7 @@ fun OnboardingScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(DeepNavy, SurfaceDark, DeepNavy)
-                )
-            )
+            .background(MediBackground)
     ) {
         Column(
             modifier = Modifier
@@ -79,29 +76,29 @@ fun OnboardingScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 // App Brand Badge
                 Box(
                     modifier = Modifier
-                        .size(110.dp)
-                        .clip(RoundedCornerShape(28.dp))
-                        .background(CardDark)
-                        .border(2.dp, EmergencyRed.copy(alpha = 0.6f), RoundedCornerShape(28.dp)),
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(26.dp))
+                        .background(MediLightGreen)
+                        .border(1.5.dp, MediPrimaryGreen.copy(alpha = 0.4f), RoundedCornerShape(26.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(64.dp)
-                            .clip(CircleShape)
-                            .background(EmergencyRed),
+                            .size(56.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(MediPrimaryGreen),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = null,
                             tint = Color.White,
-                            modifier = Modifier.size(44.dp)
+                            modifier = Modifier.size(38.dp)
                         )
                     }
                 }
@@ -109,10 +106,16 @@ fun OnboardingScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "TrailMedic",
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = MediTextPrimary, fontWeight = FontWeight.Black)) {
+                            append("Medi")
+                        }
+                        withStyle(style = SpanStyle(color = MediPrimaryGreen, fontWeight = FontWeight.Black)) {
+                            append("Trail")
+                        }
+                    },
                     style = MaterialTheme.typography.displayMedium.copy(
-                        fontWeight = FontWeight.Black,
-                        color = Color.White,
+                        fontSize = 26.sp,
                         letterSpacing = 1.sp
                     )
                 )
@@ -122,19 +125,19 @@ fun OnboardingScreen(
                 Text(
                     text = "First Aid. Anywhere. No Signal Needed.",
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        color = TextSecondary,
+                        color = MediTextSecondary,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center
                     ),
                     textAlign = TextAlign.Center
                 )
 
-                Spacer(modifier = Modifier.height(36.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
                 // Feature Bullets
                 FeatureCard(
                     icon = Icons.Default.Terrain,
-                    iconTint = SafeGreen,
+                    iconTint = MediPrimaryGreen,
                     title = "100% Offline Emergency Guide",
                     description = "Zero cellular data or WiFi required on remote trails. Instant medical triage anywhere."
                 )
@@ -143,7 +146,7 @@ fun OnboardingScreen(
 
                 FeatureCard(
                     icon = Icons.Default.Psychology,
-                    iconTint = WarningOrange,
+                    iconTint = MediEmergencyYellow,
                     title = "On-Device Gemma 2B AI",
                     description = "Interactive clarifying questions and intelligent symptom diagnosis running locally."
                 )
@@ -152,7 +155,7 @@ fun OnboardingScreen(
 
                 FeatureCard(
                     icon = Icons.Default.Healing,
-                    iconTint = EmergencyRed,
+                    iconTint = Color(0xFF0288D1),
                     title = "Step-by-Step Wilderness First Aid",
                     description = "Clinical action plans, red-flag warning signs, and satellite evacuation procedures."
                 )
@@ -169,7 +172,7 @@ fun OnboardingScreen(
                         .fillMaxWidth()
                         .height(56.dp),
                     shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = EmergencyRed)
+                    colors = ButtonDefaults.buttonColors(containerColor = MediPrimaryGreen)
                 ) {
                     Text(
                         text = "Get Started",
@@ -200,8 +203,9 @@ private fun FeatureCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults.cardColors(containerColor = CardDark.copy(alpha = 0.85f)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        colors = CardDefaults.cardColors(containerColor = MediSurface),
+        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -213,7 +217,7 @@ private fun FeatureCard(
                 modifier = Modifier
                     .size(46.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(iconTint.copy(alpha = 0.15f)),
+                    .background(iconTint.copy(alpha = 0.12f)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -230,7 +234,7 @@ private fun FeatureCard(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium.copy(
-                        color = TextPrimary,
+                        color = MediTextPrimary,
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
@@ -239,7 +243,7 @@ private fun FeatureCard(
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = TextSecondary,
+                        color = MediTextSecondary,
                         lineHeight = 16.sp
                     )
                 )

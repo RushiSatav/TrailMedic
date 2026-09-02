@@ -2,7 +2,11 @@ package com.trailmedic.data.repository
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.trailmedic.domain.ai.ClinicalKnowledgeExtractor
+import com.trailmedic.domain.model.ClinicalExtractionResult
 import com.trailmedic.domain.model.EmergencyCategory
+import com.trailmedic.domain.model.FirstAidIntentData
 import com.trailmedic.domain.model.SymptomEmergencyData
 import com.trailmedic.domain.model.SymptomTreeRoot
 import com.trailmedic.domain.repository.SymptomTreeRepository
@@ -14,11 +18,23 @@ import javax.inject.Singleton
 @Singleton
 class SymptomTreeRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val gson: Gson
+    private val gson: Gson,
+    private val clinicalKnowledgeExtractor: ClinicalKnowledgeExtractor
 ) : SymptomTreeRepository {
 
     private val emergencies: List<SymptomEmergencyData> by lazy {
         loadSymptomTree()
+    }
+
+    private val cachedFirstAidIntents: List<FirstAidIntentData> by lazy {
+        loadFirstAidIntents()
+    }
+
+    init {
+        // Trigger dataset preloading and extractor initialization
+        val em = emergencies
+        val intents = cachedFirstAidIntents
+        clinicalKnowledgeExtractor.loadDatasets(intents, em)
     }
 
     private fun loadSymptomTree(): List<SymptomEmergencyData> {
@@ -34,13 +50,54 @@ class SymptomTreeRepositoryImpl @Inject constructor(
         }
     }
 
+    private fun loadFirstAidIntents(): List<FirstAidIntentData> {
+        // Try firstaidqa_v1.json first, fallback to first_aid_intents.json
+        val fileNames = listOf("firstaidqa_v1.json", "first_aid_intents.json")
+        for (fileName in fileNames) {
+            try {
+                context.assets.open(fileName).use { inputStream ->
+                    InputStreamReader(inputStream).use { reader ->
+                        val listType = object : TypeToken<List<FirstAidIntentData>>() {}.type
+                        val list: List<FirstAidIntentData>? = gson.fromJson(reader, listType)
+                        if (!list.isNullOrEmpty()) {
+                            return list
+                        }
+                    }
+                }
+            } catch (ignored: Exception) {
+            }
+        }
+        return emptyList()
+    }
+
     override fun getAllEmergencies(): List<SymptomEmergencyData> = emergencies
 
+    override fun getFirstAidIntents(): List<FirstAidIntentData> = cachedFirstAidIntents
+
     override fun getEmergencyById(id: String): SymptomEmergencyData? {
-        return emergencies.firstOrNull { it.id.equals(id, ignoreCase = true) }
+        val emMatch = emergencies.firstOrNull { it.id.equals(id, ignoreCase = true) }
+        if (emMatch != null) return emMatch
+
+        val intentMatch = cachedFirstAidIntents.firstOrNull {
+            it.tag.equals(id, ignoreCase = true) || it.tag.replace(" ", "_").equals(id, ignoreCase = true)
+        }
+        return intentMatch?.toSymptomEmergencyData()
+    }
+
+    override fun extractKnowledge(query: String): ClinicalExtractionResult? {
+        return clinicalKnowledgeExtractor.extractKnowledgeForPrompt(query)
     }
 
     override fun findMatchingEmergency(query: String): SymptomEmergencyData? {
+        val extract = clinicalKnowledgeExtractor.extractKnowledgeForPrompt(query)
+        if (extract != null) {
+            val fromEm = emergencies.firstOrNull { it.id.equals(extract.conditionTag, ignoreCase = true) || it.name.equals(extract.conditionName, ignoreCase = true) }
+            if (fromEm != null) return fromEm
+
+            val fromIntent = cachedFirstAidIntents.firstOrNull { it.tag.equals(extract.conditionTag, ignoreCase = true) }
+            if (fromIntent != null) return fromIntent.toSymptomEmergencyData()
+        }
+
         val lowerQuery = query.lowercase()
         return emergencies.firstOrNull { emergency ->
             emergency.triggerKeywords.any { kw -> lowerQuery.contains(kw.lowercase()) }
@@ -84,3 +141,4 @@ class SymptomTreeRepositoryImpl @Inject constructor(
         )
     }
 }
+

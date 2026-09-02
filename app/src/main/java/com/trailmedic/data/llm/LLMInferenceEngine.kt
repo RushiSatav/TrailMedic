@@ -17,6 +17,15 @@ class LLMInferenceEngine @Inject constructor(
     @ApplicationContext private val context: Context,
     private val batteryAwareManager: BatteryAwareManager
 ) {
+    companion object {
+        init {
+            try {
+                System.loadLibrary("OpenCL")
+            } catch (ignored: Throwable) {
+            }
+        }
+    }
+
     private var llmInference: LlmInference? = null
     val modelDir: String get() = "${context.filesDir}/models"
 
@@ -31,6 +40,17 @@ class LLMInferenceEngine @Inject constructor(
     val modelPath: String get() = modelFile?.absolutePath ?: "$modelDir/gemma-2b-it.bin"
 
     val modelDisplayName: String get() = modelFile?.nameWithoutExtension ?: "Gemma-2B-IT"
+
+    val modelFileName: String get() = modelFile?.name ?: "No model imported"
+
+    val modelFormat: String
+        get() = when {
+            modelFile?.name?.endsWith(".gguf", ignoreCase = true) == true -> "GGUF (Quantized)"
+            modelFile?.name?.endsWith(".task", ignoreCase = true) == true -> "MediaPipe Task"
+            modelFile?.name?.endsWith(".bin", ignoreCase = true) == true -> "Binary (GPU/CPU)"
+            modelFile != null -> "Custom Model"
+            else -> "Not Installed"
+        }
 
     val isModelReady: Boolean
         get() = modelFile?.exists() == true && llmInference != null
@@ -74,9 +94,10 @@ class LLMInferenceEngine @Inject constructor(
     suspend fun generateResponse(
         conversationHistory: List<Message>,
         phase: ConversationPhase,
+        clinicalData: com.trailmedic.domain.model.SymptomEmergencyData? = null,
         onToken: (String) -> Unit
     ): String = withContext(Dispatchers.IO) {
-        val prompt = ConversationManager.buildPrompt(conversationHistory, phase)
+        val prompt = ConversationManager.buildPrompt(conversationHistory, phase, clinicalData)
         val resultBuilder = StringBuilder()
 
         try {
@@ -89,15 +110,33 @@ class LLMInferenceEngine @Inject constructor(
 
             val inference = llmInference ?: throw IllegalStateException("Model instance is null")
             val fullResponse = inference.generateResponse(prompt)
-            val cleaned = fullResponse
+            var cleaned = fullResponse
                 .replace("<end_of_turn>", "")
                 .replace("<start_of_turn>", "")
                 .trim()
 
-            for (char in cleaned) {
-                val str = char.toString()
-                resultBuilder.append(str)
-                onToken(str)
+            // Strip robotic preambles
+            val preambleRegex = Regex("^(Sure[!,.]? (here is|here's|I understand).*?:|Here is the answer:|Here is your answer:|Answer:|Response:)", RegexOption.IGNORE_CASE)
+            cleaned = cleaned.replace(preambleRegex, "").trim()
+
+            // Strip disclaimers if generated
+            val disclaimerRegex = Regex("^(I am (an AI|not a doctor).*?\\. |I cannot provide (medical|professional) (attention|advice).*?\\. |Please note that I am an AI.*?\\. )", RegexOption.IGNORE_CASE)
+            cleaned = cleaned.replace(disclaimerRegex, "").trim()
+
+            // Strip any accidental persona labels the model echoes at the start
+            val prefixes = listOf("Medic:", "TrailMedic:", "Assistant:", "Model:", "AI:", "Doctor:", "Responder:")
+            for (p in prefixes) {
+                if (cleaned.startsWith(p, ignoreCase = true)) {
+                    cleaned = cleaned.substring(p.length).trim()
+                }
+            }
+
+            val words = cleaned.split(" ")
+            for (i in words.indices) {
+                val piece = if (i == 0) words[i] else " " + words[i]
+                resultBuilder.append(piece)
+                onToken(piece)
+                kotlinx.coroutines.delay(10)
             }
             resultBuilder.toString()
         } catch (t: Throwable) {

@@ -1,6 +1,7 @@
 package com.trailmedic.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,15 +27,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.trailmedic.domain.model.Message
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
 import com.trailmedic.utils.formatAsDateTime
 
 @Composable
@@ -52,17 +52,17 @@ fun ChatBubble(
         verticalAlignment = Alignment.Bottom
     ) {
         if (!isUser) {
-            // TrailMedic AI Avatar
+            // MediTrail AI Avatar
             Box(
                 modifier = Modifier
-                    .size(30.dp)
-                    .clip(CircleShape)
-                    .background(EmergencyRed),
+                    .size(32.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MediPrimaryGreen),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "TrailMedic AI",
+                    contentDescription = "MediTrail AI",
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)
                 )
@@ -74,15 +74,24 @@ fun ChatBubble(
             horizontalAlignment = if (isUser) Alignment.End else Alignment.Start
         ) {
             Surface(
-                modifier = Modifier.widthIn(max = 290.dp),
+                modifier = Modifier
+                    .widthIn(max = 310.dp)
+                    .border(
+                        width = if (isUser) 0.dp else 1.dp,
+                        color = if (isUser) Color.Transparent else MediBorder,
+                        shape = if (isUser) {
+                            RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 16.dp, bottomEnd = 3.dp)
+                        } else {
+                            RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 3.dp, bottomEnd = 16.dp)
+                        }
+                    ),
                 shape = if (isUser) {
-                    RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 16.dp, bottomEnd = 2.dp)
+                    RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 16.dp, bottomEnd = 3.dp)
                 } else {
-                    RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 2.dp, bottomEnd = 16.dp)
+                    RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp, bottomStart = 3.dp, bottomEnd = 16.dp)
                 },
-                color = if (isUser) EmergencyRed else CardDark,
-                tonalElevation = 2.dp,
-                shadowElevation = 3.dp
+                color = if (isUser) MediPrimaryGreen else MediSecondarySurface,
+                shadowElevation = 0.dp
             ) {
                 Box(modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
                     if (isUser) {
@@ -99,7 +108,7 @@ fun ChatBubble(
                             Text(
                                 text = message.content,
                                 style = MaterialTheme.typography.bodyLarge.copy(
-                                    color = TextPrimary,
+                                    color = MediTextPrimary,
                                     fontSize = 15.sp,
                                     lineHeight = 22.sp
                                 )
@@ -109,13 +118,13 @@ fun ChatBubble(
                 }
             }
 
-            Spacer(modifier = Modifier.height(2.dp))
+            Spacer(modifier = Modifier.height(3.dp))
 
             Text(
                 text = message.timestamp.formatAsDateTime(),
                 style = MaterialTheme.typography.bodySmall.copy(
                     fontSize = 10.sp,
-                    color = TextMuted
+                    color = MediTextMuted
                 ),
                 modifier = Modifier.padding(horizontal = 4.dp)
             )

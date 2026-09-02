@@ -1,6 +1,7 @@
 package com.trailmedic.ui.history
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,9 +12,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -42,21 +43,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.trailmedic.domain.model.Session
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediEmergencyRed
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 import com.trailmedic.utils.formatAsDateTime
 import com.trailmedic.utils.formatAsDurationSummary
 
@@ -72,7 +74,7 @@ fun HistoryScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DeepNavy)
+            .background(MediBackground)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // TOP BAR
@@ -80,12 +82,13 @@ fun HistoryScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .statusBarsPadding(),
-                color = SurfaceDark,
-                shadowElevation = 4.dp
+                color = MediSurface,
+                shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .border(1.dp, MediBorder)
                         .padding(horizontal = 12.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -93,7 +96,7 @@ fun HistoryScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
-                            tint = TextPrimary
+                            tint = MediTextPrimary
                         )
                     }
                     Spacer(modifier = Modifier.width(4.dp))
@@ -101,7 +104,7 @@ fun HistoryScreen(
                         text = "Emergency History",
                         style = MaterialTheme.typography.titleLarge.copy(
                             fontWeight = FontWeight.Bold,
-                            color = Color.White
+                            color = MediTextPrimary
                         )
                     )
                 }
@@ -118,16 +121,17 @@ fun HistoryScreen(
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(100.dp)
+                            .size(90.dp)
                             .clip(CircleShape)
-                            .background(CardDark),
+                            .background(MediSecondarySurface)
+                            .border(1.dp, MediBorder, CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Default.Terrain,
                             contentDescription = null,
-                            tint = TextSecondary,
-                            modifier = Modifier.size(54.dp)
+                            tint = MediPrimaryGreen,
+                            modifier = Modifier.size(48.dp)
                         )
                     }
 
@@ -137,7 +141,7 @@ fun HistoryScreen(
                         text = "No past emergency sessions",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary
+                            color = MediTextPrimary
                         )
                     )
 
@@ -146,7 +150,7 @@ fun HistoryScreen(
                     Text(
                         text = "Any emergency first aid conversations you start will automatically be stored offline here.",
                         style = MaterialTheme.typography.bodyMedium.copy(
-                            color = TextMuted,
+                            color = MediTextSecondary,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
                         )
                     )
@@ -176,13 +180,13 @@ fun HistoryScreen(
                     Text(
                         text = "Delete Emergency Session?",
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = MediTextPrimary
                     )
                 },
                 text = {
                     Text(
                         text = "Are you sure you want to permanently delete this ${session.emergencyType} session record?",
-                        color = TextSecondary
+                        color = MediTextSecondary
                     )
                 },
                 confirmButton = {
@@ -192,15 +196,15 @@ fun HistoryScreen(
                             sessionToDelete = null
                         }
                     ) {
-                        Text(text = "Delete", color = EmergencyRed, fontWeight = FontWeight.Bold)
+                        Text(text = "Delete", color = MediEmergencyRed, fontWeight = FontWeight.Bold)
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { sessionToDelete = null }) {
-                        Text(text = "Cancel", color = TextSecondary)
+                        Text(text = "Cancel", color = MediTextSecondary)
                     }
                 },
-                containerColor = SurfaceDark
+                containerColor = MediSurface
             )
         }
     }
@@ -217,8 +221,9 @@ private fun HistorySessionCard(
             .fillMaxWidth()
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = CardDark),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        colors = CardDefaults.cardColors(containerColor = MediSurface),
+        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
@@ -232,30 +237,30 @@ private fun HistorySessionCard(
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .background(CardDarkElevated),
+                            .size(38.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(MediLightGreen),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             imageVector = Icons.Default.LocalHospital,
                             contentDescription = null,
-                            tint = EmergencyRed,
-                            modifier = Modifier.size(20.dp)
+                            tint = MediPrimaryGreen,
+                            modifier = Modifier.size(22.dp)
                         )
                     }
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
                             text = session.emergencyType,
                             style = MaterialTheme.typography.titleMedium.copy(
                                 fontWeight = FontWeight.Bold,
-                                color = TextPrimary
+                                color = MediTextPrimary
                             )
                         )
                         Text(
                             text = session.timestamp.formatAsDateTime(),
-                            style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                            style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                         )
                     }
                 }
@@ -267,7 +272,7 @@ private fun HistorySessionCard(
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Delete",
-                        tint = TextMuted,
+                        tint = MediTextMuted,
                         modifier = Modifier.size(18.dp)
                     )
                 }
@@ -278,7 +283,7 @@ private fun HistorySessionCard(
             Text(
                 text = "Duration: ${session.durationSeconds.formatAsDurationSummary()}",
                 style = MaterialTheme.typography.labelSmall.copy(
-                    color = TextSecondary,
+                    color = MediTextSecondary,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -288,7 +293,7 @@ private fun HistorySessionCard(
                 Text(
                     text = session.firstAidSummary.replace("\n", " ").take(140) + "...",
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = TextSecondary,
+                        color = MediTextSecondary,
                         lineHeight = 16.sp
                     ),
                     maxLines = 2,

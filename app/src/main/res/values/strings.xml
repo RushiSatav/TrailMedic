@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TrailMedic</string>
+    <string name="app_name">MediTrail</string>
     <string name="tagline">First Aid. Anywhere. No Signal Needed.</string>
     <string name="offline_ready">Offline Ready</string>
     <string name="emergency_sos">EMERGENCY</string>

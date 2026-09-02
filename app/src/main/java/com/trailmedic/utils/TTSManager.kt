@@ -21,7 +21,7 @@ class TTSManager @Inject constructor(
     private val _isSpeaking = MutableStateFlow(false)
     val isSpeaking = _isSpeaking.asStateFlow()
 
-    private var currentSpeechRate = 0.85f
+    private var currentSpeechRate = 0.95f
 
     init {
         initTTS()
@@ -62,20 +62,72 @@ class TTSManager @Inject constructor(
         tts?.setSpeechRate(currentSpeechRate)
     }
 
+    /**
+     * Speaks concise, essential emergency first aid instructions without reading lengthy paragraphs.
+     */
     fun speak(text: String) {
         if (_isReady.value && text.isNotBlank()) {
-            // Clean markdown syntax, XML tags, and turn headers for clean speech output
-            val cleaned = text
-                .replace(Regex("<[^>]*>"), "")
-                .replace(Regex("\\*\\*|\\*|_"), "")
-                .replace("ASSESSMENT:", "Assessment: ")
-                .replace("STEPS:", "First Aid Steps: ")
-                .replace("WARNING SIGNS:", "Warning Signs: ")
-                .replace("NEXT:", "Next Steps: ")
-                .trim()
-
-            tts?.speak(cleaned, TextToSpeech.QUEUE_FLUSH, null, "TRAILMEDIC_TTS_${System.currentTimeMillis()}")
+            val conciseText = formatForConciseSpeech(text)
+            if (conciseText.isNotBlank()) {
+                tts?.speak(conciseText, TextToSpeech.QUEUE_FLUSH, null, "TRAILMEDIC_TTS_${System.currentTimeMillis()}")
+            }
         }
+    }
+
+    /**
+     * Extracts only the top 2 actionable points and the triage question for brief, clear spoken voice.
+     */
+    private fun formatForConciseSpeech(text: String): String {
+        // Clean markdown, XML tags, and emojis
+        val cleaned = text
+            .replace(Regex("<[^>]*>"), "")
+            .replace(Regex("[*#_`~]"), "")
+            .replace(Regex("[⚠️⏱⚡●▶🗑↑]"), "")
+            .trim()
+
+        val lines = cleaned.lines().map { it.trim() }.filter { it.isNotBlank() }
+        val speechParts = mutableListOf<String>()
+
+        var actionCount = 0
+        var foundQuestion = false
+
+        for (line in lines) {
+            val lower = line.lowercase()
+
+            // Skip large section headers
+            if (lower.startsWith("immediate first aid actions") ||
+                lower.startsWith("action protocol") ||
+                lower.startsWith("emergency assessment") ||
+                lower.startsWith("triage assessment") ||
+                lower.startsWith("critical warning signs") ||
+                lower.startsWith("evacuation")
+            ) {
+                continue
+            }
+
+            // Capture top 2 numbered action points or bullet points
+            if ((line.matches(Regex("^\\d+\\..*")) || line.startsWith("•") || line.startsWith("-")) && actionCount < 2) {
+                val cleanLine = line.replace(Regex("^\\d+\\.\\s*|^[•\\-]\\s*"), "")
+                speechParts.add(cleanLine)
+                actionCount++
+                continue
+            }
+
+            // Capture triage question
+            if (line.contains("?") && !foundQuestion) {
+                speechParts.add(line)
+                foundQuestion = true
+            }
+        }
+
+        // If structured parsing didn't find points (e.g. short greeting or direct answer), take first 2 sentences max
+        if (speechParts.isEmpty()) {
+            val sentences = cleaned.split(Regex("(?<=[.!?])\\s+")).take(2)
+            return sentences.joinToString(" ").take(180)
+        }
+
+        // Limit concise speech to essential points (under ~200 characters)
+        return speechParts.joinToString(". ").take(220)
     }
 
     fun stop() {

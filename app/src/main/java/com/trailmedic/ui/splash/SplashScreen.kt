@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -31,18 +30,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.trailmedic.ui.components.OfflineBadge
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SurfaceDark
-import com.trailmedic.ui.theme.TextSecondary
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 
 @Composable
 fun SplashScreen(
@@ -59,8 +61,8 @@ fun SplashScreen(
 
     val infiniteTransition = rememberInfiniteTransition(label = "splash_logo_pulse")
     val pulseScale by infiniteTransition.animateFloat(
-        initialValue = 0.95f,
-        targetValue = 1.05f,
+        initialValue = 0.96f,
+        targetValue = 1.04f,
         animationSpec = infiniteRepeatable(
             animation = tween(1000, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse
@@ -71,11 +73,7 @@ fun SplashScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(DeepNavy, SurfaceDark, DeepNavy)
-                )
-            ),
+            .background(MediBackground),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -85,25 +83,25 @@ fun SplashScreen(
             // App Emblem
             Box(
                 modifier = Modifier
-                    .size(110.dp)
+                    .size(100.dp)
                     .scale(pulseScale)
-                    .clip(RoundedCornerShape(28.dp))
-                    .background(CardDark)
-                    .border(2.dp, EmergencyRed.copy(alpha = 0.6f), RoundedCornerShape(28.dp)),
+                    .clip(RoundedCornerShape(26.dp))
+                    .background(MediLightGreen)
+                    .border(1.5.dp, MediPrimaryGreen.copy(alpha = 0.4f), RoundedCornerShape(26.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Box(
                     modifier = Modifier
-                        .size(64.dp)
-                        .clip(CircleShape)
-                        .background(EmergencyRed),
+                        .size(56.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(MediPrimaryGreen),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = null,
                         tint = Color.White,
-                        modifier = Modifier.size(44.dp)
+                        modifier = Modifier.size(38.dp)
                     )
                 }
             }
@@ -111,10 +109,16 @@ fun SplashScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "TrailMedic",
+                text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(color = MediTextPrimary, fontWeight = FontWeight.Black)) {
+                        append("Medi")
+                    }
+                    withStyle(style = SpanStyle(color = MediPrimaryGreen, fontWeight = FontWeight.Black)) {
+                        append("Trail")
+                    }
+                },
                 style = MaterialTheme.typography.displayLarge.copy(
-                    fontWeight = FontWeight.Black,
-                    color = Color.White,
+                    fontSize = 28.sp,
                     letterSpacing = 1.sp
                 )
             )
@@ -124,7 +128,7 @@ fun SplashScreen(
             Text(
                 text = "Offline Wilderness AI First Aid",
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = TextSecondary,
+                    color = MediTextSecondary,
                     fontWeight = FontWeight.Medium
                 )
             )
@@ -137,7 +141,7 @@ fun SplashScreen(
 
             CircularProgressIndicator(
                 modifier = Modifier.size(24.dp),
-                color = EmergencyRed,
+                color = MediPrimaryGreen,
                 strokeWidth = 2.5.dp
             )
         }

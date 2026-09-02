@@ -78,7 +78,15 @@ class BatteryAwareManager @Inject constructor(
         }
     }
 
+    /**
+     * Compact token budget for brief, fast, and concise emergency responses.
+     */
     fun getRecommendedMaxTokens(): Int {
-        return if (_isBatteryUnder15.value) 256 else 512
+        return when {
+            _isBatteryUnder5.value -> 80
+            _isBatteryUnder15.value -> 128
+            _totalMemoryGB.value >= 8.0f -> 256
+            else -> 180
+        }
     }
 }

@@ -13,9 +13,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -52,15 +52,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.trailmedic.ui.theme.CardDark
-import com.trailmedic.ui.theme.CardDarkElevated
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.EmergencyRed
-import com.trailmedic.ui.theme.SafeGreen
-import com.trailmedic.ui.theme.TextMuted
-import com.trailmedic.ui.theme.TextPrimary
-import com.trailmedic.ui.theme.TextSecondary
-import com.trailmedic.ui.theme.WarningOrange
+import com.trailmedic.ui.theme.MediBackground
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediEmergencyRed
+import com.trailmedic.ui.theme.MediEmergencyRedSoft
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediLightGreen
+import com.trailmedic.ui.theme.MediPrimaryGreen
+import com.trailmedic.ui.theme.MediSecondarySurface
+import com.trailmedic.ui.theme.MediSurface
+import com.trailmedic.ui.theme.MediTextMuted
+import com.trailmedic.ui.theme.MediTextPrimary
+import com.trailmedic.ui.theme.MediTextSecondary
 import com.trailmedic.utils.ModelDownloadManager
 import java.util.Locale
 
@@ -77,7 +80,7 @@ fun ModelDownloadScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DeepNavy)
+            .background(MediBackground)
     ) {
         Column(
             modifier = Modifier
@@ -92,15 +95,21 @@ fun ModelDownloadScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 // Icon Header
                 Box(
                     modifier = Modifier
                         .size(80.dp)
                         .clip(CircleShape)
-                        .background(CardDarkElevated)
-                        .border(1.5.dp, EmergencyRed.copy(alpha = 0.5f), CircleShape),
+                    .background(
+                        if (downloadState is ModelDownloadManager.DownloadState.Complete) MediLightGreen else MediSecondarySurface
+                    )
+                    .border(
+                        1.5.dp,
+                        if (downloadState is ModelDownloadManager.DownloadState.Complete) MediPrimaryGreen.copy(alpha = 0.5f) else MediBorder,
+                        CircleShape
+                    ),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -110,10 +119,10 @@ fun ModelDownloadScreen(
                         },
                         contentDescription = null,
                         tint = when (downloadState) {
-                            is ModelDownloadManager.DownloadState.Complete -> SafeGreen
-                            else -> EmergencyRed
+                            is ModelDownloadManager.DownloadState.Complete -> MediPrimaryGreen
+                            else -> MediPrimaryGreen
                         },
-                        modifier = Modifier.size(42.dp)
+                        modifier = Modifier.size(40.dp)
                     )
                 }
 
@@ -121,12 +130,12 @@ fun ModelDownloadScreen(
 
                 Text(
                     text = when (downloadState) {
-                        is ModelDownloadManager.DownloadState.Complete -> "TrailMedic is Ready!"
+                        is ModelDownloadManager.DownloadState.Complete -> "MediTrail is Ready!"
                         else -> "Download AI Model"
                     },
                     style = MaterialTheme.typography.headlineLarge.copy(
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = MediTextPrimary
                     ),
                     textAlign = TextAlign.Center
                 )
@@ -141,14 +150,14 @@ fun ModelDownloadScreen(
                             "~1.5 GB · Required for on-device AI. Download once over Wi-Fi, use forever in the wilderness."
                     },
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        color = TextSecondary,
+                        color = MediTextSecondary,
                         textAlign = TextAlign.Center,
                         lineHeight = 20.sp
                     ),
                     textAlign = TextAlign.Center
                 )
 
-                Spacer(modifier = Modifier.height(28.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 // Storage and Preferences Info Cards
                 if (downloadState !is ModelDownloadManager.DownloadState.Downloading &&
@@ -157,7 +166,9 @@ fun ModelDownloadScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDark)
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             // Storage Info
@@ -168,7 +179,7 @@ fun ModelDownloadScreen(
                                 Icon(
                                     imageVector = Icons.Default.Storage,
                                     contentDescription = null,
-                                    tint = SafeGreen,
+                                    tint = MediPrimaryGreen,
                                     modifier = Modifier.size(20.dp)
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
@@ -176,13 +187,13 @@ fun ModelDownloadScreen(
                                     Text(
                                         text = "Device Storage",
                                         style = MaterialTheme.typography.titleMedium.copy(
-                                            color = TextPrimary,
+                                            color = MediTextPrimary,
                                             fontSize = 14.sp
                                         )
                                     )
                                     Text(
                                         text = String.format(Locale.US, "%.1f GB available (1.5 GB required)", viewModel.availableStorageGB),
-                                        style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                        style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                                     )
                                 }
                             }
@@ -199,14 +210,14 @@ fun ModelDownloadScreen(
                                     Icon(
                                         imageVector = Icons.Default.Wifi,
                                         contentDescription = null,
-                                        tint = TextSecondary,
+                                        tint = MediTextSecondary,
                                         modifier = Modifier.size(20.dp)
                                     )
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
                                         text = "Download over Wi-Fi only",
                                         style = MaterialTheme.typography.bodyMedium.copy(
-                                            color = TextPrimary,
+                                            color = MediTextPrimary,
                                             fontSize = 14.sp
                                         )
                                     )
@@ -216,7 +227,9 @@ fun ModelDownloadScreen(
                                     onCheckedChange = { viewModel.setWifiOnly(it) },
                                     colors = SwitchDefaults.colors(
                                         checkedThumbColor = Color.White,
-                                        checkedTrackColor = EmergencyRed
+                                        checkedTrackColor = MediPrimaryGreen,
+                                        uncheckedThumbColor = MediTextMuted,
+                                        uncheckedTrackColor = MediSecondarySurface
                                     )
                                 )
                             }
@@ -233,8 +246,10 @@ fun ModelDownloadScreen(
                     val state = downloadState as? ModelDownloadManager.DownloadState.Downloading
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(20.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDark)
+                        shape = RoundedCornerShape(18.dp),
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(
                             modifier = Modifier
@@ -249,15 +264,15 @@ fun ModelDownloadScreen(
                                 CircularProgressIndicator(
                                     progress = { progress },
                                     modifier = Modifier.size(100.dp),
-                                    color = EmergencyRed,
+                                    color = MediPrimaryGreen,
                                     strokeWidth = 8.dp,
-                                    trackColor = CardDarkElevated,
+                                    trackColor = MediLightGreen,
                                 )
                                 Text(
                                     text = "${(progress * 100).toInt()}%",
                                     style = MaterialTheme.typography.headlineMedium.copy(
                                         fontWeight = FontWeight.Bold,
-                                        color = Color.White
+                                        color = MediTextPrimary
                                     )
                                 )
                             }
@@ -270,8 +285,8 @@ fun ModelDownloadScreen(
                                     .fillMaxWidth()
                                     .height(6.dp)
                                     .clip(RoundedCornerShape(3.dp)),
-                                color = EmergencyRed,
-                                trackColor = CardDarkElevated,
+                                color = MediPrimaryGreen,
+                                trackColor = MediLightGreen,
                             )
 
                             Spacer(modifier = Modifier.height(14.dp))
@@ -283,14 +298,14 @@ fun ModelDownloadScreen(
                                 Text(
                                     text = state?.speedMBps ?: "0.0 MB/s",
                                     style = MaterialTheme.typography.bodyMedium.copy(
-                                        color = SafeGreen,
+                                        color = MediPrimaryGreen,
                                         fontWeight = FontWeight.Bold
                                     )
                                 )
                                 Text(
                                     text = "${state?.downloadedMB ?: "0 MB"} / ${state?.totalMB ?: "1.5 GB"}",
                                     style = MaterialTheme.typography.bodyMedium.copy(
-                                        color = TextSecondary
+                                        color = MediTextSecondary
                                     )
                                 )
                             }
@@ -300,9 +315,10 @@ fun ModelDownloadScreen(
                             OutlinedButton(
                                 onClick = { viewModel.cancelDownload() },
                                 shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth(),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder)
                             ) {
-                                Text(text = "Cancel Download", color = TextSecondary)
+                                Text(text = "Cancel Download", color = MediTextSecondary)
                             }
                         }
                     }
@@ -313,7 +329,9 @@ fun ModelDownloadScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = CardDark)
+                        colors = CardDefaults.cardColors(containerColor = MediSurface),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediBorder),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Row(
                             modifier = Modifier
@@ -323,13 +341,13 @@ fun ModelDownloadScreen(
                         ) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(24.dp),
-                                color = WarningOrange,
+                                color = MediEmergencyYellow,
                                 strokeWidth = 3.dp
                             )
                             Spacer(modifier = Modifier.width(16.dp))
                             Text(
                                 text = "Verifying offline neural weights...",
-                                style = MaterialTheme.typography.bodyMedium.copy(color = TextPrimary)
+                                style = MaterialTheme.typography.bodyMedium.copy(color = MediTextPrimary)
                             )
                         }
                     }
@@ -341,26 +359,27 @@ fun ModelDownloadScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = EmergencyRed.copy(alpha = 0.15f)),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, EmergencyRed)
+                        colors = CardDefaults.cardColors(containerColor = MediEmergencyRedSoft),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, MediEmergencyRed.copy(alpha = 0.3f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(
                                 text = "Download Notice",
                                 style = MaterialTheme.typography.titleMedium.copy(
-                                    color = EmergencyRed,
+                                    color = MediEmergencyRed,
                                     fontWeight = FontWeight.Bold
                                 )
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
                                 text = errorState?.message ?: "Unable to download full model.",
-                                style = MaterialTheme.typography.bodySmall.copy(color = TextPrimary)
+                                style = MaterialTheme.typography.bodySmall.copy(color = MediTextPrimary)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
                                 text = "You can retry or continue with the offline symptom engine (full offline coverage for all 8 major trail emergencies).",
-                                style = MaterialTheme.typography.bodySmall.copy(color = TextSecondary)
+                                style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                             )
                         }
                     }
@@ -385,10 +404,10 @@ fun ModelDownloadScreen(
                                 .fillMaxWidth()
                                 .height(56.dp),
                             shape = RoundedCornerShape(24.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = SafeGreen)
+                            colors = ButtonDefaults.buttonColors(containerColor = MediPrimaryGreen)
                         ) {
                             Text(
-                                text = "Start Using TrailMedic",
+                                text = "Start Using MediTrail",
                                 style = MaterialTheme.typography.titleMedium.copy(
                                     fontWeight = FontWeight.Bold,
                                     color = Color.White
@@ -408,7 +427,7 @@ fun ModelDownloadScreen(
                                 .fillMaxWidth()
                                 .height(56.dp),
                             shape = RoundedCornerShape(24.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = EmergencyRed)
+                            colors = ButtonDefaults.buttonColors(containerColor = MediPrimaryGreen)
                         ) {
                             Icon(
                                 imageVector = Icons.Default.CloudDownload,
@@ -436,13 +455,13 @@ fun ModelDownloadScreen(
                             Icon(
                                 imageVector = Icons.Default.Info,
                                 contentDescription = null,
-                                tint = TextMuted,
+                                tint = MediTextMuted,
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
                                 text = "Skip for now (Use Offline Symptom Engine)",
-                                style = MaterialTheme.typography.bodySmall.copy(color = TextMuted)
+                                style = MaterialTheme.typography.bodySmall.copy(color = MediTextSecondary)
                             )
                         }
                     }

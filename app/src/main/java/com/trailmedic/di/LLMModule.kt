@@ -35,6 +35,8 @@ object LLMModule {
     @Singleton
     fun provideSymptomTreeRepository(
         @ApplicationContext context: Context,
-        gson: Gson
-    ): SymptomTreeRepository = SymptomTreeRepositoryImpl(context, gson)
+        gson: Gson,
+        clinicalKnowledgeExtractor: com.trailmedic.domain.ai.ClinicalKnowledgeExtractor
+    ): SymptomTreeRepository = SymptomTreeRepositoryImpl(context, gson, clinicalKnowledgeExtractor)
 }
+

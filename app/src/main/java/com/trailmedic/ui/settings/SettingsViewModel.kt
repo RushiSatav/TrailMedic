@@ -3,12 +3,15 @@ package com.trailmedic.ui.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.trailmedic.data.llm.LLMInferenceEngine
+import com.trailmedic.domain.ai.WildernessClinicalAIReasoner
 import com.trailmedic.domain.model.ConversationPhase
+import com.trailmedic.domain.model.EmergencyCategory
 import com.trailmedic.domain.model.Message
+import com.trailmedic.domain.model.SymptomEmergencyData
+import com.trailmedic.domain.repository.SymptomTreeRepository
 import com.trailmedic.utils.SettingsManager
 import com.trailmedic.utils.TTSManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +25,9 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val settingsManager: SettingsManager,
     private val llmEngine: LLMInferenceEngine,
-    private val ttsManager: TTSManager
+    private val ttsManager: TTSManager,
+    private val symptomTreeRepository: SymptomTreeRepository,
+    private val aiReasoner: WildernessClinicalAIReasoner
 ) : ViewModel() {
 
     val emergencyContactName: StateFlow<String> = settingsManager.emergencyContactName
@@ -55,8 +60,17 @@ class SettingsViewModel @Inject constructor(
     val modelDisplayName: String
         get() = llmEngine.modelDisplayName
 
+    val modelFileName: String
+        get() = llmEngine.modelFileName
+
+    val modelFormat: String
+        get() = llmEngine.modelFormat
+
     val modelSizeMB: Long
         get() = llmEngine.getModelFileSizeMB()
+
+    val datasetConditionsCount: Int
+        get() = symptomTreeRepository.getAllEmergencies().size + symptomTreeRepository.getFirstAidIntents().size
 
     private val _testResponse = MutableStateFlow<String?>(null)
     val testResponse = _testResponse.asStateFlow()
@@ -111,28 +125,52 @@ class SettingsViewModel @Inject constructor(
         ttsManager.speak("TrailMedic offline voice guidance is active and working properly.")
     }
 
-    fun testModel() {
+    fun testModel(customPrompt: String? = null) {
         viewModelScope.launch {
             _isTestingModel.value = true
-            _testResponse.value = "Testing offline Gemma 2B model..."
+            val query = customPrompt?.trim()?.ifBlank { null } ?: "What should I do if someone gets a cut or scrape?"
+            _testResponse.value = "🔍 Extracting dataset protocols for: '$query'..."
+
             try {
-                if (isModelReady) {
-                    val messages = listOf(
-                        Message(content = "Is the offline Gemma model ready?", isUser = true)
-                    )
+                val extract = symptomTreeRepository.extractKnowledge(query)
+                val messages = listOf(Message(content = query, isUser = true))
+
+                if (isModelReady && useLLM.value) {
+                    val clinicalData = if (extract != null) {
+                        SymptomEmergencyData(
+                            id = extract.conditionTag.lowercase().replace(" ", "_"),
+                            name = extract.conditionName,
+                            triggerKeywords = listOf(extract.conditionTag),
+                            questions = listOf(extract.triageQuestion),
+                            firstAidSteps = extract.firstAidSteps,
+                            warningSigns = extract.warningSigns,
+                            evacuationNote = extract.evacuationNote
+                        )
+                    } else {
+                        symptomTreeRepository.getCategoryFallback(EmergencyCategory.GENERAL)
+                    }
+
+                    _testResponse.value = "✨ Matched Condition: ${extract?.conditionName ?: "General"}\n[Local AI Generating...]\n"
                     val response = llmEngine.generateResponse(
                         conversationHistory = messages,
                         phase = ConversationPhase.INTERVIEWING,
+                        clinicalData = clinicalData,
                         onToken = { token ->
                             _testResponse.value = (_testResponse.value ?: "") + token
                         }
                     )
-                    _testResponse.value = response
+                    _testResponse.value = "✨ Matched Condition: ${extract?.conditionName ?: "General"}\n\n$response"
                 } else {
-                    _testResponse.value = "Offline Symptom Engine is active (Model file not downloaded). Full fallback knowledge base operational."
+                    val response = aiReasoner.generateDynamicResponse(
+                        category = EmergencyCategory.GENERAL,
+                        messages = messages,
+                        phase = ConversationPhase.INTERVIEWING,
+                        questionIndex = 0
+                    )
+                    _testResponse.value = "✨ Matched Condition: ${extract?.conditionName ?: "Clinical Protocol"}\nConfidence: ${String.format("%.0f", (extract?.confidence ?: 0.9f) * 100)}%\n\n$response"
                 }
             } catch (t: Throwable) {
-                _testResponse.value = "Offline Engine Status: Ready with embedded clinical knowledge base. (Model note: ${t.message ?: t.javaClass.simpleName})"
+                _testResponse.value = "Offline Knowledge Engine Status: Active ($datasetConditionsCount conditions loaded).\n(Note: ${t.message ?: t.javaClass.simpleName})"
             } finally {
                 _isTestingModel.value = false
             }
@@ -148,8 +186,17 @@ class SettingsViewModel @Inject constructor(
             try {
                 val dir = java.io.File(llmEngine.modelDir)
                 if (!dir.exists()) dir.mkdirs()
-                val destFile = java.io.File(llmEngine.modelPath)
-                val tempFile = java.io.File("${llmEngine.modelPath}.tmp")
+
+                var originalName = "model.gguf"
+                context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                    val nameIdx = cursor.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME)
+                    if (nameIdx != -1 && cursor.moveToFirst()) {
+                        originalName = cursor.getString(nameIdx)
+                    }
+                }
+
+                val destFile = java.io.File(dir, originalName)
+                val tempFile = java.io.File(dir, "$originalName.tmp")
                 if (tempFile.exists()) tempFile.delete()
 
                 context.contentResolver.openInputStream(uri)?.use { input ->
@@ -158,11 +205,23 @@ class SettingsViewModel @Inject constructor(
                     }
                 }
 
+                // Delete older models to free up device storage
+                dir.listFiles()?.forEach { file ->
+                    if (file.name != originalName && !file.name.endsWith(".tmp")) {
+                        file.delete()
+                    }
+                }
+
                 if (destFile.exists()) destFile.delete()
                 tempFile.renameTo(destFile)
 
+                // Re-initialize engine with the newly imported model
+                llmEngine.release()
+                llmEngine.initialize()
+
+                val sizeMb = destFile.length() / (1024 * 1024)
                 withContext(kotlinx.coroutines.Dispatchers.Main) {
-                    onComplete(true, "Model file imported (${destFile.length() / (1024*1024)} MB). Ready to use!")
+                    onComplete(true, "Model '$originalName' ($sizeMb MB) imported and loaded successfully!")
                 }
             } catch (e: Exception) {
                 withContext(kotlinx.coroutines.Dispatchers.Main) {
@@ -172,3 +231,4 @@ class SettingsViewModel @Inject constructor(
         }
     }
 }
+

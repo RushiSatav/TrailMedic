@@ -1,0 +1,1355 @@
+[
+  {
+    "tag": "Cuts",
+    "name": "Cuts & Minor Lacerations",
+    "patterns": [
+      "What to do if Cuts?",
+      "How to cure Cuts?",
+      "Which medicine to apply for Cuts?",
+      "what to apply on cuts?",
+      "Cuts",
+      "I cut my finger",
+      "bleeding from a paper cut",
+      "minor cut on hand"
+    ],
+    "firstAidSteps": [
+      "Wash the cut properly with clean water and mild soap to prevent bacterial infection.",
+      "Stop the bleeding by applying gentle, direct pressure with a clean cloth or gauze for 1-2 minutes until bleeding stops.",
+      "Apply petroleum jelly (Vaseline) or antibacterial ointment to keep the wound moist for faster healing.",
+      "Cover the cut with a sterile adhesive bandage or gauze.",
+      "For pain relief, mild over-the-counter pain relievers such as acetaminophen or ibuprofen can be taken if needed."
+    ],
+    "warningSigns": [
+      "Cut is deeper than 1/4 inch or edges gape open (may require stitches)",
+      "Redness, throbbing warmth, or pus oozing from the cut (infection)",
+      "Numbness or loss of feeling beyond the cut area"
+    ],
+    "triageQuestion": "Is the cut actively bleeding heavily, or is it a shallow skin laceration?",
+    "evacuationNote": "If bleeding does not stop after 10 minutes of direct pressure or edges gape, seek medical attention for stitches.",
+    "responses": [
+      "Wash the cut properly to prevent infection and stop the bleeding by applying pressure for 1-2 minutes until bleeding stops. Apply Petroleum Jelly or antibacterial ointment to make sure the wound stays moist for quick healing. Finally cover the cut with a sterile bandage. Pain relievers such as acetaminophen or ibuprofen can be used if painful."
+    ]
+  },
+  {
+    "tag": "Abrasions",
+    "name": "Abrasions & Scrapes",
+    "patterns": [
+      "how do you treat abrasions?",
+      "Do Abrasions cause scars?",
+      "Abrasions",
+      "what to do if abrasions?",
+      "Which medicine to apply for abrasions?",
+      "How to cure abrasions?",
+      "scraped my knee",
+      "trail road rash",
+      "scraped skin"
+    ],
+    "firstAidSteps": [
+      "Begin with thoroughly washed hands.",
+      "Gently clean the area with cool to lukewarm water and mild soap.",
+      "Carefully remove dirt, gravel, or other particles from the scrape using sterilized tweezers.",
+      "For a mild scrape that is not bleeding, leave the wound uncovered to air out.",
+      "If the wound is oozing or bleeding, apply gentle pressure with a clean cloth.",
+      "Cover with a thin layer of topical antibiotic ointment (Bacitracin/Polysporin) or Aquaphor and apply a clean bandage.",
+      "Gently clean the wound and change the bandage daily."
+    ],
+    "warningSigns": [
+      "Embedded dirt or gravel that cannot be removed",
+      "Spreading redness, increased heat, severe swelling, or yellow pus",
+      "Tetanus vaccine not updated within the last 5-10 years"
+    ],
+    "triageQuestion": "Is there any embedded gravel or debris stuck inside the scrape?",
+    "evacuationNote": "Consult a doctor if foreign particles remain embedded or signs of infection appear.",
+    "responses": [
+      "Begin with washed hands. Gently clean the area with cool to lukewarm water and mild soap. Remove dirt or debris using sterilized tweezers. If bleeding, apply gentle pressure. Apply a thin layer of antibiotic ointment (like Bacitracin or Aquaphor) and cover with a sterile bandage. Change dressing daily and watch for redness or swelling."
+    ]
+  },
+  {
+    "tag": "stings",
+    "name": "Bee & Wasp Stings",
+    "patterns": [
+      "How do you treat Sting?",
+      "Stings",
+      "What to do if you get a sting?",
+      "Which medicine to apply if sting?",
+      "wasp sting",
+      "bee sting",
+      "hornet sting",
+      "stung by a bee"
+    ],
+    "firstAidSteps": [
+      "Remove any stinger immediately by scraping it sideways with a credit card or fingernail. Do not squeeze the venom sac.",
+      "Wash the sting site thoroughly with soap and water.",
+      "Apply a cold pack or ice wrapped in a towel for 15-20 minutes every hour to reduce swelling and pain.",
+      "Apply 1% hydrocortisone cream or calamine lotion to relieve itching and redness.",
+      "Take an oral antihistamine (like Diphenhydramine/Benadryl or Cetirizine) for swelling and itching.",
+      "Use acetaminophen or ibuprofen for pain relief as needed."
+    ],
+    "warningSigns": [
+      "Difficulty breathing, wheezing, or tightness in chest",
+      "Swelling of the lips, tongue, face, or throat",
+      "Dizziness, confusion, hives across whole body, or collapse (Anaphylaxis)"
+    ],
+    "triageQuestion": "Are they experiencing any throat tightness, hives on other parts of the body, or difficulty breathing?",
+    "evacuationNote": "If signs of anaphylaxis occur, use Epipen immediately into outer mid-thigh and activate emergency rescue.",
+    "responses": [
+      "Remove any stingers immediately by scraping across the skin. Apply ice wrapped in cloth for 15-20 minutes to relieve pain and swelling. Wash the area with soap and water. Apply hydrocortisone cream or calamine lotion for itching. Take an antihistamine like Benadryl or Cetirizine and ibuprofen for pain. If throat swells or breathing becomes difficult, seek immediate emergency help."
+    ]
+  },
+  {
+    "tag": "Splinter",
+    "name": "Splinter Removal",
+    "patterns": [
+      "How to remove Splinters",
+      "How to cure Splinters?",
+      "What to do if I have splinters?",
+      "How do you bring a splinter to the surface?",
+      "wood splinter in finger",
+      "thorn stuck in skin"
+    ],
+    "firstAidSteps": [
+      "Wash the area and your hands with soap and water. Do not squeeze the splinter as it may break.",
+      "Sterilize a pair of fine tweezers with rubbing alcohol.",
+      "If the splinter is sticking out: Grasp the tip with tweezers and pull it out gently at the same angle it entered.",
+      "If the splinter is completely buried under skin: Soak in warm water with Epsom salt for 10-15 minutes or apply oil/vinegar to draw it up.",
+      "Sterilize a small needle, gently prick the top layer of skin over the splinter, and lift the tip out with tweezers.",
+      "Wash with soap and water, apply antibiotic ointment, and cover with a band-aid."
+    ],
+    "warningSigns": [
+      "Splinter is deeply embedded in a joint or near the eye",
+      "Pus, throbbing pain, red streaks, or warmth around the site",
+      "Splinter made of glass, metal, or unknown hazardous material"
+    ],
+    "triageQuestion": "Is the splinter protruding from the surface, or is it completely buried beneath the skin?",
+    "evacuationNote": "If a deep or infected splinter cannot be safely removed, have a healthcare provider extract it.",
+    "responses": [
+      "1. Soak the area in warm water with Epsom salt or olive oil for 15-20 minutes to soften skin and draw the splinter up. 2. Sterilize tweezers and pull out at the angle it entered. 3. Wash with soap and water, apply antibiotic ointment, and bandage. If deep or infected, consult a doctor."
+    ]
+  },
+  {
+    "tag": "Sprains",
+    "name": "Ankle / Joint Sprain",
+    "patterns": [
+      "How do you treat a sprain?",
+      "what to do if i get a sprain?",
+      "Which cream to apply if i get a sprain?",
+      "Which medicine to apply if I get a sprain?",
+      "twisted ankle on trail",
+      "sprained wrist",
+      "sprained foot"
+    ],
+    "firstAidSteps": [
+      "Follow the R.I.C.E protocol: Rest, Ice, Compression, Elevation.",
+      "REST: Stop using the injured joint immediately; avoid bearing weight.",
+      "ICE: Apply an ice pack or cold compress wrapped in a towel for 15-20 minutes every 2-3 hours.",
+      "COMPRESSION: Wrap the joint with an elastic bandage (like ACE wrap) snugly, but not so tight that it cuts off circulation.",
+      "ELEVATION: Elevate the injured limb above heart level whenever resting to reduce swelling.",
+      "Medication: Take NSAIDs like ibuprofen (Advil/Motrin) or acetaminophen (Tylenol) for pain and inflammation."
+    ],
+    "warningSigns": [
+      "Inability to bear any weight or take 4 steps",
+      "Severe joint deformity, bone tenderness, or rapid large hematoma (possible fracture)",
+      "Numbness, tingling, or cold, pale toes/fingers"
+    ],
+    "triageQuestion": "Can the person bear any weight on the foot, or is there visible crooked bone deformity?",
+    "evacuationNote": "If weight bearing is impossible or severe deformity is visible, immobilize with a splint and seek medical evaluation.",
+    "responses": [
+      "Apply the R.I.C.E method: Rest the joint, apply an Ice pack wrapped in cloth for 15-20 minutes every 2-3 hours, Compress with an elastic bandage to control swelling, and Elevate the limb above heart level. Use over-the-counter pain relievers like ibuprofen or acetaminophen to manage pain and inflammation."
+    ]
+  },
+  {
+    "tag": "Strains",
+    "name": "Muscle Strain / Pulled Tendon",
+    "patterns": [
+      "How do you treat a strain?",
+      "what to do if i get a strain?",
+      "Which cream to apply if i get a strain?",
+      "Which medicine to apply if I get a strain?",
+      "How do you diagnose a strain?",
+      "Is heat or ice better for a pulled muscle?"
+    ],
+    "firstAidSteps": [
+      "REST the strained muscle: Avoid activities that cause pain or stress on the muscle group.",
+      "ICE: Apply ice wrapped in a towel for 15-20 minutes immediately following injury to minimize internal bleeding and swelling.",
+      "COMPRESSION: Wrap the affected muscle gently with an elastic bandage.",
+      "ELEVATE: Elevate the strained area if possible.",
+      "HEAT (After 48 hours): Once initial swelling has subsided, switch to warm compresses to relax tight muscles and promote blood flow.",
+      "Medication: Oral pain relievers (ibuprofen/acetaminophen) or topical analgesic creams (Voltaren/Bengay)."
+    ],
+    "warningSigns": [
+      "Popping sound or sensation at time of injury with complete loss of muscle function",
+      "Severe localized swelling or dark purple bruising",
+      "Inability to move the attached joint"
+    ],
+    "triageQuestion": "Did you hear or feel a 'pop' in the muscle when the injury occurred?",
+    "evacuationNote": "If muscle rupture is suspected or pain persists past 1-2 weeks, seek physician evaluation.",
+    "responses": [
+      "Rest, Ice, Compression, and Elevation (R.I.C.E) are key. Rest the muscle and apply ice wrapped in a towel for 15-20 minutes immediately to minimize swelling. Wrap with an elastic bandage. After 48 hours, gentle heat can help relax the muscle. Use ibuprofen or acetaminophen for pain relief."
+    ]
+  },
+  {
+    "tag": "Fever",
+    "name": "Fever & Elevated Temperature",
+    "patterns": [
+      "How do you treat a mild Fever?",
+      "what to do if i get a mild fever?",
+      "Which medicine to take if I get a mild fever?",
+      "fever",
+      "high temperature",
+      "body chills and hot"
+    ],
+    "firstAidSteps": [
+      "Stay well hydrated by drinking plenty of water, electrolyte solutions, broth, or herbal teas.",
+      "Dress in lightweight, breathable clothing and rest in a well-ventilated, cool room.",
+      "Use a light blanket if experiencing chills, and remove it once chills subside.",
+      "Take fever-reducing medications like acetaminophen (Tylenol) or ibuprofen (Advil) as directed on packaging.",
+      "Use lukewarm sponge baths on forehead and neck if uncomfortable (do NOT use cold ice baths or alcohol)."
+    ],
+    "warningSigns": [
+      "Fever exceeding 103°F (39.4°C) in adults or over 100.4°F in infants under 3 months",
+      "Stiff neck, severe headache, confusion, or sensitivity to bright light (Meningitis warning)",
+      "Fever lasting more than 3-5 consecutive days, or accompanied by difficulty breathing"
+    ],
+    "triageQuestion": "Does the person have a stiff neck, severe confusion, or difficulty breathing with the fever?",
+    "evacuationNote": "Seek urgent medical attention if high fever is accompanied by stiff neck, rash, or confusion.",
+    "responses": [
+      "To manage a fever: 1) Drink plenty of fluids (water, electrolytes, broth) to stay hydrated. 2) Dress in light clothing and rest. 3) Take fever reducers like acetaminophen or ibuprofen. 4) Use lukewarm compresses. Seek medical help if fever exceeds 103°F, lasts over 3 days, or is accompanied by a stiff neck or breathing difficulty."
+    ]
+  },
+  {
+    "tag": "Nasal Congestion",
+    "name": "Nasal Congestion & Sinus Pressure",
+    "patterns": [
+      "How do you treat nasal Congestion?",
+      "what to do if i get a nasal congestion?",
+      "Which medicine to take if I have a nasal congestion?",
+      "what to do if i have a blocked nose?",
+      "How do you treat a blocked nose?",
+      "How long does nasal congestion last?",
+      "stuffy nose",
+      "blocked sinuses"
+    ],
+    "firstAidSteps": [
+      "Stay hydrated: Drink plenty of warm water, broth, and herbal teas to thin nasal mucus.",
+      "Inhale steam: Take a hot shower or lean over a bowl of hot water with a towel over your head for 5-10 minutes.",
+      "Use saline nasal spray or a neti pot with distilled water to rinse irritants and mucus from nasal passages.",
+      "Apply a warm, moist towel across your nose, cheeks, and eyes to relieve sinus pressure.",
+      "Elevate your head with extra pillows while resting or sleeping.",
+      "Consider OTC decongestants (pseudoephedrine/phenylephrine) or saline sprays as appropriate."
+    ],
+    "warningSigns": [
+      "Nasal discharge that is bloody or persistently foul-smelling",
+      "Severe facial pain around eyes, high fever, or vision changes",
+      "Symptoms worsening significantly after 10 days"
+    ],
+    "triageQuestion": "How many days have you had the congestion, and do you have facial pain or high fever?",
+    "evacuationNote": "Consult a doctor if symptoms persist past 10-14 days or if severe facial pain and high fever occur.",
+    "responses": [
+      "To relieve nasal congestion: 1) Drink plenty of warm fluids to thin mucus. 2) Inhale steam from a hot shower or warm water bowl. 3) Use saline nasal spray or sinus rinses. 4) Apply a warm compress across your face. 5) Sleep with your head elevated. Over-the-counter decongestants can provide short-term relief."
+    ]
+  },
+  {
+    "tag": "Cough",
+    "name": "Cough Relief",
+    "patterns": [
+      "How to cure cough?",
+      "How do you treat cough?",
+      "what to do if i get a cough?",
+      "Which medicine to take if I get cough?",
+      "How do you get rid of cough?",
+      "dry hacking cough",
+      "chest cough"
+    ],
+    "firstAidSteps": [
+      "Honey: Consume 1-2 teaspoons of natural honey directly or mixed with warm water/tea. (Do NOT give honey to infants under 1 year).",
+      "Ginger & Lemon Tea: Steep fresh ginger slices in hot water with lemon juice to soothe throat irritation.",
+      "Stay well hydrated: Drinking warm fluids lubricates the throat and thins out mucus secretions.",
+      "Steam inhalation: Use a humidifier or breathe steam from a hot bowl of water.",
+      "Gargle with warm salt water (1/2 teaspoon salt in 8 oz warm water) 3-4 times daily.",
+      "Use OTC cough suppressants (Dextromethorphan for dry cough) or expectorants (Guaifenesin for wet mucus cough)."
+    ],
+    "warningSigns": [
+      "Coughing up blood or rust-colored phlegm",
+      "Shortness of breath, wheezing, or chest pain",
+      "Cough lasting longer than 3 weeks or accompanied by unexplained weight loss/night sweats"
+    ],
+    "triageQuestion": "Is it a dry hacking cough or are you coughing up mucus/blood?",
+    "evacuationNote": "Seek medical evaluation if coughing up blood, having shortness of breath, or cough lasts over 3 weeks.",
+    "responses": [
+      "1) Honey: Take 1-2 tsp of honey with warm water or herbal tea (do not give to infants under 1 year). 2) Ginger & Lemon: Drink warm ginger tea to soothe airway irritation. 3) Hydration: Drink plenty of room-temperature liquids to thin mucus. 4) Inhale steam and use salt water gargles. Seek medical care if coughing blood or experiencing shortness of breath."
+    ]
+  },
+  {
+    "tag": "Sore Throat",
+    "name": "Sore Throat (Pharyngitis)",
+    "patterns": [
+      "How do you treat sore throat?",
+      "what to do if i get a sore throat?",
+      "Which medicine to take if I get a sore throat?",
+      "How to cure sore throat?",
+      "throat hurts when swallowing",
+      "scratchy painful throat"
+    ],
+    "firstAidSteps": [
+      "Gargle with warm salt water (1/2 tsp salt in 1 cup warm water) for 30 seconds several times daily.",
+      "Drink warm soothing liquids: warm broth, chamomile tea with honey, or warm lemon water.",
+      "Suck on throat lozenges or hard candies to stimulate saliva and lubricate the throat.",
+      "Stay well rested and maintain high fluid intake.",
+      "Inhale warm steam or use a cool-mist humidifier in the room.",
+      "Take OTC pain relievers (ibuprofen or acetaminophen) to reduce throat pain and inflammation."
+    ],
+    "warningSigns": [
+      "Difficulty swallowing saliva (drooling), opening mouth, or breathing",
+      "High fever with white patches or pus visible on tonsils (possible Strep throat)",
+      "Lump in neck or rash spreading on body"
+    ],
+    "triageQuestion": "Can you swallow liquids comfortably, and do you see white spots on your tonsils?",
+    "evacuationNote": "If unable to swallow saliva or breathe easily, seek immediate medical care.",
+    "responses": [
+      "1) Gargle with warm salt water several times a day. 2) Drink plenty of warm fluids like tea with honey or warm broth (no honey for infants under 1). 3) Inhale steam from hot water. 4) Use throat lozenges and OTC pain relievers like ibuprofen or acetaminophen to ease swallowing pain. If breathing or swallowing saliva is difficult, see a doctor immediately."
+    ]
+  },
+  {
+    "tag": "Gastrointestinal problems",
+    "name": "Gastrointestinal Upset & Acid Reflux",
+    "patterns": [
+      "How do you treat gas problems?",
+      "what to do if i have Gastrointestinal problems?",
+      "Which medicine to take if I get gas problem?",
+      "How to cure Gas problems?",
+      "stomach acid",
+      "heartburn",
+      "bloating and gas pain"
+    ],
+    "firstAidSteps": [
+      "Sip clear fluids (water, peppermint tea, chamomile tea, diluted electrolyte drinks) in small amounts.",
+      "Avoid large meals, spicy, greasy, acidic, or ultra-processed foods.",
+      "Take over-the-counter antacids (Tums, Rolaids) or simethicone (Gas-X) for bloating and gas pain.",
+      "Stay in an upright sitting or standing position for at least 2 hours after eating (do NOT lie flat immediately).",
+      "Apply a warm heating pad to the abdomen to relax stomach muscles and ease cramping."
+    ],
+    "warningSigns": [
+      "Severe sudden sharp abdominal pain that becomes rigid or tender to touch",
+      "Vomiting blood or material resembling dark coffee grounds",
+      "Black tarry stools or high fever"
+    ],
+    "triageQuestion": "Is the stomach pain sharp and rigid, or dull cramping with bloating?",
+    "evacuationNote": "Seek immediate emergency medical help if vomiting blood, experiencing black tarry stools, or rigid abdominal pain.",
+    "responses": [
+      "1) Replenish fluids with small sips of water or herbal tea (peppermint/chamomile). 2) Avoid spicy, fatty, acidic foods. 3) Take antacids for heartburn or simethicone for gas discomfort. 4) Remain upright after eating. 5) Apply a warm compress. If pain becomes severe, rigid, or if vomiting blood/black stools occurs, seek urgent medical care."
+    ]
+  },
+  {
+    "tag": "Skin problems",
+    "name": "Skin Irritation & Contact Dermatitis",
+    "patterns": [
+      "How do you treat Skin problems?",
+      "what to do if i get a skin allergy?",
+      "Which medicine to take if I get a skin allergy?",
+      "How to cure skin allergy?",
+      "itchy skin rash",
+      "poison ivy reaction"
+    ],
+    "firstAidSteps": [
+      "Wash the affected skin gently with mild soap and cool water to remove plant resins or allergens.",
+      "Apply 1% hydrocortisone cream or calamine lotion to the itchy areas 2-3 times daily.",
+      "Apply cool, wet compresses (clean cloth soaked in cool water) for 15-20 minutes.",
+      "Take oral antihistamines (e.g., Cetirizine, Loratadine, or Diphenhydramine) to reduce systemic itching.",
+      "Take a soothing colloidal oatmeal bath in lukewarm water.",
+      "Avoid scratching to prevent secondary bacterial infections."
+    ],
+    "warningSigns": [
+      "Rash spreads rapidly across the face, eyes, or genitals",
+      "Blisters show yellow crusting, pus, or red streaking (bacterial cellulitis)",
+      "Accompanied by facial swelling or difficulty breathing"
+    ],
+    "triageQuestion": "Did you come into contact with any wild plants (poison ivy/oak) or new chemical products?",
+    "evacuationNote": "Seek medical attention if rash covers a large portion of the body, involves the eyes/mouth, or gets infected.",
+    "responses": [
+      "1) Apply 1% Hydrocortisone cream or Calamine lotion to calm itching. 2) Take an antihistamine like Benadryl or Cetirizine. 3) Use cold compresses or colloidal oatmeal baths. 4) Avoid scratching and wash gently with mild soap. See a doctor if the rash spreads near the eyes or shows signs of pus infection."
+    ]
+  },
+  {
+    "tag": "Abdonominal Pain",
+    "name": "Abdominal Pain & Stomach Cramps",
+    "patterns": [
+      "How do you treat Abdonominal Pain?",
+      "what to do if i get a Abdonominal Pain?",
+      "Which medicine to take if I get a Abdonominal Pain?",
+      "How to cure Abdonominal Pain?",
+      "stomach ache",
+      "belly pain",
+      "abdominal cramps"
+    ],
+    "firstAidSteps": [
+      "Rest comfortably in a curled fetal position or with knees bent to relieve tension on the abdominal wall.",
+      "Sip small amounts of clear fluids (water, oral rehydration salts, broth). Avoid large gulps.",
+      "Eat bland foods (BRAT diet: Bananas, Rice, Applesauce, Toast) once hunger returns.",
+      "Avoid NSAIDs (aspirin/ibuprofen) as they can irritate the stomach lining; acetaminophen may be used if appropriate.",
+      "Apply a warm water bottle or heating pad over the abdomen for comfort.",
+      "Avoid dairy, caffeine, alcohol, and greasy foods for at least 48 hours."
+    ],
+    "warningSigns": [
+      "Severe sharp pain localized to the lower right abdomen (possible Appendicitis)",
+      "Abdomen feels rock hard, rigid, or extremely painful when pressure is released (rebound tenderness)",
+      "Inability to keep liquids down for 24 hours, high fever, or blood in stool/vomit"
+    ],
+    "triageQuestion": "Is the pain concentrated in the lower right side of your belly, and is there any fever?",
+    "evacuationNote": "Severe localized lower right pain or rigid abdomen requires immediate emergency surgical evaluation.",
+    "responses": [
+      "1) Rest and sip clear fluids like water, diluted broth, or electrolyte drinks. 2) Stick to bland foods (crackers, toast, rice, applesauce). 3) Apply a warm compress to the stomach. 4) Avoid spicy, greasy, or dairy foods. Seek immediate medical help if pain is severe in the lower right side, abdomen is rigid, or if vomiting blood."
+    ]
+  },
+  {
+    "tag": "Bruises",
+    "name": "Bruises & Contusions (Hematoma)",
+    "patterns": [
+      "How do you treat Bruises?",
+      "what to do if i get a Bruise?",
+      "Which medicine to take if I get a Bruise?",
+      "How to cure Bruises?",
+      "black and blue mark",
+      "hematoma from bump"
+    ],
+    "firstAidSteps": [
+      "ICE immediately: Apply an ice pack wrapped in a towel for 10-20 minutes at a time, several times a day for the first 48 hours.",
+      "ELEVATE: Elevate the bruised limb above the level of the heart to reduce pooling of blood.",
+      "COMPRESS: Gently wrap the bruised area with an elastic bandage if swelling is present.",
+      "REST: Rest the injured muscle or joint.",
+      "HEAT (After 48 hours): Apply warm compresses to increase circulation and help the body reabsorb trapped blood.",
+      "Medication: Acetaminophen or topical arnica gel. Avoid aspirin as it thins the blood and increases bruising."
+    ],
+    "warningSigns": [
+      "Extremely painful, tense, firm swelling that expands rapidly (compartment syndrome risk)",
+      "Bruise occurs following head trauma (behind ear or around eyes)",
+      "Inability to move the joint beneath the bruise"
+    ],
+    "triageQuestion": "Did the bruise occur from a fall or direct blow, and can you move the limb freely?",
+    "evacuationNote": "If the bruise is expanding rapidly with extreme firmness and pain, seek prompt medical assessment.",
+    "responses": [
+      "1) Apply an ice pack wrapped in a cloth for 10-20 minutes every few hours for the first 48 hours. 2) Elevate the bruised limb above heart level. 3) Wrap gently with an elastic bandage if swollen. 4) After 2 days, use warm compresses to promote blood clearance. Acetaminophen can help with pain; avoid aspirin."
+    ]
+  },
+  {
+    "tag": "Broken Toe",
+    "name": "Broken Toe / Toe Fracture",
+    "patterns": [
+      "How do you treat a Broken Toe?",
+      "what to do if i get a Broken Toe?",
+      "Which medicine to take if I get a Broken Toe?",
+      "How to cure Broken Toe?",
+      "stubbed toe very swollen",
+      "fractured toe"
+    ],
+    "firstAidSteps": [
+      "REST & IMMOBILIZE: Stay off the foot and avoid bearing weight on the broken toe.",
+      "ICE: Apply an ice pack wrapped in a towel for 15 minutes at a time to reduce swelling.",
+      "ELEVATE: Keep the foot propped up on pillows above heart level as much as possible.",
+      "BUDDY TAPING: Place a small piece of cotton or gauze between the injured toe and the adjacent healthy toe, then tape them together gently.",
+      "FOOTWEAR: Wear a stiff-bottomed, wide-toed shoe or supportive boot to prevent bending the toe.",
+      "Pain Relief: Use ibuprofen or acetaminophen to manage pain and inflammation."
+    ],
+    "warningSigns": [
+      "Toe is crooked, severely deformed, or pointing in an unnatural direction",
+      "Bone is breaking through skin or open bleeding wound over fracture site",
+      "Toe is numb, tingling, cold, or turning blue/black (loss of circulation)"
+    ],
+    "triageQuestion": "Is the toe visibly crooked, or is the bone sticking out through the skin?",
+    "evacuationNote": "If the big toe is broken, severely deformed, or compound/open, seek medical orthopedic care.",
+    "responses": [
+      "1) Rest, elevate the foot above heart level, and apply ice wrapped in cloth for 15 minutes at a time. 2) Buddy-tape the injured toe to the neighboring healthy toe with cotton padding between them. 3) Wear stiff-soled footwear and avoid weight-bearing. 4) Use ibuprofen for pain. Seek medical care if the toe is visibly deformed or big toe is affected."
+    ]
+  },
+  {
+    "tag": "Choking",
+    "name": "Choking & Airway Obstruction",
+    "patterns": [
+      "How do you treat Choking?",
+      "what to do if i get a Choke?",
+      "Which medicine to take if I get Choked?",
+      "How to cure Choking?",
+      "someone is choking",
+      "food stuck in throat",
+      "heimlich maneuver"
+    ],
+    "firstAidSteps": [
+      "If the person can cough forcefully or speak: Encourage them to KEEP COUGHING to dislodge the object. Do NOT perform thrusts yet.",
+      "If the person CANNOT speak, cough, or breathe (Universal choking sign: hands to throat):",
+      "1. GIVE 5 BACK BLOWS: Stand behind them, lean them forward, and deliver 5 firm heel-of-hand blows between their shoulder blades.",
+      "2. GIVE 5 ABDOMINAL THRUSTS (Heimlich Maneuver): Stand behind the person, wrap arms around waist, place a fist thumb-side in just above the navel, grasp with other hand, and pull inward and upward sharply 5 times.",
+      "3. Alternate 5 back blows and 5 abdominal thrusts until the blockage is expelled.",
+      "FOR INFANTS (<1 yr): 5 gentle back slaps with infant face down on forearm, followed by 5 two-finger chest thrusts.",
+      "IF PERSON BECOMES UNCONSCIOUS: Lower them to the ground and immediately begin CPR chest compressions. Check mouth before rescue breaths."
+    ],
+    "warningSigns": [
+      "Silent gasping, inability to cough, or turning blue around lips (complete obstruction)",
+      "Loss of consciousness and collapse",
+      "Stridor (high pitched squeak when attempting to inhale)"
+    ],
+    "triageQuestion": "Can the choking person speak, cough, or make any sound right now?",
+    "evacuationNote": "CRITICAL EMERGENCY. Call emergency services immediately. Continue back blows and thrusts until airway is clear.",
+    "responses": [
+      "1) If coughing, encourage them to cough forcefully. 2) If unable to speak or breathe: Give 5 sharp back blows between shoulder blades with the heel of your hand. 3) Follow with 5 Abdominal Thrusts (Heimlich maneuver): place fist above navel, pull inward and upward sharply. 4) Repeat 5 blows and 5 thrusts. If they pass out, start CPR immediately."
+    ]
+  },
+  {
+    "tag": "Wound",
+    "name": "Open Wound & Laceration Care",
+    "patterns": [
+      "How do you treat a wound?",
+      "what to do if i get a Wound?",
+      "Which medicine to take if I get wounded?",
+      "How to cure a wound?",
+      "deep wound",
+      "open flesh wound"
+    ],
+    "firstAidSteps": [
+      "Apply firm, continuous direct pressure with sterile gauze or clean cloth for 5-10 minutes to stop bleeding.",
+      "Rinse the wound thoroughly with clean running water to wash away dirt and bacteria.",
+      "Do not use hydrogen peroxide or rubbing alcohol inside the wound as they damage healthy tissue.",
+      "Apply a thin layer of antibiotic ointment or petroleum jelly to keep the wound bed moist.",
+      "Cover securely with a sterile bandage or gauze dressing.",
+      "Elevate the wounded limb above heart level to reduce throbbing and blood flow.",
+      "Change bandage at least once daily or whenever it gets wet/dirty."
+    ],
+    "warningSigns": [
+      "Pulsatile, spurting bleeding that does not stop with direct pressure",
+      "Pus drainage, foul odor, radiating red streaks, or fever (infection)",
+      "Foreign object stuck inside that cannot be rinsed away"
+    ],
+    "triageQuestion": "Is the bleeding controlled by direct pressure, and is there any foreign object inside the wound?",
+    "evacuationNote": "Deep wounds gaping > 1/2 inch or contaminated by wilderness dirt need medical closure and tetanus booster within 48 hours.",
+    "responses": [
+      "1) Apply direct firm pressure with sterile gauze or clean cloth until bleeding stops. 2) Clean the wound thoroughly with clean water. 3) Apply antibiotic ointment or petroleum jelly. 4) Cover with a sterile bandage. 5) Elevate the injured area. Change the bandage daily and monitor for redness, swelling, or pus."
+    ]
+  },
+  {
+    "tag": "Diarrhea",
+    "name": "Diarrhea & Dehydration",
+    "patterns": [
+      "How do you treat Diarrhea?",
+      "what to do if i get Diarrhea?",
+      "Which medicine to take if I get Diarrhea?",
+      "How to cure Diarrhea?",
+      "loose watery motions",
+      "food poisoning diarrhea"
+    ],
+    "firstAidSteps": [
+      "HYDRATION IS CRITICAL: Sip Oral Rehydration Salts (ORS) solution, clear broths, or electrolyte drinks to replace lost fluids and electrolytes (sodium/potassium).",
+      "Eat bland, binding foods (BRAT diet: Bananas, Rice, Applesauce, Toast, crackers, boiled potatoes).",
+      "Avoid dairy products, high-fat foods, artificial sweeteners, and caffeine, which can aggravate the bowel.",
+      "Over-the-counter loperamide (Imodium) may be used for non-bloody traveler's diarrhea in adults.",
+      "Rest and monitor hydration: check urine color (should be pale straw yellow, not dark amber)."
+    ],
+    "warningSigns": [
+      "Bloody or black tarry stools",
+      "High fever (>102°F / 38.8°C) or severe cramping abdominal pain",
+      "Signs of severe dehydration: sunken eyes, dry mouth, dizziness upon standing, little to no urination for 8 hours"
+    ],
+    "triageQuestion": "Is there any blood in the stool, and are you able to keep fluids down without vomiting?",
+    "evacuationNote": "If diarrhea lasts over 2-3 days, contains blood, or causes severe dehydration, seek medical attention.",
+    "responses": [
+      "1) Prioritize hydration: Drink Oral Rehydration Solution (ORS), electrolyte fluids, and broths. 2) Stick to bland foods (bananas, rice, applesauce, toast). 3) Avoid dairy, caffeine, and greasy foods. 4) Loperamide (Imodium) may help for uncomplicated diarrhea. Seek medical advice if diarrhea lasts more than 2 days, contains blood, or causes severe dehydration."
+    ]
+  },
+  {
+    "tag": "Frost bite",
+    "name": "Frostbite & Cold Tissue Injury",
+    "patterns": [
+      "How do you treat a Frost bite?",
+      "what to do if i get a Frost bite?",
+      "Which medicine to take if I get a Frost bite?",
+      "How to cure Frost bite?",
+      "frozen fingers",
+      "frostbitten toes",
+      "white numb skin in cold"
+    ],
+    "firstAidSteps": [
+      "Move the person out of cold, wind, and wet conditions into a warm shelter immediately.",
+      "Remove wet gloves, socks, boots, and constricting jewelry.",
+      "Do NOT rub or massage frostbitten skin, and do NOT rub snow on it (causes severe tissue damage).",
+      "Rewarm in warm (NOT hot) water bath: 99°F - 104°F (37°C - 40°C) for 20-30 minutes until skin softens and color returns.",
+      "DO NOT rewarm if there is ANY chance of refreezing before reaching definite medical care (refreezing causes catastrophic tissue loss).",
+      "Protect thawed areas: Wrap loosely with sterile gauze between fingers/toes. Elevate to reduce swelling.",
+      "Give ibuprofen to reduce inflammation and pain."
+    ],
+    "warningSigns": [
+      "Skin remains hard, waxy, white, grey, or black with complete loss of sensation",
+      "Large blood-filled blisters forming after rewarming",
+      "Accompanying core hypothermia"
+    ],
+    "triageQuestion": "Is the frostbitten area still exposed to freezing temperatures, or are you in a safe heated shelter?",
+    "evacuationNote": "Frostbite is a serious medical emergency. Evacuate to hospital for specialized tissue recovery.",
+    "responses": [
+      "1) Get to a warm shelter and remove wet clothing. 2) Never rub frostbitten skin or use direct dry heat. 3) Rewarm in warm water (99-104°F) for 20-30 minutes ONLY if there is no danger of refreezing. 4) Place sterile gauze between fingers/toes and elevate. 5) Take ibuprofen for pain and seek urgent medical rescue."
+    ]
+  },
+  {
+    "tag": "Heat Exhaustion",
+    "name": "Heat Exhaustion",
+    "patterns": [
+      "How do you treat Heat Exhaustion?",
+      "what to do if i feel Exhausted due to heat?",
+      "Which medicine to take if I get Exhausted?",
+      "How to cure Heat Exhaustion?",
+      "overheating on trail",
+      "heavy sweating and dizziness in sun"
+    ],
+    "firstAidSteps": [
+      "Move the person immediately into shade, air-conditioned shelter, or pitch a tarp.",
+      "Have them lie down and elevate legs 12 inches (30 cm) to promote blood return to the heart.",
+      "Loosen or remove heavy, tight clothing, boots, and pack gear.",
+      "Cool the body: Apply cool, wet towels to the neck, armpits, and groin. Fan the patient vigorously.",
+      "Hydrate: If fully conscious and not nauseous, give frequent sips of cool water or electrolyte drink.",
+      "Rest for several hours until body temperature normalizes."
+    ],
+    "warningSigns": [
+      "Confusion, slurred speech, delirium, or loss of consciousness (Progression to Heat Stroke)",
+      "Persistent vomiting and inability to drink fluids",
+      "Body temperature rising above 104°F (40°C)"
+    ],
+    "triageQuestion": "Is the person sweating heavily and mentally alert, or confused and hot/dry?",
+    "evacuationNote": "If symptoms worsen or do not improve after 30 minutes of cooling and hydration, arrange medical transport.",
+    "responses": [
+      "1) Move to shade or cool shelter immediately. 2) Lie down with legs elevated 12 inches. 3) Loosen tight clothing. 4) Cool with wet cloths on neck/armpits and fan actively. 5) Sip cool water or electrolyte solution. If vomiting or confusion occurs, treat urgently as Heat Stroke."
+    ]
+  },
+  {
+    "tag": "Heat Stroke",
+    "name": "Heat Stroke (Life-Threatening Emergency)",
+    "patterns": [
+      "How do you treat Heat Stroke?",
+      "what to do if i get a Heat Stroke?",
+      "Which medicine to take if I get Stroke?",
+      "How to cure a Heat Stroke?",
+      "sunstroke",
+      "passed out in hot sun"
+    ],
+    "firstAidSteps": [
+      "ACT IMMEDIATELY: Heat stroke is a medical emergency with high risk of organ failure.",
+      "Call emergency rescue / trigger Satellite SOS immediately.",
+      "Move patient out of the sun into shade.",
+      "COOL AGGRESSIVELY: Immerse in cold water stream/lake if available, or douse clothing in cold water and fan vigorously.",
+      "Place ice packs or cold wet towels in high-flow vascular zones: neck, armpits, and groin.",
+      "Do NOT give oral fluids if the patient is confused, drowsy, or unconscious (choking risk).",
+      "Monitor airway and breathing continuously until emergency responders arrive."
+    ],
+    "warningSigns": [
+      "High body temperature (>104°F / 40°C)",
+      "Altered mental status: confusion, agitation, slurred speech, hallucinations, or seizures",
+      "Hot, flushed skin that may have stopped sweating",
+      "Rapid, strong pulse turning into weak thready pulse"
+    ],
+    "triageQuestion": "Is the patient confused, agitated, or unconscious right now?",
+    "evacuationNote": "CRITICAL LIFE THREAT. Trigger immediate emergency SOS. Continue aggressive cooling until medevac arrives.",
+    "responses": [
+      "Heat stroke is a life-threatening emergency: 1) Call emergency services immediately. 2) Move to shade. 3) Cool aggressively: immerse in cool water or soak clothing and fan vigorously. 4) Place ice packs on neck, armpits, and groin. 5) Do not give fluids if confused or unconscious. Continue cooling until medical help arrives."
+    ]
+  },
+  {
+    "tag": "Insect Bites",
+    "name": "Insect & Mosquito Bites",
+    "patterns": [
+      "How do you treat a Insect Bite?",
+      "what to do if a insect bites me?",
+      "Which medicine to take if I get bitten by a insect?",
+      "How to cure insect bite?",
+      "mosquito bite itching",
+      "bug bite swelling"
+    ],
+    "firstAidSteps": [
+      "Wash the bite area with soap and clean water.",
+      "Apply an ice pack wrapped in a cloth for 10-15 minutes to reduce swelling and numb the itch.",
+      "Apply 1% hydrocortisone cream, calamine lotion, or a baking soda paste (3 parts baking soda to 1 part water) to relieve itching.",
+      "Take an over-the-counter oral antihistamine (Cetirizine or Benadryl) if itching is severe.",
+      "Avoid scratching the bite to prevent breaking the skin and introducing bacterial infection."
+    ],
+    "warningSigns": [
+      "Difficulty breathing, facial swelling, or dizziness (severe allergic reaction)",
+      "Bullseye circular rash expanding around bite (sign of Lyme disease from tick)",
+      "Red streaks, heat, or pus developing at bite site"
+    ],
+    "triageQuestion": "Was it a tick, mosquito, or stinging insect, and is there an expanding ring rash?",
+    "evacuationNote": "If an expanding bullseye rash appears or systemic fever/body aches develop, consult a physician.",
+    "responses": [
+      "1) Wash the bite with soap and water. 2) Apply an ice pack for 10-15 minutes to reduce swelling. 3) Apply hydrocortisone cream or calamine lotion to relieve itch. 4) Take an oral antihistamine if needed. 5) Do not scratch. Seek medical help if breathing is affected or an expanding target rash develops."
+    ]
+  },
+  {
+    "tag": "nose bleed",
+    "name": "Nosebleed (Epistaxis)",
+    "patterns": [
+      "How do you treat a bleeding nose?",
+      "what to do if i my nose is bleeding?",
+      "Which medicine to take if I get nose bleed?",
+      "How to cure nose bleeding?",
+      "bloody nose",
+      "nose bleeding"
+    ],
+    "firstAidSteps": [
+      "Sit upright and lean your head SLIGHTLY FORWARD. (Do NOT tilt head backward, as blood will drain down throat and cause choking/vomiting).",
+      "Pinch the soft lower part of your nose firmly with your thumb and index finger against the nasal septum.",
+      "Hold continuous, uninterrupted pressure for AT LEAST 10-15 minutes by the clock.",
+      "Breathe calmly through your mouth while holding the nose.",
+      "Apply an ice pack or cold cloth over the bridge of the nose to constrict blood vessels.",
+      "After bleeding stops, avoid blowing, picking, or bending over for several hours."
+    ],
+    "warningSigns": [
+      "Bleeding continues after 20-30 minutes of continuous direct pressure",
+      "Nosebleed occurred following severe head or facial trauma (concussion/fracture risk)",
+      "Patient feels faint, dizzy, or is losing a large volume of blood"
+    ],
+    "triageQuestion": "How many minutes has the nose been bleeding, and did you suffer a blow to the head?",
+    "evacuationNote": "If bleeding does not stop after 20 minutes of firm pinching, seek emergency medical care.",
+    "responses": [
+      "1) Sit upright and lean slightly FORWARD (never tilt head backward). 2) Pinch the soft part of the nose firmly with thumb and finger. 3) Hold continuous pressure for 10-15 minutes without releasing. 4) Apply a cold pack to the nose bridge. 5) Breathe through mouth. Seek urgent care if bleeding persists over 20 minutes."
+    ]
+  },
+  {
+    "tag": "Pulled Muscle",
+    "name": "Pulled Muscle / Acute Muscle Strain",
+    "patterns": [
+      "How do you treat a Pulled Muscle?",
+      "what to do if my muscle is pulled?",
+      "Which medicine to take if I got pulled muscle?",
+      "How to cure a pulled muscle?",
+      "hamstring pull",
+      "pulled back muscle"
+    ],
+    "firstAidSteps": [
+      "Immediately stop the physical activity that caused the pull to prevent tearing muscle fibers.",
+      "Apply ICE pack wrapped in a cloth for 15-20 minutes every 2-3 hours for the first 48 hours.",
+      "Compress with an elastic support bandage to limit internal swelling and provide stability.",
+      "Elevate the pulled muscle above heart level whenever resting.",
+      "Take anti-inflammatory medication (ibuprofen or naproxen) or acetaminophen for pain relief.",
+      "After 48-72 hours, apply gentle heat and do light, pain-free stretching."
+    ],
+    "warningSigns": [
+      "Severe visible indentation or lump in the muscle belly",
+      "Complete inability to move or bear weight on the limb",
+      "Significant dark purple bruising and numbness"
+    ],
+    "triageQuestion": "Where is the pulled muscle located, and can you move the limb without excruciating pain?",
+    "evacuationNote": "Seek medical evaluation if muscle rupture or severe tear is suspected.",
+    "responses": [
+      "1) Stop activity immediately. 2) Apply ice wrapped in a towel for 15-20 minutes to minimize swelling. 3) Wrap gently with an elastic bandage for compression. 4) Elevate the injured limb. 5) Use ibuprofen for pain and inflammation. After 48 hours, switch to mild heat and gentle stretching."
+    ]
+  },
+  {
+    "tag": "Rectal bleeding",
+    "name": "Rectal Bleeding",
+    "patterns": [
+      "How do you treat Rectal Bleeding?",
+      "what to do if i get a Rectal Bleeding?",
+      "Which medicine to take if I get Rectal Bleeding?",
+      "How to cure Rectal Bleeding?",
+      "blood in stool",
+      "bright red blood on toilet paper"
+    ],
+    "firstAidSteps": [
+      "Remain calm: Small amounts of bright red blood on toilet paper often stem from hemorrhoids or minor anal fissures.",
+      "Increase dietary fiber (fruits, vegetables, whole grains) and drink plenty of water to soften stools.",
+      "Avoid straining during bowel movements.",
+      "Take warm sitz baths (sit in warm plain water for 15-20 minutes) 2-3 times daily to soothe the area.",
+      "Apply over-the-counter hemorrhoid cream (with hydrocortisone) or witch hazel pads for local relief.",
+      "Schedule a medical consultation for proper diagnosis."
+    ],
+    "warningSigns": [
+      "Passing large volumes of dark red blood, blood clots, or black tarry stools (melena)",
+      "Accompanied by dizziness, lightheadedness, fainting, or severe abdominal pain",
+      "Rapid heart rate and pale, clammy skin (hypovolemic shock)"
+    ],
+    "triageQuestion": "Is the blood bright red on paper, or dark red/black mixed in stool accompanied by dizziness?",
+    "evacuationNote": "Large volume rectal bleeding, black tarry stools, or associated dizziness requires emergency hospital care.",
+    "responses": [
+      "1) For minor bright red spotting: increase water intake, eat high-fiber foods, and avoid straining. 2) Take warm sitz baths for 15 minutes to soothe tissue. 3) Use OTC hemorrhoid creams or witch hazel pads. 4) If bleeding is heavy, stool is black/tarry, or you feel dizzy/faint, go to the emergency room immediately."
+    ]
+  },
+  {
+    "tag": "Sun Burn",
+    "name": "Sunburn Care",
+    "patterns": [
+      "How do you treat Sun Burn?",
+      "what to do if i get a Sun Burn?",
+      "Which medicine to take if I get Sun Burn?",
+      "How to cure a Sun Burn?",
+      "bad sunburn on shoulders",
+      "red blistering skin from sun"
+    ],
+    "firstAidSteps": [
+      "Get out of the sun immediately and stay indoors or in full shade.",
+      "Take frequent cool (not ice-cold) showers or apply cool, damp cloths to the burned skin.",
+      "Apply pure Aloe Vera gel or soothing moisturizing lotion (free of petroleum and fragrances) generously.",
+      "Drink extra water throughout the day to prevent dehydration.",
+      "Take OTC pain relievers (ibuprofen or acetaminophen) to reduce burning pain and swelling.",
+      "Do NOT pop or scratch blisters, as intact skin protects against infection.",
+      "Wear loose, soft clothing that does not rub against the skin."
+    ],
+    "warningSigns": [
+      "Severe blistering covering large portions of the body (>20% body surface)",
+      "High fever, chills, dizziness, confusion, or nausea (Sun poisoning)",
+      "Pus oozing from ruptured blisters with red streaks"
+    ],
+    "triageQuestion": "Are there large blisters forming, or are you experiencing fever and chills?",
+    "evacuationNote": "Seek medical evaluation if severe blistering covers large areas or if accompanied by high fever and confusion.",
+    "responses": [
+      "1) Get out of the sun immediately. 2) Apply cool, damp compresses or take a cool shower. 3) Apply pure Aloe Vera gel or fragrance-free moisturizer. 4) Drink plenty of water to rehydrate. 5) Take ibuprofen for pain and inflammation. 6) Do not pop blisters. Seek medical care if high fever or extensive blistering occurs."
+    ]
+  },
+  {
+    "tag": "Testicle Pain",
+    "name": "Testicular Pain / Scrotal Emergency",
+    "patterns": [
+      "How do you treat Testicle Pain?",
+      "what to do if i get a Testicle Pain?",
+      "Which medicine to take if I get a Testicle Pain?",
+      "How to cure Testicle Pain?",
+      "groin pain testicle",
+      "sudden severe scrotal pain"
+    ],
+    "firstAidSteps": [
+      "Rest immediately: Avoid physical exertion and sit or lie down comfortably.",
+      "Support the scrotum by wearing snug, supportive athletic underwear or placing a rolled towel beneath the scrotum when lying down.",
+      "Apply an ice pack wrapped in a towel for 10-15 minutes at a time to reduce swelling.",
+      "Take over-the-counter pain relievers (acetaminophen or ibuprofen).",
+      "IMPORTANT: Sudden, severe testicle pain may be Testicular Torsion, which is a surgical emergency requiring hospital care within 6 hours."
+    ],
+    "warningSigns": [
+      "Sudden, excruciating onset of severe testicle pain with nausea or vomiting (Testicular Torsion)",
+      "One testicle is visibly swollen, elevated, or positioned horizontally",
+      "Fever, burning with urination, or blood in urine"
+    ],
+    "triageQuestion": "Did the pain start suddenly with severe intensity and nausea, or has it built up gradually?",
+    "evacuationNote": "SUDDEN SEVERE TESTICLE PAIN IS A MEDICAL EMERGENCY. Go to the nearest emergency room immediately.",
+    "responses": [
+      "1) Rest and support the scrotum with athletic underwear or a rolled towel. 2) Apply an ice pack wrapped in cloth for 10-15 minutes. 3) Take acetaminophen or ibuprofen. WARNING: If pain started suddenly and severely (especially with nausea or swelling), it may be Testicular Torsion—go to an emergency room immediately to prevent permanent damage."
+    ]
+  },
+  {
+    "tag": "Vertigo",
+    "name": "Vertigo & Dizziness",
+    "patterns": [
+      "How do you treat a Vertigo?",
+      "what to do if i get a Vertigo?",
+      "Which medicine to take if I get Vertigo?",
+      "How to cure a Vertigo?",
+      "room is spinning",
+      "dizzy and loss of balance"
+    ],
+    "firstAidSteps": [
+      "Sit or lie down immediately in a quiet, dimly lit room to prevent falling.",
+      "Keep head still and avoid rapid head turns, bending over, or looking upward.",
+      "Focus your eyes on a fixed, stationary object in the room to help your brain reorient balance.",
+      "Drink water slowly to ensure dehydration is not a contributing factor.",
+      "When standing, do so very slowly and hold onto sturdy furniture or trekking poles.",
+      "Avoid bright lights, TV screens, loud sounds, alcohol, and sudden changes in position."
+    ],
+    "warningSigns": [
+      "Vertigo accompanied by double vision, slurred speech, facial droop, or arm weakness (Stroke warning)",
+      "Severe sudden headache, numbness, or inability to walk/stand",
+      "Fainting or sudden hearing loss in one ear"
+    ],
+    "triageQuestion": "Is the spinning accompanied by slurred speech, facial weakness, or numbness in your arms?",
+    "evacuationNote": "If vertigo is accompanied by neurological symptoms (slurred speech, weakness, vision loss), call emergency rescue immediately.",
+    "responses": [
+      "1) Sit or lie down immediately to prevent falls. 2) Keep head still and avoid rapid movements. 3) Focus your gaze on a stationary object. 4) Sip water to stay hydrated. 5) Stand up slowly with support. Seek immediate emergency care if dizziness is paired with slurred speech, weakness, numbness, or double vision."
+    ]
+  },
+  {
+    "tag": "Normal Bleeding",
+    "name": "Minor Bleeding & Small Wounds",
+    "patterns": [
+      "How do you treat bleeding?",
+      "what to do if i get a Bleeding?",
+      "Which medicine to take if I get bleeding?",
+      "How to cure Bleeding?",
+      "finger bleeding",
+      "stop small bleed"
+    ],
+    "firstAidSteps": [
+      "Apply direct, continuous pressure on the bleeding site with a clean cloth or sterile gauze for 3-5 minutes.",
+      "Elevate the bleeding limb above the level of the heart if possible.",
+      "Do NOT remove the cloth to check bleeding until 5 full minutes have passed.",
+      "Once bleeding stops, clean gently with soap and water.",
+      "Apply a thin layer of antibacterial ointment and secure with a sterile bandage."
+    ],
+    "warningSigns": [
+      "Blood is spurting in pulses or soaking through multiple thick pads",
+      "Bleeding does not stop after 10-15 minutes of firm direct pressure",
+      "Patient becomes pale, cold, or lightheaded"
+    ],
+    "triageQuestion": "Is the bleeding trickling slowly or spurting under pressure?",
+    "evacuationNote": "If bleeding fails to stop after 15 minutes of continuous direct pressure, seek urgent medical closure.",
+    "responses": [
+      "1) Apply direct firm pressure over the bleeding site with a sterile cloth for 3-5 minutes. 2) Elevate the bleeding area above heart level. 3) Clean the wound with mild soap and clean water. 4) Apply antibacterial ointment and cover with a sterile bandage. If blood spurts or won't stop after 10 minutes, seek emergency medical care."
+    ]
+  },
+  {
+    "tag": "Eye Injury",
+    "name": "Eye Trauma & Foreign Object in Eye",
+    "patterns": [
+      "How do you treat an eye Injury?",
+      "what to do if i get a eye Injury?",
+      "Which medicine to take if I injured my eye?",
+      "How to cure injured eye?",
+      "dirt stuck in eye",
+      "poked in the eye on trail",
+      "chemical splash in eye"
+    ],
+    "firstAidSteps": [
+      "DO NOT RUB THE EYE: Rubbing scratches the cornea and embeds particles deeper.",
+      "For dirt or small particles: Flush eye with sterile saline solution or clean running water for 15 minutes from inner to outer corner.",
+      "For chemical splashes: IMMEDIATELY flush with continuous running water for AT LEAST 15-20 minutes with eyelids held open.",
+      "For impaled objects (stick/metal): Do NOT attempt to pull it out. Tape a protective paper cup over the eye and bandage both eyes to reduce movement.",
+      "For black eye / blunt trauma: Apply a cold compress gently around (not on) the eye for 15 minutes at a time."
+    ],
+    "warningSigns": [
+      "Visible puncture, cut on eyeball, or blood inside the colored part of the eye (hyphema)",
+      "Persistent vision loss, double vision, or inability to open eye",
+      "Severe deep eye pain and pupil asymmetry"
+    ],
+    "triageQuestion": "Was the eye exposed to a chemical, blunt hit, or is an object impaled in the eye?",
+    "evacuationNote": "Any chemical splash, penetrating injury, or persistent vision change requires immediate ophthalmology evaluation.",
+    "responses": [
+      "1) Do NOT rub the eye. 2) For debris: Flush thoroughly with sterile saline or clean water for 15 minutes. 3) For chemicals: Flush continuously with water for 20 minutes immediately. 4) For impaled objects: Do NOT remove; stabilize with a protective cup over the eye. 5) For blunt trauma: Apply cold compress around eye. Seek emergency eye care for vision changes."
+    ]
+  },
+  {
+    "tag": "Chemical Burn",
+    "name": "Chemical Burn",
+    "patterns": [
+      "How do you treat a chemical burn?",
+      "what to do if i get a Chemical Burn?",
+      "Which medicine to take if I get burn due to chemicals?",
+      "How to cure Chemical Burn?",
+      "acid burn on skin",
+      "alkali chemical spill"
+    ],
+    "firstAidSteps": [
+      "SAFETY FIRST: Protect yourself with gloves before assisting the victim.",
+      "Brush off dry chemical powders from the skin with a cloth before flushing.",
+      "FLUSH IMMEDIATELY: Flood the affected skin with large amounts of cool running water for AT LEAST 20 full minutes.",
+      "Remove contaminated clothing, shoes, and jewelry while flushing the area.",
+      "Do NOT apply ointments, butter, ice, or neutralizing chemicals to the skin.",
+      "After 20 minutes of flushing, cover the burn loosely with clean sterile gauze or clean plastic wrap.",
+      "Take OTC pain relievers (ibuprofen/acetaminophen) if needed."
+    ],
+    "warningSigns": [
+      "Chemical burn involves face, eyes, hands, groin, or large joint",
+      "Skin appears white, charred, or blistered (deep second or third degree burn)",
+      "Signs of systemic toxicity (dizziness, breathing difficulty, nausea)"
+    ],
+    "triageQuestion": "What type of chemical was it, and have you flushed the area with running water for 20 minutes?",
+    "evacuationNote": "All significant chemical burns require prompt medical evaluation at a burn center or emergency room.",
+    "responses": [
+      "1) Brush off any dry powders first. 2) Flush the burn immediately under cool running water for AT LEAST 20 continuous minutes. 3) Remove all contaminated clothing while flushing. 4) Do not apply ointments or home remedies. 5) Cover loosely with sterile dry gauze and seek emergency medical treatment."
+    ]
+  },
+  {
+    "tag": "Poison",
+    "name": "Poisoning & Ingestion of Toxins",
+    "patterns": [
+      "How do you treat a Poison?",
+      "what to do if i get Poison?",
+      "Which medicine to take if I am poisoned?",
+      "How to cure Poisoning?",
+      "ate wild poisonous berries",
+      "swallowed cleaning fluid",
+      "toxic ingestion"
+    ],
+    "firstAidSteps": [
+      "CALL POISON CONTROL / EMERGENCY SOS IMMEDIATELY (In US: 1-800-222-1222).",
+      "Do NOT induce vomiting unless specifically instructed by Poison Control (vomiting corrosive poisons causes severe re-injury).",
+      "Do NOT give raw milk, salt water, or charcoal unless instructed by medical professionals.",
+      "If inhaled poison (smoke/gas): Move the person to fresh air immediately.",
+      "If poison on skin/eyes: Flush with large volumes of running water for 15-20 minutes.",
+      "Identify the poison substance, container, or wild plant/fungus to inform medical personnel.",
+      "If person becomes unconscious or stops breathing, immediately start CPR."
+    ],
+    "warningSigns": [
+      "Drowsiness, confusion, seizures, or loss of consciousness",
+      "Difficulty breathing or irregular heart rate",
+      "Burns or redness around the mouth and lips"
+    ],
+    "triageQuestion": "What substance was ingested or inhaled, and what time did the exposure occur?",
+    "evacuationNote": "CRITICAL EMERGENCY. Contact Poison Control and arrange emergency medical transport immediately.",
+    "responses": [
+      "1) Call Poison Control or Emergency Services immediately. 2) Do NOT induce vomiting or give liquids unless instructed by professionals. 3) If inhaled, move to fresh air. 4) If on skin/eyes, flush with water for 15 minutes. 5) Save the container, plant, or berry sample for doctors. 6) If unconscious, start CPR."
+    ]
+  },
+  {
+    "tag": "Teeth",
+    "name": "Broken or Knocked-Out Tooth (Dental Trauma)",
+    "patterns": [
+      "How do you treat broken Teeth ?",
+      "what to do if my Teeth got broken?",
+      "Which medicine to take if I get broken teeth?",
+      "cure broken teeth?",
+      "knocked out tooth",
+      "chipped tooth from fall"
+    ],
+    "firstAidSteps": [
+      "For a KNOCKED-OUT (Avulsed) tooth: Time is critical (re-implantation within 30-60 minutes has highest success).",
+      "Handle the tooth ONLY by the crown (top biting part) — NEVER touch the root.",
+      "If dirty, gently rinse with milk or saline for 10 seconds. Do NOT scrub or dry the tooth.",
+      "Try to gently re-insert the tooth back into its socket and bite down gently on clean gauze.",
+      "If cannot re-insert: Store the tooth in a container of cold cow's milk or specialized tooth preservation solution (or inside cheek saliva as last resort).",
+      "For a CHIPPED tooth: Rinse mouth with warm water and apply a cold compress to the cheek for swelling.",
+      "See an emergency dentist immediately."
+    ],
+    "warningSigns": [
+      "Active uncontrolled bleeding from dental socket",
+      "Severe facial bone fracture or inability to close jaw properly",
+      "Tooth was swallowed or aspirated into airway"
+    ],
+    "triageQuestion": "Was the entire tooth knocked out with root intact, or is it a chipped crown fragment?",
+    "evacuationNote": "See a dentist within 30-60 minutes for knocked out permanent teeth to save the tooth.",
+    "responses": [
+      "1) Handle knocked-out tooth by the CROWN only (never touch the root). 2) Rinse briefly with milk or saline (do not scrub). 3) Try to gently insert it back into the socket and bite on gauze, or store in cold milk. 4) Apply a cold compress to cheek for swelling. 5) See an emergency dentist within 1 hour for best survival."
+    ]
+  },
+  {
+    "tag": "seizure",
+    "name": "Seizure & Convulsions",
+    "patterns": [
+      "How do you treat a seizure?",
+      "what to do if i get a seizure?",
+      "Which medicine to take if I get seizure?",
+      "How to cure seizure?",
+      "someone having convulsion",
+      "epileptic fit"
+    ],
+    "firstAidSteps": [
+      "STAY CALM and time the duration of the seizure.",
+      "Protect from injury: Clear sharp objects, rocks, gear, and furniture away from the person.",
+      "Cushion their head with a folded jacket, pillow, or soft cloth.",
+      "Loosen tight clothing around their neck.",
+      "NEVER hold the person down or try to restrain their movements.",
+      "NEVER put anything inside their mouth (they cannot swallow their tongue; objects cause dental trauma/choking).",
+      "After jerking stops: Roll them gently onto their side into the RECOVERY POSITION to keep airway clear of saliva/vomit.",
+      "Stay with them until they are fully conscious, oriented, and breathing normally."
+    ],
+    "warningSigns": [
+      "Seizure lasts longer than 5 minutes (Status Epilepticus - medical emergency)",
+      "A second seizure follows immediately without gaining consciousness",
+      "Person has difficulty breathing, is pregnant, injured, or occurred in water"
+    ],
+    "triageQuestion": "How many minutes has the seizure lasted, and has the person stopped convulsing?",
+    "evacuationNote": "If a seizure lasts >5 minutes or repeats, call emergency services immediately.",
+    "responses": [
+      "1) Clear dangerous objects away and cushion their head with a jacket. 2) Time the seizure. 3) Do NOT restrain them and NEVER put anything in their mouth. 4) Loosen tight collar. 5) Once shaking stops, roll them onto their side in recovery position. 6) Call emergency rescue if seizure lasts over 5 minutes or repeats."
+    ]
+  },
+  {
+    "tag": "Head Injury",
+    "name": "Head Injury & Concussion Protocol",
+    "patterns": [
+      "How do you treat a head Injury?",
+      "what to do if i get a Head Injury?",
+      "Which medicine to take if I get injured in the head?",
+      "How to cure Head Injury?",
+      "hit on head by rock",
+      "concussion symptoms"
+    ],
+    "firstAidSteps": [
+      "Stabilize head and neck: If high-impact trauma or fall, keep neck still in neutral alignment (suspect cervical spine trauma).",
+      "Apply gentle direct pressure with clean gauze to scalp cuts (avoid pushing hard if skull fracture felt).",
+      "Apply a cold pack wrapped in cloth to scalp bumps for 15 minutes to reduce swelling.",
+      "Keep the person resting quietly in a calm, shaded environment.",
+      "Use acetaminophen for mild headache. Avoid aspirin and ibuprofen for first 24 hours (risk of intracranial bleeding).",
+      "Monitor level of alertness, speech coherence, and pupil size every 2 hours."
+    ],
+    "warningSigns": [
+      "Loss of consciousness (even briefly) or progressive drowsiness",
+      "Repeated vomiting (> 2 times)",
+      "Clear fluid or blood draining from ears or nose",
+      "Unequal pupil sizes, seizures, or weakness in arms/legs"
+    ],
+    "triageQuestion": "Did the person lose consciousness, vomit, or have clear fluid draining from the ears/nose?",
+    "evacuationNote": "Any loss of consciousness, repeated vomiting, or severe confusion requires immediate emergency hospital evaluation.",
+    "responses": [
+      "1) Keep head and neck stable if a fall occurred. 2) Apply gentle pressure with sterile gauze to scalp cuts. 3) Apply a cold compress to swelling. 4) Rest quietly in shade. 5) Use acetaminophen for headache (avoid aspirin/NSAIDs). 6) Seek immediate emergency rescue if there was loss of consciousness, repeated vomiting, or unequal pupils."
+    ]
+  },
+  {
+    "tag": "Fainting",
+    "name": "Fainting (Syncope)",
+    "patterns": [
+      "How do you treat Faint?",
+      "what to do if i feel like Fainting?",
+      "Which medicine to take if I get a Faint?",
+      "How to cure Fainting?",
+      "passed out suddenly",
+      "felt dizzy and collapsed"
+    ],
+    "firstAidSteps": [
+      "If feeling faint: Sit down immediately and put head between knees, or lie flat on back.",
+      "If person has fainted: Lay them flat on their back and ELEVATE THEIR LEGS 12 inches (30 cm) to restore blood flow to the brain.",
+      "Loosen tight collars, belts, and waistbands.",
+      "Ensure plenty of fresh air (fan the person or move crowd away).",
+      "Check that they are breathing normally. If not breathing, start CPR immediately.",
+      "Do NOT splash cold water on their face or give smelling salts.",
+      "Once awake: Keep them lying down for 10-15 minutes, then sit up slowly before standing."
+    ],
+    "warningSigns": [
+      "Fainting accompanied by chest pain, irregular heartbeats, or shortness of breath",
+      "Person does not regain consciousness within 1-2 minutes",
+      "Fainting occurred during heavy exercise or was preceded by sudden severe headache"
+    ],
+    "triageQuestion": "How long was the person unconscious, and are they alert and talking now?",
+    "evacuationNote": "If fainting occurred with chest pain or consciousness is not regained in 2 minutes, seek urgent medical care.",
+    "responses": [
+      "1) Lay the person flat on their back and elevate their legs 12 inches. 2) Loosen tight collars and belts. 3) Ensure fresh air flow. 4) Check breathing (if not breathing, start CPR). 5) Keep them resting for 10-15 minutes after waking up. Seek medical evaluation if fainting repeats or occurs with chest pain."
+    ]
+  },
+  {
+    "tag": "Headache",
+    "name": "Tension & Altitude Headache",
+    "patterns": [
+      "How do you treat a mild Headache?",
+      "what to do if i get a mild Headache?",
+      "Which medicine to take if I have a mild headache?",
+      "How to cure a mild headache?",
+      "throbbing head pain",
+      "headache on mountain trek"
+    ],
+    "firstAidSteps": [
+      "Hydrate: Drink 1-2 large glasses of water or electrolyte solution (dehydration is a primary trigger).",
+      "Rest in a quiet, dark, well-ventilated room or shaded tent.",
+      "Apply a cold or warm compress across your forehead, temples, or back of the neck.",
+      "Take OTC pain relievers like ibuprofen (Advil/Motrin 400mg) or acetaminophen (Tylenol 500-1000mg).",
+      "If at high altitude (>8,000 ft): Rest, hydrate, and consider descending if headache does not improve with ibuprofen."
+    ],
+    "warningSigns": [
+      "Sudden, excruciating 'thunderclap' headache (worst headache of life)",
+      "Accompanied by stiff neck, high fever, confusion, or rash",
+      "Accompanied by vision loss, weakness, or numbness on one side of body"
+    ],
+    "triageQuestion": "Did the headache come on suddenly like a thunderclap, and do you have a stiff neck or fever?",
+    "evacuationNote": "Seek urgent medical attention if headache is accompanied by high fever, stiff neck, or sudden thunderclap onset.",
+    "responses": [
+      "1) Drink 1-2 glasses of water or electrolytes. 2) Rest in a dark, quiet area. 3) Apply a cool compress to temples or neck. 4) Take ibuprofen, aspirin, or acetaminophen for pain relief (avoid aspirin in under-18s). 5) If at high altitude, descend if persistent. Seek emergency care for sudden severe thunderclap headache with stiff neck."
+    ]
+  },
+  {
+    "tag": "Cold",
+    "name": "Common Cold & Viral Upper Respiratory Infection",
+    "patterns": [
+      "How do you treat a Cold?",
+      "what to do if i get a mild Cold?",
+      "Which medicine to take if I have a Cold?",
+      "How to cure Cold?",
+      "runny nose and sneezing",
+      "caught a trail cold"
+    ],
+    "firstAidSteps": [
+      "Rest adequately to allow the immune system to fight off the viral infection.",
+      "Hydration: Drink plenty of warm water, herbal teas, lemon honey water, and clear broths to thin secretions.",
+      "Nutrition: Consume Vitamin C and Vitamin D rich foods (berries, citrus fruits, broccoli) to support immune response.",
+      "Gargle with warm salt water for throat tickles and use saline nasal sprays for congestion.",
+      "Inhale steam from a hot shower or bowl of hot water.",
+      "Use OTC medications: Acetaminophen/ibuprofen for body aches, decongestants for stuffy nose."
+    ],
+    "warningSigns": [
+      "High fever lasting more than 3-4 days",
+      "Severe shortness of breath, wheezing, or chest pain",
+      "Symptoms improve then suddenly worsen significantly (secondary bacterial infection)"
+    ],
+    "triageQuestion": "How many days have symptoms lasted, and do you have difficulty breathing or high fever?",
+    "evacuationNote": "Consult a doctor if symptoms persist past 10-14 days or if severe chest tightness and high fever occur.",
+    "responses": [
+      "1) Rest and stay well hydrated with warm liquids (teas, broth, lemon honey water). 2) Boost nutrition with Vitamin C and D rich foods. 3) Inhale steam and use warm salt water gargles. 4) Use OTC pain relievers (ibuprofen/acetaminophen) for body aches. Seek medical care if high fever lasts over 3 days or breathing is compromised."
+    ]
+  },
+  {
+    "tag": "Rash",
+    "name": "Allergic & Contact Skin Rash",
+    "patterns": [
+      "How do you treat Rashes?",
+      "what to do if i get a Rash?",
+      "Which medicine to take if I have a Rash?",
+      "How to cure Rash?",
+      "itchy red rash",
+      "skin breaking out in bumps"
+    ],
+    "firstAidSteps": [
+      "Wash the area gently with mild, unscented soap and cool water.",
+      "Apply 1% hydrocortisone cream or calamine lotion to relieve itching and inflammation.",
+      "Apply pure Aloe Vera gel or extra virgin olive oil for soothing antioxidant skin hydration.",
+      "Use cool, wet compresses for 15 minutes at a time to reduce burning and itch.",
+      "Take oral antihistamines (Cetirizine, Loratadine, or Benadryl) if itching is widespread.",
+      "Avoid hot water, harsh chemicals, fragrances, and scratching."
+    ],
+    "warningSigns": [
+      "Rash spreads rapidly over entire body or involves mouth/eyes",
+      "Accompanied by difficulty breathing, facial swelling, or fever",
+      "Blisters show signs of bacterial infection (pus, yellow crusting, warmth)"
+    ],
+    "triageQuestion": "Is the rash spreading to your face/eyes or accompanied by any breathing difficulty?",
+    "evacuationNote": "If rash is accompanied by facial swelling or difficulty breathing, seek immediate emergency care.",
+    "responses": [
+      "1) Apply 1% Hydrocortisone cream or Calamine lotion to calm itching. 2) Use Aloe Vera or soothing moisturizers. 3) Apply cool, damp compresses for 15 minutes. 4) Take an oral antihistamine (like Benadryl or Cetirizine). 5) Do not scratch. Seek urgent care if accompanied by facial swelling, fever, or difficulty breathing."
+    ]
+  },
+  {
+    "tag": "snake bite",
+    "name": "Snakebite Protocol (Venomous & Non-Venomous)",
+    "patterns": [
+      "How do you treat a snake bite?",
+      "what to do if i get a snake bite?",
+      "Which medicine to take if I get a snake bite?",
+      "How to cure snake bite?",
+      "i got bit by a snake",
+      "rattlesnake bite",
+      "viper bite"
+    ],
+    "firstAidSteps": [
+      "Move beyond striking distance of the snake. Do NOT try to catch or kill the snake.",
+      "KEEP PATIENT COMPLETELY CALM AND STILL: Movement increases heart rate and circulates venom rapidly.",
+      "Keep the bitten limb immobilized and POSITIONED AT OR BELOW HEART LEVEL.",
+      "Immediately remove rings, watches, tight bracelets, and shoes before swelling develops.",
+      "Wash gently with clean water and cover loosely with a sterile dry bandage.",
+      "Apply broad pressure immobilization bandage for neurotoxic bites (snug, not tourniquet-tight).",
+      "MARK THE SWELLING: Trace leading edge of swelling on skin with a pen and write timestamp every 15 minutes.",
+      "NEVER cut the wound, NEVER suck venom, NEVER apply ice, and NEVER apply a tight arterial tourniquet."
+    ],
+    "warningSigns": [
+      "Two distinct puncture fang marks with rapid swelling, severe burning pain, and bruising",
+      "Difficulty swallowing, drooling, slurred speech, or drooping eyelids (ptosis)",
+      "Bleeding from gums or uninjured skin, vomiting blood",
+      "Shortness of breath, dizziness, or collapse"
+    ],
+    "triageQuestion": "How many minutes ago was the bite, and are there 2 puncture fang marks with swelling?",
+    "evacuationNote": "CRITICAL EMERGENCY. Activate Satellite SOS / call emergency rescue immediately. Carry patient to prevent walking.",
+    "responses": [
+      "1) Move to safe distance. 2) Keep patient calm, still, and bitten limb at or below heart level. 3) Remove rings, watches, and tight boots immediately. 4) Cover with clean, loose sterile bandage. 5) Mark swelling edge with pen and timestamp. 6) NEVER cut, suck venom, apply ice, or use a tourniquet. 7) Call emergency services immediately."
+    ]
+  },
+  {
+    "tag": "animal bite",
+    "name": "Animal Bite (Dog / Cat / Monkey / Wildlife)",
+    "patterns": [
+      "How do you treat a animal bite?",
+      "How do you treat a monkey bite?",
+      "How do you treat a dog bite?",
+      "what to do if i get a animal bite?",
+      "Which medicine to take if I get a monekey bite?",
+      "How to cure dog bite?",
+      "i got bit by a dog",
+      "rabies bite risk"
+    ],
+    "firstAidSteps": [
+      "WASH IMMEDIATELY: Scrub and flush the bite wound vigorously with warm water and soap for AT LEAST 10-15 minutes (this dramatically reduces rabies and bacterial viral load).",
+      "Apply gentle pressure with a clean cloth to control bleeding.",
+      "Apply antibacterial ointment (Bacitracin or Betadine) to the wound.",
+      "Cover with a sterile bandage or gauze dressing.",
+      "Elevate the injured limb if bleeding or swollen.",
+      "SEEK MEDICAL CARE URGENTLY: Post-exposure Rabies prophylaxis (PEP) vaccine and Tetanus toxoid booster must be administered promptly."
+    ],
+    "warningSigns": [
+      "Animal was wild, bat, stray dog, monkey, or acting abnormally/unprovoked (high rabies risk)",
+      "Deep puncture wounds, torn tissue, or severe bleeding",
+      "Redness, warmth, throbbing pain, and pus draining after 24 hours (bacterial infection)"
+    ],
+    "triageQuestion": "Was it a domestic pet or a stray/wild animal, and did you wash the wound with soap for 10 minutes?",
+    "evacuationNote": "All animal bites breaking the skin require medical evaluation for Rabies PEP and Tetanus booster.",
+    "responses": [
+      "1) Wash and scrub the wound with soap and running water for AT LEAST 10-15 minutes immediately. 2) Apply gentle pressure with clean cloth to stop bleeding. 3) Apply antibacterial ointment. 4) Cover with a sterile bandage. 5) Seek urgent medical attention for Rabies vaccination and Tetanus booster."
+    ]
+  },
+  {
+    "tag": "Drowning",
+    "name": "Drowning & Submersion Rescue",
+    "patterns": [
+      "What to do if someone is Drowning?",
+      "what to do if someone drowned?",
+      "What steps to take if i see a drowning person?",
+      "How to help a drowning person?",
+      "near drowning in river",
+      "pulled out of water unconscious"
+    ],
+    "firstAidSteps": [
+      "RESCUE SAFELY: Reach or throw an object (rope, lifebuoy, branch); do not put yourself in danger.",
+      "Once on land: Place the victim on their back on a flat surface.",
+      "Check responsiveness and breathing: Look for chest rise, listen for breath sounds for 10 seconds.",
+      "IF NOT BREATHING: Immediately start CPR. For drowning victims, START WITH 2-5 INITIAL RESCUE BREATHS, then begin chest compressions.",
+      "Perform CPR cycle: 30 chest compressions (100-120 bpm, 2 inches deep) followed by 2 rescue breaths.",
+      "If vomiting occurs: Turn the person onto their side to clear water and vomit from airway, then resume CPR.",
+      "Remove wet clothes and wrap in dry blankets/space blanket to prevent hypothermia."
+    ],
+    "warningSigns": [
+      "Absence of normal breathing or carotid pulse",
+      "Persistent coughing, wheezing, or confusion hours after water rescue (Delayed Submersion Injury / 'dry drowning')",
+      "Cyanotic blue lips and hypothermia"
+    ],
+    "triageQuestion": "Is the rescued person conscious and breathing normally right now?",
+    "evacuationNote": "CRITICAL EMERGENCY. Call emergency services immediately. Anyone submerged needs hospital evaluation.",
+    "responses": [
+      "1) Remove from water safely. 2) Check responsiveness and breathing. 3) If not breathing: Start CPR immediately with rescue breaths (drowning requires oxygenation first) followed by 30 chest compressions. 4) If vomiting, roll onto side to clear airway. 5) Keep warm with dry blankets. 6) All submersion victims must go to the hospital."
+    ]
+  },
+  {
+    "tag": "CPR",
+    "name": "Cardiopulmonary Resuscitation (CPR)",
+    "patterns": [
+      "How to give CPR??",
+      "what to do in a CPR?",
+      "What steps to take in a CPR??",
+      "How to help a drowning person in CPR?",
+      "cardiac arrest steps",
+      "how to do chest compressions"
+    ],
+    "firstAidSteps": [
+      "CHECK SCENE & RESPONSIVENESS: Tap shoulders firmly and shout 'Are you OK?'. Check for breathing for no more than 10 seconds.",
+      "CALL FOR HELP: Trigger emergency SOS / instruct someone to call ambulance and fetch an AED if nearby.",
+      "HAND POSITION: Place the heel of one hand in the center of the chest (lower half of breastbone), interlock fingers with other hand. Keep elbows straight.",
+      "COMPRESSIONS: Push HARD and FAST at a rate of 100-120 beats per minute (e.g. to the beat of 'Stayin' Alive'). Compress at least 2 inches (5-6 cm) deep in adults.",
+      "ALLOW FULL CHEST RECOIL between each compression without leaning on the chest.",
+      "BREATHS (if trained): Give 30 compressions followed by 2 rescue breaths (tilt head, lift chin, pinch nose). If untrained, do continuous Hands-Only CPR.",
+      "FOR INFANTS (<1 yr): Use 2 fingers on center of chest, compress 1.5 inches deep at 100-120 bpm.",
+      "DO NOT STOP until victim starts breathing, emergency medical help takes over, or you are physically exhausted."
+    ],
+    "warningSigns": [
+      "Victim is completely unresponsive with agonal gasping or absent breathing",
+      "Absence of carotid pulse",
+      "Skin turning grey, pale, or blue"
+    ],
+    "triageQuestion": "Is the person unresponsive and not breathing normally right now?",
+    "evacuationNote": "LIFE-THREATENING EMERGENCY. Continue uninterrupted chest compressions until emergency crew takes over.",
+    "responses": [
+      "1) Place heel of hand in center of chest, interlock other hand, straight arms. 2) Push hard and fast: 100-120 compressions per minute, 2 inches (5-6 cm) deep. 3) Allow full chest recoil. 4) Give 30 compressions followed by 2 rescue breaths (or continuous Hands-Only CPR). 5) For infants, use 2 fingers and compress 1.5 inches. Continue until emergency crew arrives."
+    ]
+  },
+  {
+    "tag": "Fracture",
+    "name": "Fracture / Broken Bone Protocol",
+    "patterns": [
+      "How do you treat a Fracture?",
+      "what to do if i get a Fracture?",
+      "Which medicine to take if I have a Fracture?",
+      "How to cure a Fracture?",
+      "broken leg bone",
+      "arm snapped in fall",
+      "bone protruding through skin"
+    ],
+    "firstAidSteps": [
+      "STOP BLEEDING: If bone is breaking through skin (open fracture), apply sterile pressure around the bone edges (never push bone back in).",
+      "IMMOBILIZE THE LIMB: Do NOT attempt to straighten or realign the bone or joint. Splint the limb in the exact position found.",
+      "APPLY A SPLINT: Use rigid items (trekking poles, branches, SAM splint, folded foam pad). Secure the splint ABOVE and BELOW the fracture joint.",
+      "Leave fingers or toes exposed to check circulation (warmth, pulse, color).",
+      "APPLY ICE PACK wrapped in a towel for 15-20 minutes to limit swelling and pain.",
+      "TREAT FOR SHOCK: Lay the patient down, keep them warm with a space blanket, and elevate uninjured legs if faint.",
+      "Administer pain relief (acetaminophen or ibuprofen) if conscious and no abdominal trauma."
+    ],
+    "warningSigns": [
+      "Bone protruding through the skin with active heavy bleeding (compound fracture)",
+      "Extremity turns cold, blue, pale, or completely numb below the injury (vascular compromise)",
+      "Severe systemic shock: rapid weak pulse, confusion, dizziness"
+    ],
+    "triageQuestion": "Is the bone protruding through the skin, and can the patient feel touch in the fingers/toes?",
+    "evacuationNote": "Immobilize the fracture securely and activate emergency satellite SOS / rescue. Do not allow patient to walk on broken lower limb.",
+    "responses": [
+      "1) Stop any bleeding with sterile pressure around wound edges. 2) Do not attempt to realign or push bones in. 3) Immobilize the limb with a rigid splint secured above and below the break. 4) Apply ice packs wrapped in cloth for 15-20 minutes. 5) Keep patient warm with space blanket to prevent shock. 6) Seek emergency medical evacuation."
+    ]
+  }
+]

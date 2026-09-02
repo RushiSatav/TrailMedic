@@ -49,6 +49,12 @@ class ChatViewModel @Inject constructor(
     private val _isVoiceListening = voiceInputManager.isListening
     val isVoiceListening = _isVoiceListening
 
+    val voiceErrorMessage = voiceInputManager.errorMessage
+
+    fun clearVoiceError() {
+        voiceInputManager.clearError()
+    }
+
     private val _showPhaseTransitionBanner = MutableStateFlow(false)
     val showPhaseTransitionBanner = _showPhaseTransitionBanner.asStateFlow()
 
@@ -83,6 +89,7 @@ class ChatViewModel @Inject constructor(
                 "Briefly describe what happened with ${category.label.lowercase()}:"
 
         val openingMessage = Message(
+            id = java.util.UUID.randomUUID().toString(),
             content = openingText,
             isUser = false
         )
@@ -103,17 +110,18 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    fun sendMessage(userInput: String) {
-        if (userInput.isBlank() || _isTyping.value) return
+    fun sendMessage(userText: String) {
+        if (userText.isBlank() || _isTyping.value) return
 
-        val userMsg = Message(content = userInput.trim(), isUser = true)
-        _messages.value = _messages.value + userMsg
+        val userMessage = Message(
+            id = java.util.UUID.randomUUID().toString(),
+            content = userText.trim(),
+            isUser = true
+        )
+        _messages.value = _messages.value + userMessage
         userResponseCount++
 
-        // Dynamically detect or adapt the emergency category based on real user input
-        currentCategory = aiReasoner.detectEmergencyCategory(_messages.value, currentCategory)
-
-        // Switch to diagnosing phase after 4 user responses
+        // Transition to DIAGNOSING phase after 4 user responses
         if (userResponseCount >= 4 && _phase.value == ConversationPhase.INTERVIEWING) {
             _phase.value = ConversationPhase.DIAGNOSING
             _showPhaseTransitionBanner.value = true
@@ -130,25 +138,38 @@ class ChatViewModel @Inject constructor(
 
         viewModelScope.launch {
             val accumulatedText = StringBuilder()
+            var lastUpdateTime = 0L
             try {
-                runEmergencyInterviewUseCase(
+                val finalResponse = runEmergencyInterviewUseCase(
                     category = currentCategory,
                     messages = _messages.value.dropLast(1),
                     phase = _phase.value,
                     questionIndex = userResponseCount - 1,
                     onToken = { token ->
                         accumulatedText.append(token)
-                        val updatedList = _messages.value.toMutableList()
-                        val lastIdx = updatedList.indexOfFirst { it.id == streamingMsgId }
-                        if (lastIdx != -1) {
-                            updatedList[lastIdx] = streamingMsg.copy(content = accumulatedText.toString())
-                            _messages.value = updatedList
+                        val now = System.currentTimeMillis()
+                        if (now - lastUpdateTime > 40 || token.contains("\n")) {
+                            lastUpdateTime = now
+                            val updatedList = _messages.value.toMutableList()
+                            val lastIdx = updatedList.indexOfFirst { it.id == streamingMsgId }
+                            if (lastIdx != -1) {
+                                updatedList[lastIdx] = streamingMsg.copy(content = accumulatedText.toString())
+                                _messages.value = updatedList
+                            }
                         }
                     }
                 )
 
+                val finalOutput = if (accumulatedText.isNotBlank()) accumulatedText.toString() else finalResponse
+                val updatedList = _messages.value.toMutableList()
+                val lastIdx = updatedList.indexOfFirst { it.id == streamingMsgId }
+                if (lastIdx != -1) {
+                    updatedList[lastIdx] = streamingMsg.copy(content = finalOutput)
+                    _messages.value = updatedList
+                }
+
                 if (_isTTSEnabled.value) {
-                    ttsManager.speak(accumulatedText.toString())
+                    ttsManager.speak(finalOutput)
                 }
 
                 if (_phase.value == ConversationPhase.DIAGNOSING) {

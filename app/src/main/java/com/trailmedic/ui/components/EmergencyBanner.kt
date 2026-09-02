@@ -25,16 +25,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.trailmedic.ui.theme.DeepNavy
-import com.trailmedic.ui.theme.WarningOrange
+import com.trailmedic.ui.theme.MediBorder
+import com.trailmedic.ui.theme.MediEmergencyYellow
+import com.trailmedic.ui.theme.MediSoftYellow
+import com.trailmedic.ui.theme.MediTextPrimary
 
 @Composable
 fun EmergencyBanner(
     text: String,
     modifier: Modifier = Modifier,
     icon: ImageVector = Icons.Default.Warning,
-    backgroundColor: Color = WarningOrange,
-    contentColor: Color = DeepNavy,
+    backgroundColor: Color = MediSoftYellow,
+    contentColor: Color = MediTextPrimary,
     onDismiss: (() -> Unit)? = null
 ) {
     Box(
@@ -42,7 +44,7 @@ fun EmergencyBanner(
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(backgroundColor)
-            .border(1.dp, contentColor.copy(alpha = 0.2f), RoundedCornerShape(12.dp))
+            .border(1.dp, MediBorder, RoundedCornerShape(12.dp))
             .padding(horizontal = 14.dp, vertical = 10.dp)
     ) {
         Row(
@@ -53,14 +55,14 @@ fun EmergencyBanner(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = contentColor,
+                tint = if (contentColor == MediTextPrimary) MediEmergencyYellow else contentColor,
                 modifier = Modifier.size(22.dp)
             )
 
             Text(
                 text = text,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.SemiBold,
                     color = contentColor,
                     fontSize = 13.sp,
                     lineHeight = 18.sp

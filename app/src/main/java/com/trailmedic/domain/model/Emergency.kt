@@ -31,3 +31,39 @@ data class SymptomTreeRoot(
     val version: Int,
     val emergencies: List<SymptomEmergencyData>
 )
+
+data class FirstAidIntentData(
+    val tag: String,
+    val name: String,
+    val patterns: List<String> = emptyList(),
+    val firstAidSteps: List<String> = emptyList(),
+    val warningSigns: List<String> = emptyList(),
+    val triageQuestion: String = "",
+    val evacuationNote: String = "",
+    val responses: List<String> = emptyList()
+) {
+    fun toSymptomEmergencyData(): SymptomEmergencyData {
+        return SymptomEmergencyData(
+            id = tag.lowercase().replace(" ", "_"),
+            name = name.ifBlank { tag },
+            triggerKeywords = patterns + tag,
+            questions = if (triageQuestion.isNotBlank()) listOf(triageQuestion) else listOf("How severe is the condition?", "Is the patient conscious and breathing?"),
+            firstAidSteps = firstAidSteps.ifEmpty { responses },
+            warningSigns = warningSigns,
+            evacuationNote = evacuationNote.ifBlank { "If symptoms worsen or do not improve, seek medical assistance." }
+        )
+    }
+}
+
+data class ClinicalExtractionResult(
+    val conditionTag: String,
+    val conditionName: String,
+    val confidence: Float,
+    val firstAidSteps: List<String>,
+    val warningSigns: List<String>,
+    val triageQuestion: String,
+    val evacuationNote: String,
+    val directResponse: String,
+    val matchedPattern: String? = null
+)
+
